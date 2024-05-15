@@ -1,11 +1,9 @@
 import React from "react";
 import { Text, View } from "react-native";
-const AuthStack = () => {
+export default function AuthStack() {
   return (
     <View>
       <Text>Auth Stack</Text>
     </View>
   );
-};
-
-export default AuthStack;
+}
