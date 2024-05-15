@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { textColor } from "../../../constants/appColors";
+import { LinearGradient } from "expo-linear-gradient";
 
 const AuthButton = ({
   icon,
@@ -27,9 +28,20 @@ const AuthButton = ({
           <Text style={styles.textButton}>{text}</Text>
         </View>
       ) : (
-        <View style={[styles.container, { marginTop: "5%" }]}>
-          <Text style={styles.textButton}>{text}</Text>
-        </View>
+        <LinearGradient
+          style={[
+            styles.container,
+            {
+              marginTop: "5%",
+              backgroundColor:
+                "linear-gradient(90deg, #5EDFF5 0%, #9F80F8 100%)",
+              borderRadius: 40,
+            },
+          ]}
+          colors={["#5EDFF5", "#9F80F8"]}
+        >
+          <Text style={[styles.textButton, { color: "white" }]}>{text}</Text>
+        </LinearGradient>
       )}
     </>
   );

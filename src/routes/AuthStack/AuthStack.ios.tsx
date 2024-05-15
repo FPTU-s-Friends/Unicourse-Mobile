@@ -1,10 +1,16 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  SafeAreaView,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { LOGO, GG_IMG, GitHub_IMG } from "../../assets";
 import { textColor } from "../../constants/appColors";
 import AuthButton from "../../components/Auth/SignIn/AuthButton";
-
 const AuthStack = () => {
   return (
     <LinearGradient style={styles.container} colors={["#5EDFF5", "#9F80F8"]}>
@@ -27,12 +33,12 @@ const AuthStack = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    flex: 1,
   },
   content: {
-    marginTop: 250,
+    marginTop: 260,
     backgroundColor: "#fff",
-    height: 650,
+    height: 700,
     borderRadius: 36,
     flexDirection: "column",
     alignItems: "center",
