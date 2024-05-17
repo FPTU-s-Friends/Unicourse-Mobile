@@ -12,9 +12,10 @@ export type Blogs = Blog[];
 export type Blog = {
     user: User;
     tags: Tags;
+    thumnail: string;
     title: string;
     description: string;
-    createdAt: Date;
+    createdAt: string;
     minutedRead: number;
 }
 

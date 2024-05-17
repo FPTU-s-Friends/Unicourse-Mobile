@@ -1,5 +1,4 @@
 import { Image, StyleSheet, View } from "react-native";
-import { BANNER_1 } from "../../../assets";
 
 const MyCarousel = () => {
   return (
@@ -7,7 +6,7 @@ const MyCarousel = () => {
       <Image
         style={styles.imgBanner}
         resizeMode={"contain"}
-        source={BANNER_1}
+        source={require("../../../assets/images/banner/banner_1.png")}
       />
     </View>
   );
