@@ -1,10 +1,10 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { LOGO, GG_IMG, GitHub_IMG } from "../../assets";
-import { textColor } from "../../constants/appColors";
-import AuthButton from "../../components/Auth/SignIn/AuthButton";
-const AuthScreen = () => {
+import AuthButton from "./components/Button/AuthButton";
+import { GG_IMG, GitHub_IMG, LOGO } from "../../../assets";
+import { textColor } from "../../../constants/appColors";
+const LoginScreen = () => {
   return (
     <LinearGradient style={styles.container} colors={["#5EDFF5", "#9F80F8"]}>
       <View style={styles.content}>
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AuthScreen;
+export default LoginScreen;
