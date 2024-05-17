@@ -9,9 +9,7 @@ import {
     SafeAreaView
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
-import { textColor } from "../../constants/appColors";
-import { AuthStackParamList } from "../../types/navigation.types";
+import { MainStackParamList } from "../../types/navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Header from "../../components/Blog/Header/Header";
 import Highlight from "../../components/Blog/Highlight/Highlight";
@@ -21,10 +19,8 @@ import { Tags, Blogs } from "../../types";
 import { tagsData, blogsData } from "../../assets/data";
 
 const BlogScreen = () => {
-    const navigation =
-        useNavigation<
-            NativeStackNavigationProp<AuthStackParamList>
-        >();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<MainStackParamList>>();
 
     const title: string = "Bài viết nổi bật"
     const description: string = "Tổng hợp bài viết chia sẻ về kinh nghiệm tự học tập và phương pháp học tập của sinh viên và giảng viên."

@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AuthButton from "./components/Button/AuthButton";
 import { GG_IMG, GitHub_IMG, LOGO } from "../../../assets";
 import { textColor } from "../../../constants/appColors";
+
 const LoginScreen = () => {
   return (
     <LinearGradient style={styles.container} colors={["#5EDFF5", "#9F80F8"]}>
@@ -29,9 +30,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    marginTop: 220,
+    marginTop: "50%",
     backgroundColor: "#fff",
-    height: 700,
+    height: "80%",
     borderRadius: 36,
     flexDirection: "column",
     alignItems: "center",
