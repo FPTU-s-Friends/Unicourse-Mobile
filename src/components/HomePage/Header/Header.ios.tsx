@@ -1,5 +1,8 @@
 import React from "react";
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+/*
+@Import Icon
+*/
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 
@@ -35,7 +38,7 @@ const Header = () => {
             <Feather name="bell" size={25} color="white" />
           </View>
           <View style={styles.btn2}>
-            <Feather name="bell" size={25} color="white" />
+            <AntDesign name="setting" size={24} color="black" />
           </View>
         </View>
       </View>

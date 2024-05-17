@@ -10,9 +10,7 @@ import {
 import { textColor } from "../../../../../constants/appColors";
 import { LinearGradient } from "expo-linear-gradient";
 import { CompositeNavigationProp, useNavigation } from "@react-navigation/core";
-
 import { RootStackParamList } from "../../../../../types";
-
 import { StackNavigationProp } from "@react-navigation/stack";
 
 // Type for the navigation prop

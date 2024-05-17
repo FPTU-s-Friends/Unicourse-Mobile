@@ -1,43 +1,48 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+/*
+@Import Icon
+*/
 import { AntDesign } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 
 const Header = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.btn}>
-        <AntDesign name="arrowleft" size={25} color="black" />
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.userLayout}>
+          <View style={styles.userGroupImage}>
+            <Image
+              style={styles.userImage}
+              resizeMode="cover"
+              source={{
+                uri: "https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/Unicourse%20Project%2Fuser5.jpg?alt=media&token=cfaa77cb-0586-4271-84ad-3ecd9a4f4dd4",
+              }}
+            />
+            <View style={styles.onlineIcon} />
+          </View>
+          <View style={styles.userTextInfo}>
+            <Text style={styles.title} numberOfLines={1}>
+              Nguyễn Huy Khải
+            </Text>
+            <Text style={styles.textRole} numberOfLines={1}>
+              Học viên
+            </Text>
+          </View>
+        </View>
+        <View style={styles.groupBtn}>
+          <View style={styles.btn2}>
+            <AntDesign name="search1" size={25} color="black" />
+          </View>
+          <View style={styles.btn3}>
+            <Feather name="bell" size={25} color="white" />
+          </View>
+          <View style={styles.btn2}>
+            <AntDesign name="setting" size={24} color="black" />
+          </View>
+        </View>
       </View>
-      <View style={styles.userLayout}>
-        <View style={styles.userGroupImage}>
-          <Image
-            style={styles.userImage}
-            resizeMode="cover"
-            source={{
-              uri: "https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/Unicourse%20Project%2Fuser5.jpg?alt=media&token=cfaa77cb-0586-4271-84ad-3ecd9a4f4dd4",
-            }}
-          />
-          <View style={styles.onlineIcon} />
-        </View>
-        <View style={styles.userTextInfo}>
-          <Text style={styles.title} numberOfLines={1}>
-            Nguyễn Huy Khải
-          </Text>
-          <Text style={styles.textRole} numberOfLines={1}>
-            Thành viên
-          </Text>
-        </View>
-      </View>
-      <View style={styles.groupBtn}>
-        <View style={styles.btn2}>
-          <AntDesign name="search1" size={25} color="black" />
-        </View>
-        <View style={styles.btn3}>
-          <Feather name="bell" size={25} color="white" />
-        </View>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -50,6 +55,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: "center",
     backgroundColor: "#fff",
+    justifyContent: "space-between",
   },
   btn: {
     backgroundColor: "#EDEDED",
@@ -60,7 +66,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#EDEDED",
     borderRadius: 50,
     padding: 6,
-    marginRight: 6,
   },
   btn3: {
     backgroundColor: "#578ff2",
@@ -71,8 +76,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 180,
     flexDirection: "row",
-    marginLeft: 10,
-    marginRight: 20,
   },
   userGroupImage: {
     height: "auto",
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    margin: "auto",
+    gap: 10,
   },
   thnhVinPosition: {
     overflow: "hidden",
