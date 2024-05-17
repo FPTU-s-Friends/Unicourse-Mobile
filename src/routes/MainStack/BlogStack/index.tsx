@@ -1,17 +1,19 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { nameSreen } from "../../constants/nameScreen";
-import BlogStack from "./BlogStack";
+import { nameSreen } from "../../../constants/nameScreen";
+import BlogScreen from "../../../screens/BlogScreen/BlogScreen";
 const Stack = createStackNavigator();
 
-export default function MainStack() {
+const BlogStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name={nameSreen.BLOGSTACK} component={BlogStack} />
+      <Stack.Screen name={nameSreen.BLOG} component={BlogScreen} />
     </Stack.Navigator>
   );
-}
+};
+
+export default BlogStack;
