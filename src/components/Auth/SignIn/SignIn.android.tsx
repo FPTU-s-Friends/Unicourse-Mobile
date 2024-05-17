@@ -2,7 +2,7 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AuthButton from "./components/Button/AuthButton";
-import { GG_IMG, GitHub_IMG, LOGO } from "../../../assets";
+import { LOGO } from "../../../assets";
 import { textColor } from "../../../constants/appColors";
 const LoginScreen = () => {
   return (

@@ -1,7 +1,15 @@
-// Auth Navigation
+export type MainStackParamList = {
+  BlogStack: undefined;
+  HomePageScreen: undefined;
+};
+
 export type AuthStackParamList = {
-  LoginScreen: undefined;
   OnboardingScreen: undefined;
-  SignUpScreen: undefined;
-  HomeScreen: undefined;
+  AuthScreen: undefined;
+  LoginScreen: undefined;
+};
+
+export type RootStackParamList = {
+  AuthStack: undefined;
+  MainStack: { screen: keyof MainStackParamList };
 };
