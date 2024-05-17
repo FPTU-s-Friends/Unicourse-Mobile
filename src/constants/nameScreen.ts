@@ -1,10 +1,13 @@
 export const nameSreen = {
   ONBOARDING: "OnBoarding",
-  AUTH: "AuthScreen",
-  MAIN: "MainScreen",
+  AUTH: "AuthStack",
+  MAIN: "MainStack",
   LOGINSCREEN: "LoginScreen",
-  
+
   //BLOG ZONE
-  BLOGSTACK: 'BlogStack',
+  BLOGSTACK: "BlogStack",
   BLOG: "BlogScreen",
+
+  // HOMEPAGE  ZONE
+  HOMEPAGE: "HomePgaeScreen",
 };

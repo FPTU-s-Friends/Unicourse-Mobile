@@ -1,5 +1,7 @@
-import React from "react-native";
+import React, { SafeAreaView } from "react-native";
+import Header from "../../components/HomePage/Header/Header.ios";
+const HomePageScreen = () => {
+  return <Header />;
+};
 
-const LandingPageScreen = () => {};
-
-export default LandingPageScreen;
+export default HomePageScreen;
