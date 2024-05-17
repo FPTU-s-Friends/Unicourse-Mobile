@@ -6,12 +6,14 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
 import AuthStack from "./AuthStack/AuthStack";
 import MainStack from "./MainStack/MainStack";
 import { nameSreen } from "../constants/nameScreen";
+import UserDetailScreen from "../screens/UserScreen/UserDetailScreen";
 
 const Stack = createStackNavigator();
 export default function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName={nameSreen.USER_DETAIL}
         screenOptions={{
           headerShown: false,
         }}
@@ -20,7 +22,20 @@ export default function Router() {
         <Stack.Screen name={nameSreen.AUTH} component={AuthStack} />
 
         {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
-        <Stack.Screen name={nameSreen.MAIN} component={MainStack} />
+        <Stack.Screen
+          options={{
+            headerShown: true,
+          }}
+          name={nameSreen.MAIN}
+          component={MainStack}
+        />
+        <Stack.Screen
+          name={nameSreen.USER_DETAIL}
+          component={UserDetailScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
