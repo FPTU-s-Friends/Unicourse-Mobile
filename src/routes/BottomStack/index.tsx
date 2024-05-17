@@ -10,7 +10,7 @@ import { nameSreen } from "../../constants/nameScreen";
 Import Screen
 */
 import HomePageScreen from "../../screens/HomePageScreen";
-
+import BlogScreen from "../../screens/BlogScreen";
 /*
 Import Icon
 */
@@ -34,6 +34,13 @@ const BottomStack = () => {
         }}
         name="Trang chủ"
         component={HomePageScreen}
+      />
+      <BottomTabs.Screen
+        options={{
+          tabBarIcon: () => <AntDesign name="earth" size={24} color="black" />,
+        }}
+        name="Bài viết"
+        component={BlogScreen}
       />
     </BottomTabs.Navigator>
   );

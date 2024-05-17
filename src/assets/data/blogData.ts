@@ -50,7 +50,7 @@ export const blogsData: Blogs = [
         thumnail: "https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/Unicourse%20Project%2Fblog2.jpg?alt=media&token=4b470754-8de9-43ab-8bca-2a7be3fbaf17",
         title: "Config Zsh bằng Oh-my-zsh và P10k trên WSL cực ngầu ✨",
         description: "Hello anh em , thì như blog trước mình có nói rằng mình ko có dùng Ubuntu, nhưng sao lại có...",
-        createdAt: new Date("2024-05-13T00:00:00Z"),
+        createdAt: "3 ngày trước",
         minutedRead: 4
     },
     {
@@ -74,7 +74,7 @@ export const blogsData: Blogs = [
         thumnail: "https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/Unicourse%20Project%2Fblog1.jpg?alt=media&token=b51fb488-5c45-45f5-bb91-28556378c25d",
         title: "Các nguồn tài nguyên hữu ích cho 1 front-end developer",
         description: "Bài viết này sẽ chia sẽ cho các bạn về vài nguồn tài nguyên mình biết, giúp các bạn code Front-end xịn xò hơn",
-        createdAt: new Date("2024-03-22T00:00:00Z"),
+        createdAt: "10 ngày trước",
         minutedRead: 5
     }
 ]

@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     View,
     FlatList,
-    SafeAreaView
+    SafeAreaView,
+    ScrollView
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MainStackParamList } from "../../types/navigation.types";
@@ -30,7 +31,7 @@ const BlogScreen = () => {
     return (
         <SafeAreaView style={styles.safeAreaView}>
             <Header />
-            <View style={styles.bodyContainer}>
+            <ScrollView style={styles.bodyContainer}>
                 <Highlight title={title} description={description} />
                 <Suggest tags={tags} />
                 <FlatList
@@ -44,7 +45,7 @@ const BlogScreen = () => {
                     )}
                     keyExtractor={(item) => item.title}
                 />
-            </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };

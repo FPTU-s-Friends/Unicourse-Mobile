@@ -15,7 +15,7 @@ export type Blog = {
     thumnail: string;
     title: string;
     description: string;
-    createdAt: Date;
+    createdAt: string;
     minutedRead: number;
 }
 

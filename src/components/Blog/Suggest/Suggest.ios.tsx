@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableHighlight
 } from "react-native";
 import { backgroundColor, textColor, textFont } from "../../../constants";
 import { Tags } from "../../../types";
@@ -17,9 +17,12 @@ const Suggest = ({ tags } : { tags: Tags}) => {
               </Text>
               <View style={styles.tags}>
                   {tags.map((tag, index) => (
-                    <TouchableOpacity style={[styles.button, {backgroundColor: tag.backgroundColor}]}>
+                    <TouchableHighlight
+                        key={`${index}`}
+                        activeOpacity={0.6}
+                        style={[styles.button, {backgroundColor: tag.backgroundColor}]}>
                         <Text style={[styles.buttonText, {color: tag.textColor}]}>{tag.text}</Text>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
                   ))}
               </View>
           </View>
