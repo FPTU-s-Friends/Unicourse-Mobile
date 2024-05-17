@@ -3,4 +3,8 @@ export const nameSreen = {
   AUTH: "AuthScreen",
   MAIN: "MainScreen",
   LOGINSCREEN: "LoginScreen",
+  
+  //BLOG ZONE
+  BLOGSTACK: 'BlogStack',
+  BLOG: "BlogScreen",
 };
