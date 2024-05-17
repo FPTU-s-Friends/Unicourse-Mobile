@@ -3,16 +3,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Platform, StatusBar, SafeAreaView } from "react-native";
 
-import AuthStack from "./AuthStack/AuthStack";
-import MainStack from "./MainStack/MainStack";
+import MainStack from "./MainStack";
+import AuthStack from "./AuthStack";
+
 import { nameSreen } from "../constants/nameScreen";
-import BlogStack from "./MainStack/BlogStack";
 
 const Stack = createStackNavigator();
 export default function Router() {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <NavigationContainer>
+        <StatusBar />
         <Stack.Navigator
           screenOptions={{
             headerShown: false,

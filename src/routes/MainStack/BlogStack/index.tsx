@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { nameSreen } from "../../../constants/nameScreen";
-import BlogScreen from "../../../screens/BlogScreen/BlogScreen";
+import BlogScreen from "../../../screens/BlogScreen";
 const Stack = createStackNavigator();
 
 const BlogStack = () => {
