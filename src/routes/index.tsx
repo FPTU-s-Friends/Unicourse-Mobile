@@ -15,7 +15,7 @@ import { nameSreen } from "../constants/nameScreen";
 
 const Stack = createStackNavigator();
 export default function Router() {
-    const body = (
+    return (
         <NavigationContainer>
             <StatusBar />
             <Stack.Navigator
@@ -24,10 +24,10 @@ export default function Router() {
                 }}
             >
                 {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
-                {/* <Stack.Screen
+                <Stack.Screen
                     name={nameSreen.AUTH}
                     component={AuthStack}
-                /> */}
+                />
 
                 {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
                 <Stack.Screen
@@ -36,19 +36,5 @@ export default function Router() {
                 />
             </Stack.Navigator>
         </NavigationContainer>
-    );
-
-    return Platform.OS === "android" ? (
-        <SafeAreaView style={styles.safeAreaView}>
-            {body}
-        </SafeAreaView>
-    ) : (
-        body
-    );
+    )
 }
-
-const styles = StyleSheet.create({
-    safeAreaView: {
-        flex: 1
-    },
-});
