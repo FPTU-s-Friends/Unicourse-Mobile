@@ -118,14 +118,14 @@ const styles = StyleSheet.create({
   img2: {
     position: "relative",
     width: "100%",
-    height: 650,
+    height: "70%",
     marginBottom: "65%",
   },
   img3: {
     position: "relative",
     width: "100%",
-    height: 600,
-    marginBottom: "62%",
+    height: "65%",
+    marginBottom: "61%",
     marginTop: "15%",
   },
   title: {
