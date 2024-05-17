@@ -1,6 +1,6 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { UserInfoTypes } from "../../../types/UserDetail.types";
+import { UserInfoTypes } from "../../../types/userDetail.types";
 
 const AvatarBlock = ({ userData }: { userData: UserInfoTypes }) => {
   return (

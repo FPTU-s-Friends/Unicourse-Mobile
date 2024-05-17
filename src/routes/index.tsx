@@ -6,8 +6,8 @@ import { StyleSheet, Platform, StatusBar, SafeAreaView } from "react-native";
 import MainStack from "./MainStack";
 import AuthStack from "./AuthStack";
 
-import { nameSreen } from "../constants/nameScreen";
-import UserDetailScreen from "../screens/UserScreen/UserDetailScreen";
+import { nameScreen } from "../constants/nameScreen";
+import UserDetailScreen from "../screens/UserScreen";
 
 const Stack = createStackNavigator();
 export default function Router() {
@@ -21,12 +21,12 @@ export default function Router() {
       >
         {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
         {/* <Stack.Screen
-                    name={nameSreen.AUTH}
+                    name={nameScreen.AUTH}
                     component={AuthStack}
                 /> */}
 
         {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
-        <Stack.Screen name={nameSreen.MAIN} component={MainStack} />
+        <Stack.Screen name={nameScreen.MAIN} component={MainStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );

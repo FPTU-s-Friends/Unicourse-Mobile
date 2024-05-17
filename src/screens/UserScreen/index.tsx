@@ -12,18 +12,18 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/Feather";
 import { LinearGradient } from "expo-linear-gradient";
-import LinearGradientWrapper from "../../components/User/Common/LinearGradientWrapper";
-import HeaderInfo from "../../components/User/HeaderContainer/HeaderInfo";
-import AvatarBlock from "../../components/User/BodyContainer/AvatarBlock";
+import LinearGradientWrapper from "../../components/User/Common/LinearGradientWrapper.android";
+import HeaderInfo from "../../components/User/HeaderContainer/HeaderInfo.android";
+import AvatarBlock from "../../components/User/BodyContainer/AvatarBlock.android";
 import {
   DataNavigation,
   ExtraInformation,
   ProgressRenderingProps,
   UserInfoTypes,
-} from "../../types/UserDetail.types";
-import UserLearningProgress from "../../components/User/BodyContainer/UserLearningProgress";
-import ItemSeparatorGeneratorView from "../../components/User/Common/ItemSeparatorGeneratorView";
-import LogoutButton from "../../components/User/Button/LogoutButton";
+} from "../../types/userDetail.types";
+import UserLearningProgress from "../../components/User/BodyContainer/UserLearningProgress.android";
+import ItemSeparatorGeneratorView from "../../components/User/Common/ItemSeparatorGeneratorView.android";
+import LogoutButton from "../../components/User/Button/LogoutButton.android";
 
 const data = [
   {

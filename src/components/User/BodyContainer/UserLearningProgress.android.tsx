@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { ProgressRenderingProps } from "../../../types/UserDetail.types";
+import { ProgressRenderingProps } from "../../../types/userDetail.types";
 
 const UserLearningProgress = ({
   progressRendered,
