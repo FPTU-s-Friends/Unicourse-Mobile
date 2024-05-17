@@ -1,4 +1,4 @@
-# UNICOURSE - Website - Mobile App cung cấp khóa học trực tuyến
+# UNICOURSE - Website & Mobile App cung cấp khóa học trực tuyến
 
 ## Các màn hình chính
 
