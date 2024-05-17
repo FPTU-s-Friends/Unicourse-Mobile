@@ -18,6 +18,7 @@ const Suggest = ({ tags } : { tags: Tags}) => {
               <View style={styles.tags}>
                   {tags.map((tag, index) => (
                     <TouchableHighlight
+                        key={`${index}`}
                         activeOpacity={0.6}
                         style={[styles.button, {backgroundColor: tag.backgroundColor}]}>
                         <Text style={[styles.buttonText, {color: tag.textColor}]}>{tag.text}</Text>

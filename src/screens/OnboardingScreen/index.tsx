@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { View } from "react-native";
 import { ONBOARDING, ONBOARDING_1, ONBOARDING_2 } from "../../assets";
 import Swiper from "react-native-swiper";
-import CusTomSlideSwiper from "../../components/Auth/Onboarding/Onboarding.ios";
+import CusTomSlideSwiper from "../../components/Auth/Onboarding/Onboarding";
 
 const OnboardingScreen = () => {
   const swiperRef = useRef<any>(null);
