@@ -1,9 +1,6 @@
 import React, { useRef } from "react";
 import { View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { ONBOARDING, ONBOARDING_1, ONBOARDING_2 } from "../../assets";
-import { AuthStackParamList } from "../../types/navigation.types";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Swiper from "react-native-swiper";
 import CusTomSlideSwiper from "../../components/Auth/Onboarding/Onboarding.ios";
 
