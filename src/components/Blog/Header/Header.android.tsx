@@ -1,13 +1,10 @@
 import React from "react";
 import {
     Image,
-    ImageSourcePropType,
     StyleSheet,
     Text,
     View,
 } from "react-native";
-import { textColor } from "../../../constants/appColors";
-import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
@@ -128,51 +125,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         margin: "auto",
-    },
-    thnhVinPosition: {
-        overflow: "hidden",
-        textAlign: "left",
-        lineHeight: 20,
-        left: 98,
-        position: "absolute",
-    },
-    iconLayout: {
-        height: 32,
-        width: 32,
-        position: "absolute",
-    },
-    arrowLeftIcon: {
-        top: 18,
-        left: 18,
-        width: 24,
-        height: 24,
-        position: "absolute",
-    },
-    userIcon: {
-        marginLeft: -18,
-        top: 0,
-        left: "50%",
-    },
-    onlineDotIcon: {
-        top: 28,
-        left: 28,
-        width: 8,
-        height: 8,
-        position: "absolute",
-    },
-    onlineUser: {
-        top: 12,
-        left: 50,
-    },
-    iconButton: {
-        top: 14,
-        right: 18,
-    },
-    iconButton1: {
-        marginTop: -18,
-        top: "50%",
-        right: 63,
-    },
+    }
 });
 
 export default Header;
