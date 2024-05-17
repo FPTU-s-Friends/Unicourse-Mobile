@@ -15,8 +15,8 @@ const LoginScreen = () => {
           trực quan.
         </Text>
         {/* GROUP BTN */}
-        <AuthButton icon={GG_IMG} text="Đăng nhập với Google" />
-        <AuthButton icon={GitHub_IMG} text="Đăng nhập với GitHub" />
+        <AuthButton text="Đăng nhập với Google" />
+        <AuthButton text="Đăng nhập với GitHub" />
         <Text style={{ fontSize: 25, color: "#616161" }}>or</Text>
         <AuthButton text="Đăng nhập bằng số điện thoại" />
       </View>

@@ -27,7 +27,7 @@ const Header = () => {
                 </View>
                 <View style={styles.userTextInfo}>
                     <Text style={styles.title} numberOfLines={1}>
-                        Nguyễn Huy Khải
+                        Nguyễn Huy Khải 
                     </Text>
                     <Text style={styles.textRole} numberOfLines={1}>
                         Thành viên

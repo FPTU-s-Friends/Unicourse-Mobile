@@ -28,8 +28,7 @@ const CusTomSlideSwiper: React.FC<CusTomSlideSwiperProps> = ({
   swiperRef,
   buttonText,
 }) => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
   return (
     <View style={styles.onBoardingContainer}>
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: "100%",
-    height: 630,
+    height: 480,
   },
   title: {
     color: textColor.titleTextColorBlack,
