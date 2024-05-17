@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { textColor } from "../../../constants/appColors";
+import { textColor } from "../../../../../constants/appColors";
 import { LinearGradient } from "expo-linear-gradient";
 
 const AuthButton = ({

@@ -8,7 +8,12 @@ const OnboardingScreen = () => {
   const swiperRef = useRef<any>(null);
 
   return (
-    <Swiper ref={swiperRef} activeDotColor="#97D5FE" showsButtons={false}>
+    <Swiper
+      style={{ backgroundColor: "#fff" }}
+      ref={swiperRef}
+      activeDotColor="#97D5FE"
+      showsButtons={false}
+    >
       <View>
         <CusTomSlideSwiper
           img={ONBOARDING_1}
