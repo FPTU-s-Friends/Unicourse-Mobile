@@ -1,8 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { nameSreen } from "../../constants/nameScreen";
-import OnboardingScreen from "../../screens/OnboardingScreen/OnboardingScreen";
-import AuthScreen from "../../screens/AuthScreen/AuthScreen.ios";
+import OnboardingScreen from "../../screens/OnboardingScreen";
+import AuthScreen from "../../screens/AuthScreen";
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
