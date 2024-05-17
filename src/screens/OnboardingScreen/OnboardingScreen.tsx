@@ -1,5 +1,13 @@
-import React from "react";
-import { Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useRef } from "react";
+import {
+  Image,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Button,
+  ImageSourcePropType,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Onboarding from "react-native-onboarding-swiper";
 import { ONBOARDING, ONBOARDING_1, ONBOARDING_2 } from "../../assets";
@@ -7,139 +15,136 @@ import { LinearGradient } from "expo-linear-gradient";
 import { textColor } from "../../constants/appColors";
 import { AuthStackParamList } from "../../types/navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import Swiper from "react-native-swiper";
 
 const OnboardingScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
-
-  const doneButton = ({ ...props }) => {
-    return (
-      <TouchableOpacity {...props} style={styles.button}>
-        <LinearGradient
-          style={[{ flex: 1, borderRadius: 10 }]}
-          colors={["#5EDFF5", "#9F80F8"]}
-        >
-          <Text style={styles.buttonText}>Bắt đầu</Text>
-        </LinearGradient>
-      </TouchableOpacity>
-    );
-  };
-
-  const nextButton = ({ ...props }) => {
-    return (
-      <TouchableOpacity style={styles.button} {...props}>
-        <LinearGradient
-          style={[{ flex: 1, borderRadius: 10 }]}
-          colors={["#5EDFF5", "#9F80F8"]}
-        >
-          <Text style={styles.buttonText}>Tiếp tục</Text>
-        </LinearGradient>
-      </TouchableOpacity>
-    );
-  };
-
-  const handleDone = () => {
-    navigation.navigate("LoginScreen");
-  };
+  const swiperRef = useRef<any>(null);
 
   return (
-    <Onboarding
-      bottomBarHighlight={false}
-      DoneButtonComponent={doneButton}
-      NextButtonComponent={nextButton}
-      SkipButtonComponent={() => <></>}
-      onDone={handleDone}
-      pages={[
-        {
-          backgroundColor: "#fff",
-          image: (
-            <Image
-              resizeMode={"contain"}
-              style={styles.img}
-              source={ONBOARDING_1}
-            />
-          ),
-          title: <Text style={styles.title}>Học Tập Dễ Dàng</Text>,
-          subtitle: (
-            <Text style={styles.subTitle}>
-              Học theo cách của riêng bạn với các bài học tương tác và giao diện
-              trực quan.
-            </Text>
-          ),
-        },
-        {
-          backgroundColor: "#fff",
-          image: (
-            <Image
-              resizeMode={"contain"}
-              style={styles.img2}
-              source={ONBOARDING_2}
-            />
-          ),
-          title: <Text style={styles.title}>Học Tập Mọi Lúc</Text>,
-          subtitle: (
-            <Text style={styles.subTitle2}>
-              Khám phá người bạn đồng hành thông minh hướng dẫn bạn trong suốt
-              hành trình học tập của mình.
-            </Text>
-          ),
-        },
-        {
-          backgroundColor: "#fff",
-          image: (
-            <Image
-              resizeMode={"contain"}
-              style={styles.img}
-              source={ONBOARDING}
-            />
-          ),
-          title: <Text style={styles.title}>Theo dõi tiến trình</Text>,
-          subtitle: (
-            <Text style={styles.subTitle}>
-              Học theo cách của riêng bạn với các bài học tương tác và giao diện
-              trực quan.
-            </Text>
-          ),
-        },
-      ]}
-    />
+    <Swiper ref={swiperRef} activeDotColor="#97D5FE" showsButtons={false}>
+      <View>
+        <View style={styles.onBoardingContainer}>
+          <Image
+            resizeMode={"contain"}
+            style={styles.img}
+            source={ONBOARDING_1}
+          />
+          <Text style={styles.title}>Học Tập Dễ Dàng</Text>
+          <Text style={styles.subTitle}>
+            Học theo cách của riêng bạn với các bài học tương tác và giao diện
+            trực quan
+          </Text>
+          <TouchableOpacity
+            onPress={() => swiperRef.current?.scrollBy(1)}
+            style={styles.button}
+          >
+            <LinearGradient
+              style={[{ flex: 1, borderRadius: 10 }]}
+              colors={["#5EDFF5", "#9F80F8"]}
+            >
+              <Text style={styles.buttonText}>Tiếp tục</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View>
+        <View style={styles.onBoardingContainer}>
+          <Image
+            resizeMode={"contain"}
+            style={styles.img2}
+            source={ONBOARDING_2}
+          />
+          <Text style={styles.title}>Học Mọi Lúc Mọi Nơi</Text>
+          <Text style={styles.subTitle}>
+            Người bạn đồng hành thông minh hướng dẫn bạn trong suốt hành trình
+            học tập
+          </Text>
+          <TouchableOpacity
+            onPress={() => swiperRef.current?.scrollBy(1)}
+            style={styles.button}
+          >
+            <LinearGradient
+              style={[{ flex: 1, borderRadius: 10 }]}
+              colors={["#5EDFF5", "#9F80F8"]}
+            >
+              <Text style={styles.buttonText}>Tiếp tục</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View>
+        <View style={styles.onBoardingContainer}>
+          <Image
+            resizeMode={"contain"}
+            style={styles.img3}
+            source={ONBOARDING}
+          />
+          <Text style={styles.title}>Theo Dõi Lộ Trình</Text>
+          <Text style={styles.subTitle}>
+            {" "}
+            Học theo cách của riêng bạn với các bài học tương tác và giao diện
+            trực quan
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("LoginScreen")}
+            style={styles.button}
+          >
+            <LinearGradient
+              style={[{ flex: 1, borderRadius: 10 }]}
+              colors={["#5EDFF5", "#9F80F8"]}
+            >
+              <Text style={styles.buttonText}>Bắt đầu</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Swiper>
   );
 };
 
 const styles = StyleSheet.create({
-  title: {
-    position: "absolute",
-    top: "70%",
-    color: textColor.titleTextColorBlack,
-    fontSize: 28,
-    fontWeight: "700",
-  },
-  subTitle: {
-    color: textColor.subTitleColor,
-    fontWeight: "300",
-    fontSize: 16,
-    paddingHorizontal: 35,
-    textAlign: "center",
-  },
-  subTitle2: {
-    color: textColor.subTitleColor,
-    fontWeight: "300",
-    fontSize: 16,
-    paddingHorizontal: 35,
-    textAlign: "center",
-    position: "absolute",
-    top: "75.5%",
+  onBoardingContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   img: {
-    width: "100%",
-    height: 450,
-  },
-  img2: {
+    position: "relative",
     width: "100%",
     height: "100%",
-    position: "relative",
-    top: "-20%",
   },
+  img2: {
+    position: "relative",
+    width: "100%",
+    height: 650,
+    marginBottom: "65%",
+  },
+  img3: {
+    position: "relative",
+    width: "100%",
+    height: 600,
+    marginBottom: "62%",
+    marginTop: "15%",
+  },
+  title: {
+    position: "absolute",
+    color: textColor.titleTextColorBlack,
+    fontSize: 30,
+    fontWeight: "700",
+    bottom: "22%",
+  },
+  subTitle: {
+    position: "absolute",
+    color: textColor.subTitleColor,
+    fontWeight: "300",
+    fontSize: 16,
+    paddingHorizontal: 35,
+    textAlign: "center",
+    bottom: "17%",
+  },
+
   button: {
     flexDirection: "column",
     position: "absolute",
@@ -147,8 +152,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     width: 350,
     height: 50,
-    top: "-150%",
-    right: "22%",
+    bottom: "8%",
   },
   buttonText: {
     textAlign: "center",
