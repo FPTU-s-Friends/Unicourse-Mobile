@@ -1,12 +1,8 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import {
-    StyleSheet,
-    Platform,
-    StatusBar,
-    SafeAreaView,
-} from "react-native";
+import { StyleSheet, Platform, SafeAreaView} from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 import MainStack from "./MainStack";
 import AuthStack from "./AuthStack";
@@ -25,10 +21,10 @@ export default function Router() {
                 initialRouteName={nameSreen.AUTH}
             >
                 {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
-                {/* <Stack.Screen
+                <Stack.Screen
                     name={nameSreen.AUTH}
                     component={AuthStack}
-                /> */}
+                />
 
                 {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
                 <Stack.Screen
