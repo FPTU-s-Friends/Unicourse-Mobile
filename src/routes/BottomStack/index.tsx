@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 /*
 Import constant
 */
-import { nameSreen } from "../../constants/nameScreen";
+import { nameScreen } from "../../constants/nameScreen";
 
 /*
 Import Screen
@@ -26,7 +26,7 @@ const BottomStack = () => {
         tabBarLabelStyle: styles.tabLabel,
         headerShown: false,
       }}
-      initialRouteName={nameSreen.HOMEPAGE}
+      initialRouteName={nameScreen.HOMEPAGE}
     >
       <BottomTabs.Screen
         options={{

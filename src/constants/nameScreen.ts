@@ -3,6 +3,8 @@ export const nameScreen = {
   AUTH: "AuthStack",
   MAIN: "MainStack",
   LOGINSCREEN: "LoginScreen",
+  // USER - ZOME
+  USER_STACK: "UserStack",
   USER_DETAIL_SCREEN: "UserDetailScreen",
   //BLOG ZONE
   BLOGSTACK: "BlogStack",

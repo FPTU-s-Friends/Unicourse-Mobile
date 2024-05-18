@@ -24,6 +24,8 @@ import {
 import UserLearningProgress from "../../components/User/BodyContainer/UserLearningProgress.android";
 import ItemSeparatorGeneratorView from "../../components/User/Common/ItemSeparatorGeneratorView.android";
 import LogoutButton from "../../components/User/Button/LogoutButton.android";
+import LearningProgressStackItem from "../../components/User/Button/LearningProgressStackItem.android";
+import LearningProgressCurrentList from "../../components/User/BodyContainer/LearningProgressCurrentList.android";
 
 const data = [
   {
@@ -96,12 +98,7 @@ const UserDetailScreen = () => {
             {/* User progress Info */}
             <UserLearningProgress progressRendered={data} />
             {/* Navigation block */}
-            <View
-              style={{
-                marginTop: 10,
-                padding: 10,
-              }}
-            >
+            <View style={{ marginTop: 10, padding: 10 }}>
               <FlatList
                 data={dataNavigation}
                 ItemSeparatorComponent={() => <ItemSeparatorGeneratorView />}
@@ -140,60 +137,8 @@ const UserDetailScreen = () => {
                         </TouchableOpacity>
                       </View>
                       {item.object && (
-                        <FlatList
-                          showsHorizontalScrollIndicator={false}
-                          style={{ marginBottom: 10 }}
-                          horizontal
-                          data={item.object}
-                          renderItem={({
-                            item,
-                          }: ListRenderItemInfo<ExtraInformation>) => (
-                            <View
-                              style={{
-                                backgroundColor: "#f0f0f0",
-                                marginLeft: 10,
-                                borderRadius: 15,
-                              }}
-                            >
-                              <TouchableOpacity
-                                style={{
-                                  width: 200,
-                                  flexDirection: "row",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  padding: 10,
-                                }}
-                              >
-                                <View
-                                  style={{
-                                    padding: 8,
-                                    borderRadius: 15,
-                                    backgroundColor: item.backgroundColor,
-                                  }}
-                                >
-                                  <Image
-                                    source={item.thumb as any}
-                                    resizeMode="center"
-                                    style={{
-                                      width: 42,
-                                      height: 42,
-                                    }}
-                                  />
-                                </View>
-                                <Text
-                                  style={{
-                                    flex: 1,
-                                    marginLeft: 10,
-                                    flexWrap: "wrap",
-                                    fontSize: 18,
-                                    fontWeight: "bold",
-                                  }}
-                                >
-                                  {item.title}
-                                </Text>
-                              </TouchableOpacity>
-                            </View>
-                          )}
+                        <LearningProgressCurrentList
+                          progressListItem={item.object}
                         />
                       )}
                     </>

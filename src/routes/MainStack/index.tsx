@@ -12,15 +12,11 @@ export default function MainStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={nameScreen.HOMEPAGE}
+      initialRouteName={nameScreen.USER_STACK}
     >
       <Stack.Screen name={nameScreen.BLOGSTACK} component={BlogStack} />
-      <Stack.Screen
-        name={nameScreen.USER_DETAIL_SCREEN}
-        component={UserStack}
-      />
+      <Stack.Screen name={nameScreen.USER_STACK} component={UserStack} />
       <Stack.Screen name={nameScreen.HOMEPAGE} component={BottomStack} />
-      <Stack.Screen name={nameScreen.BLOGSTACK} component={BlogStack} />
     </Stack.Navigator>
   );
 }

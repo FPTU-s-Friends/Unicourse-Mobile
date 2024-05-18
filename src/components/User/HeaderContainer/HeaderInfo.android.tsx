@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import ArrowButton from "../Button/ArrowButton.android";
-import CustomButton from "../Button/CustomButton.android";
 import ShoppingCartButton from "../Button/ShoppingCartButton.android";
+import CustomIconButton from "../Button/CustomIconButton.android";
 
 const HeaderInfo = () => {
   return (
@@ -10,7 +10,7 @@ const HeaderInfo = () => {
       <ArrowButton direction="left" />
       <View style={{ flexDirection: "row" }}>
         <ShoppingCartButton itemCount={12} />
-        <CustomButton buttonName="edit-3" />
+        <CustomIconButton buttonName="edit-3" />
       </View>
     </View>
   );
