@@ -1,7 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { nameSreen } from "../../constants/nameScreen";
+import { nameScreen } from "../../constants/nameScreen";
 import BlogStack from "./BlogStack";
+import UserStack from "./UserStack";
 import BottomStack from "../BottomStack";
 const Stack = createStackNavigator();
 
@@ -11,10 +12,11 @@ export default function MainStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={nameSreen.HOMEPAGE}
+      initialRouteName={nameScreen.USER_STACK}
     >
-      <Stack.Screen name={nameSreen.HOMEPAGE} component={BottomStack} />
-      <Stack.Screen name={nameSreen.BLOGSTACK} component={BlogStack} />
+      <Stack.Screen name={nameScreen.BLOGSTACK} component={BlogStack} />
+      <Stack.Screen name={nameScreen.USER_STACK} component={UserStack} />
+      <Stack.Screen name={nameScreen.HOMEPAGE} component={BottomStack} />
     </Stack.Navigator>
   );
 }

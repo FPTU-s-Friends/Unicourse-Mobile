@@ -8,7 +8,7 @@ const LoginScreen = () => {
   return (
     <LinearGradient style={styles.container} colors={["#5EDFF5", "#9F80F8"]}>
       <View style={styles.content}>
-        <Image resizeMode={"contain"} style={styles.logo} source={LOGO} />
+        <Image resizeMode={"contain"} style={styles.logo} source={require('../../../assets/logo/Logo_Unicourse.png')} />
         <Text style={styles.title}>Unicourse</Text>
         <Text style={styles.subTitle}>
           Học theo cách của riêng bạn với các bài học tương tác và giao diện
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    marginTop: 250,
+    marginTop: "30%",
     backgroundColor: "#fff",
     height: 700,
     borderRadius: 36,
@@ -42,17 +42,17 @@ const styles = StyleSheet.create({
   },
   title: {
     color: textColor.normalText,
-    paddingTop: 10,
+    paddingTop: 5,
     fontSize: 26,
     fontWeight: "bold",
   },
   subTitle: {
-    marginBottom: "10%",
+    marginBottom: "2%",
     fontSize: 14,
     textAlign: "center",
     lineHeight: 20,
     width: "60%",
-    fontWeight: 400,
+    fontWeight: "400",
     marginTop: 10,
     color: textColor.subTitleColor,
   },

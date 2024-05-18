@@ -4,11 +4,20 @@ import {
   ImageSourcePropType,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { textColor } from "../../../../../constants/appColors";
 import { LinearGradient } from "expo-linear-gradient";
+import { CompositeNavigationProp, useNavigation } from "@react-navigation/core";
+import { RootStackParamList } from "../../../../../types";
+import { StackNavigationProp } from "@react-navigation/stack";
 
+// Type for the navigation prop
+type AuthNavigationProp = CompositeNavigationProp<
+  StackNavigationProp<RootStackParamList, "AuthStack">,
+  StackNavigationProp<RootStackParamList>
+>;
 const AuthButton = ({
   icon,
   text,
@@ -16,6 +25,8 @@ const AuthButton = ({
   icon?: ImageSourcePropType;
   text: string;
 }) => {
+  const navigation = useNavigation<AuthNavigationProp>();
+
   return (
     <>
       {icon ? (
@@ -40,7 +51,13 @@ const AuthButton = ({
           ]}
           colors={["#5EDFF5", "#9F80F8"]}
         >
-          <Text style={[styles.textButton, { color: "white" }]}>{text}</Text>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("MainStack", { screen: "HomePageScreen" })
+            }
+          >
+            <Text style={[styles.textButton, { color: "white" }]}>{text}</Text>
+          </TouchableOpacity>
         </LinearGradient>
       )}
     </>
@@ -49,7 +66,7 @@ const AuthButton = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: "5%",
+    marginBottom: "1%",
     width: "90%",
     height: "10%",
     flexDirection: "row",

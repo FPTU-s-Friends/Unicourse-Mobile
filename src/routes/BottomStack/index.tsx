@@ -4,13 +4,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 /*
 Import constant
 */
-import { nameSreen } from "../../constants/nameScreen";
+import { nameScreen } from "../../constants/nameScreen";
 
 /*
 Import Screen
 */
 import HomePageScreen from "../../screens/HomePageScreen";
-
+import BlogScreen from "../../screens/BlogScreen";
 /*
 Import Icon
 */
@@ -26,7 +26,7 @@ const BottomStack = () => {
         tabBarLabelStyle: styles.tabLabel,
         headerShown: false,
       }}
-      initialRouteName={nameSreen.HOMEPAGE}
+      initialRouteName={nameScreen.HOMEPAGE}
     >
       <BottomTabs.Screen
         options={{
@@ -34,6 +34,13 @@ const BottomStack = () => {
         }}
         name="Trang chủ"
         component={HomePageScreen}
+      />
+      <BottomTabs.Screen
+        options={{
+          tabBarIcon: () => <AntDesign name="earth" size={24} color="black" />,
+        }}
+        name="Bài viết"
+        component={BlogScreen}
       />
     </BottomTabs.Navigator>
   );
