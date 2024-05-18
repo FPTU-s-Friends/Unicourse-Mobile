@@ -66,7 +66,7 @@ const AuthButton = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: "5%",
+    marginBottom: "1%",
     width: "90%",
     height: "10%",
     flexDirection: "row",
