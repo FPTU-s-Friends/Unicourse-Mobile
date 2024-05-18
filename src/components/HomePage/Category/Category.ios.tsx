@@ -61,9 +61,9 @@ const Category = () => {
         showsHorizontalScrollIndicator={false}
       >
         {item &&
-          item.map((item: any) => {
+          item.map((item: any, index: number) => {
             return (
-              <View style={styles.semmester_container}>
+              <View key={index} style={styles.semmester_container}>
                 <View style={styles.semmester_icon}>
                   <Octicons name="number" size={24} color="black" />
                 </View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   list_semmester: {
     width: "100%",
-    marginTop: "5%",
+    marginTop: "3%",
     paddingLeft: "5%",
   },
   semmester_container: {

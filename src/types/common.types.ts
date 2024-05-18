@@ -24,16 +24,15 @@ export type User = {
   role: string;
 };
 
-export type Lecture = {
+export type LectureType = {
   _id: string;
   name: string;
   avatar: string;
 };
 
-export type CustomCourseType = {
+export type CourseType = {
   _id: string;
   thumbnail: string;
-  duration: string;
   title: string;
-  lecture: Lecture;
+  price: string;
 };
