@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import ArrowButton from "../Button/ArrowButton.android";
-import ShoppingCartButton from "../Button/ShoppingCartButton.android";
 import CustomIconButton from "../Button/CustomIconButton.android";
+import ShoppingCartButton from "../Button/ShoppingCartButton.android";
 
 const HeaderInfo = () => {
   return (

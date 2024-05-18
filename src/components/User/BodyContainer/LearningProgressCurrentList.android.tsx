@@ -1,11 +1,5 @@
-import {
-  FlatList,
-  ListRenderItemInfo,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import React, { ReactNode } from "react";
+import React from "react";
+import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
 import { ExtraInformation } from "../../../types/userDetail.types";
 import LearningProgressStackItem from "../Button/LearningProgressStackItem.android";
 

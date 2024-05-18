@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { ReactNode } from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import React, { ReactNode } from "react";
+import { StyleSheet } from "react-native";
 
 const LinearGradientWrapper = ({ children }: { children: ReactNode }) => {
   return (
