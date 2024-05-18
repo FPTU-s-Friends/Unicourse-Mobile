@@ -11,35 +11,24 @@ import UserDetailScreen from "../screens/UserScreen";
 
 const Stack = createStackNavigator();
 export default function Router() {
-  const body = (
+  return (
     <NavigationContainer>
       <StatusBar />
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}
+        initialRouteName={nameSreen.AUTH}
       >
         {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
         {/* <Stack.Screen
-                    name={nameScreen.AUTH}
+                    name={nameSreen.AUTH}
                     component={AuthStack}
                 /> */}
 
         {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
-        <Stack.Screen name={nameScreen.MAIN} component={MainStack} />
+        <Stack.Screen name={nameSreen.MAIN} component={MainStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-
-  return Platform.OS === "android" ? (
-    <SafeAreaView style={styles.safeAreaView}>{body}</SafeAreaView>
-  ) : (
-    body
-  );
 }
-
-const styles = StyleSheet.create({
-  safeAreaView: {
-    flex: 1,
-  },
-});

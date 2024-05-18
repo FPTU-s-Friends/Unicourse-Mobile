@@ -66,8 +66,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   img: {
+    marginTop: "10%",
     width: "100%",
-    height: 630,
+    height: "75%",
   },
   title: {
     color: textColor.titleTextColorBlack,

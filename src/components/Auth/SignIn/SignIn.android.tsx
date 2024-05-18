@@ -2,13 +2,13 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AuthButton from "./components/Button/AuthButton";
-import { GG_IMG, GitHub_IMG, LOGO } from "../../../assets";
+import { LOGO } from "../../../assets";
 import { textColor } from "../../../constants/appColors";
 const LoginScreen = () => {
   return (
     <LinearGradient style={styles.container} colors={["#5EDFF5", "#9F80F8"]}>
       <View style={styles.content}>
-        <Image resizeMode={"contain"} style={styles.logo} source={LOGO} />
+        <Image resizeMode={"contain"} style={styles.logo} source={require('../../../assets/logo/Logo_Unicourse.png')} />
         <Text style={styles.title}>Unicourse</Text>
         <Text style={styles.subTitle}>
           Học theo cách của riêng bạn với các bài học tương tác và giao diện
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 20,
     width: "60%",
-    fontWeight: 400,
+    fontWeight: "400",
     marginTop: 10,
     color: textColor.subTitleColor,
   },
