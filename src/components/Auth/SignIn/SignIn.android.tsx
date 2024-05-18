@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    marginTop: 250,
+    marginTop: "30%",
     backgroundColor: "#fff",
     height: 700,
     borderRadius: 36,
@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: textColor.normalText,
-    paddingTop: 10,
+    paddingTop: 5,
     fontSize: 26,
     fontWeight: "bold",
   },
   subTitle: {
-    marginBottom: "10%",
+    marginBottom: "2%",
     fontSize: 14,
     textAlign: "center",
     lineHeight: 20,
