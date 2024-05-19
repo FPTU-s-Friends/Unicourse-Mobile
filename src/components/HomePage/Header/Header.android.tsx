@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     color: "#111",
   },
   textRole: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#8d8a8a",
   },
   groupBtn: {

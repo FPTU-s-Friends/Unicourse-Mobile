@@ -67,7 +67,9 @@ const Category = () => {
                 <View style={styles.semmester_icon}>
                   <Octicons name="number" size={24} color="black" />
                 </View>
-                <Text style={styles.semmester_text}>Kỳ {item.semmester}</Text>
+                <Text style={styles.semmester_text}>
+                  Học Kỳ {item.semmester}
+                </Text>
               </View>
             );
           })}
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: textColor.titleTextColorBlack,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
   },
   btnMore: {
@@ -120,8 +122,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   semmester_text: {
-    fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 12,
   },
 });
 export default Category;

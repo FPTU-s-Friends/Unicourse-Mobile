@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
     height: 80,
   },
   name: {
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: 12,
   },
 });
 export default LectureCard;

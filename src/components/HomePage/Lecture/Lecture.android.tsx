@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: textColor.titleTextColorBlack,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
   },
   lecture: {

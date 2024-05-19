@@ -12,7 +12,7 @@ export default function MainStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={nameScreen.USER_STACK}
+      initialRouteName={nameScreen.HOMEPAGE}
     >
       <Stack.Screen name={nameScreen.BLOGSTACK} component={BlogStack} />
       <Stack.Screen name={nameScreen.USER_STACK} component={UserStack} />
