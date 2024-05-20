@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   },
   container: {
     marginHorizontal: 15,
+    marginBottom: 15,
     // backgroundColor: "red",
   },
   selectionBar: {
@@ -123,6 +124,7 @@ const styles = StyleSheet.create({
   },
   informationCardContainer: {
     backgroundColor: "white",
+    borderRadius: 10,
     padding: 15,
   },
 });

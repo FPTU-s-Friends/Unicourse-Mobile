@@ -21,6 +21,7 @@ import { tagsData, blogsData } from "../../assets/data";
 import HeaderCard from "../../components/CourseDetails/Header/header.android";
 import CourseCard from "../../components/CourseDetails/CourseCard/CourseCard.android";
 import CourseDescription from "../../components/CourseDetails/CourseDescriptions/CourseDescriptions.android";
+import FooterCard from "../../components/CourseDetails/Footer/footer.android";
 
 const CourseDetailsScreen = () => {
   const navigation =
@@ -28,9 +29,12 @@ const CourseDetailsScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      <HeaderCard />
-      <CourseCard fixPrice="240" newPrice="130" title="Keyboard" />
-      <CourseDescription />
+      <ScrollView>
+        <HeaderCard />
+        <CourseCard fixPrice="240" newPrice="130" title="Keyboard" />
+        <CourseDescription />
+        <FooterCard />
+      </ScrollView>
     </SafeAreaView>
   );
 };
