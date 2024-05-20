@@ -62,6 +62,7 @@ const Author = ({ blog }: { blog: Blog }) => {
 
 const styles = StyleSheet.create({
     container: {
+        marginBottom: 10
     },
     title: {
         fontSize: textFont.h3,
@@ -70,9 +71,10 @@ const styles = StyleSheet.create({
     },
     userLayout: {
         height: 50,
-        width: 180,
+        width: "100%",
         flexDirection: "row",
         marginTop: 10,
+        justifyContent: "space-between"
     },
     userGroupImage: {
         height: "auto",
@@ -110,14 +112,12 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-end",
         height: "100%",
-        width: "75%",
         alignItems: "center",
     },
     bookmark: {
         paddingHorizontal: "10%"
     },
     ellipsis1: {
-        paddingRight: "10%"
     },
 });
 

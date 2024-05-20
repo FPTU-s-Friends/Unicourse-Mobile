@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   View,
   ImageSourcePropType,
+  Dimensions,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { textColor } from "../../../constants/appColors";
 import { useNavigation } from "@react-navigation/native";
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: "100%",
-    height: 480,
+    height: Dimensions.get("window").height * 0.75,
   },
   title: {
     color: textColor.titleTextColorBlack,

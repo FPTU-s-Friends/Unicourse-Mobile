@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         paddingHorizontal: 20,
         alignItems: "center",
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+        justifyContent: "space-between",
     },
     btn: {
         backgroundColor: "#EDEDED",
