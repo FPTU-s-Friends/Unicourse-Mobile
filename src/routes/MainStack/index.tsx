@@ -1,7 +1,8 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { nameSreen } from "../../constants/nameScreen";
+import { nameScreen } from "../../constants/nameScreen";
 import BlogStack from "./BlogStack";
+import UserStack from "./UserStack";
 import BottomStack from "../BottomStack";
 import CourseDetailsScreen from "../../screens/CourseDetails";
 import CourseDetailStack from "./CourseDetailStack";
@@ -13,11 +14,14 @@ export default function MainStack() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={nameSreen.HOMEPAGE}
+      initialRouteName={nameScreen.HOMEPAGE}
     >
       {/* <Stack.Screen name={nameSreen.HOMEPAGE} component={BottomStack} /> */}
       {/* <Stack.Screen name={nameSreen.BLOGSTACK} component={BlogStack} /> */}
-      <Stack.Screen name={nameSreen.BLOGSTACK} component={CourseDetailStack} />
+      <Stack.Screen
+        name={nameScreen.COURSEDETAILS}
+        component={CourseDetailStack}
+      />
     </Stack.Navigator>
   );
 }

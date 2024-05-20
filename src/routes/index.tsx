@@ -7,7 +7,9 @@ import { StatusBar } from "expo-status-bar";
 import MainStack from "./MainStack";
 import AuthStack from "./AuthStack";
 
-import { nameSreen } from "../constants/nameScreen";
+import { nameScreen } from "../constants/nameScreen";
+import UserDetailScreen from "../screens/UserScreen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const Stack = createStackNavigator();
 export default function Router() {
@@ -18,7 +20,7 @@ export default function Router() {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={nameSreen.AUTH}
+        initialRouteName={nameScreen.AUTH}
       >
         {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
         {/* <Stack.Screen
@@ -27,7 +29,7 @@ export default function Router() {
                 /> */}
 
         {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
-        <Stack.Screen name={nameSreen.MAIN} component={MainStack} />
+        <Stack.Screen name={nameScreen.MAIN} component={MainStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );

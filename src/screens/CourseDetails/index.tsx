@@ -20,6 +20,7 @@ import { Tags, Blogs } from "../../types";
 import { tagsData, blogsData } from "../../assets/data";
 import HeaderCard from "../../components/CourseDetails/Header/header.android";
 import CourseCard from "../../components/CourseDetails/CourseCard/CourseCard.android";
+import CourseDescription from "../../components/CourseDetails/CourseDescriptions/CourseDescriptions.android";
 
 const CourseDetailsScreen = () => {
   const navigation =
@@ -29,6 +30,7 @@ const CourseDetailsScreen = () => {
     <SafeAreaView style={styles.safeAreaView}>
       <HeaderCard />
       <CourseCard fixPrice="240" newPrice="130" title="Keyboard" />
+      <CourseDescription />
     </SafeAreaView>
   );
 };
@@ -36,6 +38,7 @@ const CourseDetailsScreen = () => {
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
+    backgroundColor: "f7f8fc",
   },
 });
 

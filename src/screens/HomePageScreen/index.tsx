@@ -1,13 +1,15 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 
 import Header from "../../components/HomePage/Header/Header";
 import MyCarousel from "../../components/HomePage/Carousel/Carousel";
 import Category from "../../components/HomePage/Category/Category";
+import Course from "../../components/HomePage/Course/Course";
+import Lecture from "../../components/HomePage/Lecture/Lecture.ios";
 
 const HomePageScreen = () => {
   return (
-    <>
-      <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
         {/* Header */}
         <Header />
 
@@ -16,9 +18,14 @@ const HomePageScreen = () => {
 
         {/*  Category*/}
         <Category />
-        {/* Bottom Stack */}
+
+        {/* Course */}
+        <Course />
+
+        {/* Lecture */}
+        <Lecture />
       </ScrollView>
-    </>
+    </SafeAreaView>
   );
 };
 

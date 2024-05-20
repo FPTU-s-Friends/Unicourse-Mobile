@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { nameSreen } from "../../../constants/nameScreen";
+import { nameScreen } from "../../../constants/nameScreen";
 import BlogScreen from "../../../screens/BlogScreen";
 import CourseDetailsScreen from "../../../screens/CourseDetails";
 const Stack = createStackNavigator();
@@ -13,7 +13,7 @@ const CourseDetailStack = () => {
       }}
     >
       <Stack.Screen
-        name={nameSreen.COURSEDETAILS}
+        name={nameScreen.COURSEDETAILS}
         component={CourseDetailsScreen}
       />
     </Stack.Navigator>
