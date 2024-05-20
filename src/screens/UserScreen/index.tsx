@@ -1,11 +1,9 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import AvatarBlock from "../../components/User/BodyContainer/AvatarBlock.android";
-import BodyContainer from "../../components/User/BodyContainer/BodyBlock.andoird";
-import LogoutButton from "../../components/User/Button/LogoutButton.android";
-import LinearGradientWrapper from "../../components/User/Common/LinearGradientWrapper.android";
-import HeaderInfo from "../../components/User/HeaderContainer/HeaderInfo.android";
+import BodyContainer from "../../components/UserDetail/BodyContainer/BodyBlock.andoird";
+import LinearGradientWrapper from "../../components/UserDetail/Common/LinearGradientWrapper.android";
+import HeaderInfo from "../../components/UserDetail/HeaderContainer/HeaderInfo.android";
 import {
   DataNavigation,
   ProgressRenderingProps,
