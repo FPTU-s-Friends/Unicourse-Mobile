@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, useContext } from "react";
 import {
   Image,
   ImageSourcePropType,
@@ -12,6 +12,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { CompositeNavigationProp, useNavigation } from "@react-navigation/core";
 import { RootStackParamList } from "../../../../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { RootContext } from "../../../../../context/providers/AppProvider";
+import { RootAction } from "../../../../../context/types/root.types";
+import { AUTH_ACTION } from "../../../../../context/types/auth.types";
 
 // Type for the navigation prop
 type AuthNavigationProp = CompositeNavigationProp<
@@ -26,6 +29,12 @@ const AuthButton = ({
   text: string;
 }) => {
   const navigation = useNavigation<AuthNavigationProp>();
+  const { state, dispatch } = useContext(RootContext);
+
+  const handleLogin = (dispatch: Dispatch<RootAction>) => {
+    navigation.navigate("MainStack", { screen: "HomePageScreen" });
+    dispatch({ type: AUTH_ACTION.SET_IS_AUTH, payload: true });
+  };
 
   return (
     <>
@@ -51,11 +60,7 @@ const AuthButton = ({
           ]}
           colors={["#5EDFF5", "#9F80F8"]}
         >
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("MainStack", { screen: "HomePageScreen" })
-            }
-          >
+          <TouchableOpacity onPress={() => handleLogin(dispatch)}>
             <Text style={[styles.textButton, { color: "white" }]}>{text}</Text>
           </TouchableOpacity>
         </LinearGradient>

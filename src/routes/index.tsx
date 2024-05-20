@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Platform, SafeAreaView } from "react-native";
@@ -10,9 +10,13 @@ import AuthStack from "./AuthStack";
 import { nameScreen } from "../constants/nameScreen";
 import UserDetailScreen from "../screens/UserScreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { RootContext } from "../context/providers/AppProvider";
 
 const Stack = createStackNavigator();
 export default function Router() {
+  const { state, dispatch } = useContext(RootContext);
+  console.log(state.auth.isAuth);
+
   return (
     <SafeAreaProvider>
       <StatusBar />
@@ -21,7 +25,9 @@ export default function Router() {
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName={nameScreen.MAIN}
+          initialRouteName={
+            state.auth.isAuth ? nameScreen.MAIN : nameScreen.AUTH
+          }
         >
           {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
           <Stack.Screen name={nameScreen.AUTH} component={AuthStack} />
