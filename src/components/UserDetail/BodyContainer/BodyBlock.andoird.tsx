@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import {
   DataNavigation,
@@ -7,7 +7,10 @@ import {
 } from "../../../types/userDetail.types";
 import UserLearningProgress from "./UserLearningProgress.android";
 import CategoryListItems from "./CategoryListItems.android";
+import AvatarBlock from "./AvatarBlock.android";
+import LogoutButton from "../Button/LogoutButton.android";
 
+const { height } = Dimensions.get("window");
 const BodyContainer = ({
   userData,
   dataNavigation,
@@ -19,11 +22,12 @@ const BodyContainer = ({
 }) => {
   return (
     <View style={styles.bodyContainer}>
+      <AvatarBlock userData={userData} />
       <Text style={styles.authorName}>{userData.name}</Text>
       {/* User progress Info */}
       <UserLearningProgress progressRendered={progressRenderList} />
-      {/* Navigation block */}
       <CategoryListItems dataNavigation={dataNavigation} />
+      <LogoutButton />
     </View>
   );
 };
@@ -32,15 +36,16 @@ export default BodyContainer;
 
 const styles = StyleSheet.create({
   authorName: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
     marginTop: 35,
   },
   bodyContainer: {
     backgroundColor: "#ffffff",
-    width: 355,
-    height: 650,
+    alignItems: "center",
+    width: "80%",
+    height: "90%",
     borderRadius: 15,
   },
 });

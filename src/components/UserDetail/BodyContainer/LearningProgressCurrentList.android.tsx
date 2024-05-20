@@ -11,7 +11,7 @@ const LearningProgressCurrentList = ({
   return (
     <FlatList
       showsHorizontalScrollIndicator={false}
-      style={{ marginBottom: 10 }}
+      style={{ marginBottom: 5 }}
       horizontal
       data={progressListItem}
       renderItem={({ item }: ListRenderItemInfo<ExtraInformation>) => (

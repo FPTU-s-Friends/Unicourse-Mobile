@@ -26,7 +26,7 @@ const UserLearningProgress = ({
               <Image
                 source={item.icon as any}
                 resizeMode="center"
-                style={{ width: 30, height: 30 }}
+                style={{ width: 25, height: 25 }}
               />
               <Text style={styles.itemTitleRendered}>{item.title}</Text>
               <Text style={styles.itemDescriptionRendered}>
@@ -45,7 +45,9 @@ export default UserLearningProgress;
 const styles = StyleSheet.create({
   userProgressInfo: {
     backgroundColor: "#ebecf0",
-    marginTop: 20,
+    marginTop: 15,
+    width: "100%",
+    height: "20%",
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
@@ -55,16 +57,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    margin: 14,
+    marginHorizontal: 15,
   },
   itemTitleRendered: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: "400",
     marginVertical: 10,
     color: "#898686",
   },
   itemDescriptionRendered: {
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: "500",
     color: "#000",
   },

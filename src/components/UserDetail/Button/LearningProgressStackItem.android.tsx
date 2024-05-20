@@ -16,8 +16,8 @@ const LearningProgressStackItem = ({ item }: { item: ExtraInformation }) => {
             source={item.thumb as any}
             resizeMode="center"
             style={{
-              width: 42,
-              height: 42,
+              width: 30,
+              height: 30,
             }}
           />
         </View>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     flexWrap: "wrap",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
   },
 });
