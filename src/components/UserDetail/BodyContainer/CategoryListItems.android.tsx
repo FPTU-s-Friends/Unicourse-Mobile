@@ -10,9 +10,10 @@ const CategoryListItems = ({
   dataNavigation: DataNavigation[];
 }) => {
   return (
-    <View style={{ marginTop: 10, padding: 10 }}>
+    <View style={{ padding: 7 }}>
       <FlatList
         data={dataNavigation}
+        scrollEnabled={true}
         ItemSeparatorComponent={() => <ItemSeparatorGeneratorView />}
         renderItem={({ item }: ListRenderItemInfo<DataNavigation>) => {
           return <CategoryItem item={item} />;

@@ -22,7 +22,7 @@ const HeaderCard = () => {
         <View style={styles.actionBar}>
           <Ionicons
             name="arrow-back"
-            size={20}
+            size={21}
             color="black"
             style={[styles.ItemStyle]}
           />
@@ -30,7 +30,7 @@ const HeaderCard = () => {
             <Pressable>
               <AntDesign
                 name="heart"
-                size={20}
+                size={21}
                 color="red"
                 style={[{ marginRight: 10 }, styles.ItemStyle]}
               />
@@ -38,7 +38,7 @@ const HeaderCard = () => {
             <Pressable>
               <Feather
                 name="shopping-cart"
-                size={20}
+                size={21}
                 color="black"
                 style={[{ marginRight: 10 }, styles.ItemStyle]}
               />
@@ -46,7 +46,7 @@ const HeaderCard = () => {
             <Pressable>
               <SimpleLineIcons
                 name="share"
-                size={20}
+                size={21}
                 color="black"
                 style={styles.ItemStyle}
               />
@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
     // left: 45,
     // right: 45,
     marginTop: 15,
-    marginHorizontal: 20,
+    marginHorizontal: 15,
+    opacity: 0.8,
     zIndex: 1,
     // alignSelf: "center",
   },

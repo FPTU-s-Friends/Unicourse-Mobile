@@ -6,9 +6,9 @@ const AvatarBlock = ({ userData }: { userData: UserInfoTypes }) => {
   return (
     <View style={styles.bodyAvatarBlock}>
       <ImageBackground
-        resizeMode="cover"
+        resizeMode="contain"
         source={userData.avatar as any}
-        style={{ width: 100, height: 100 }}
+        style={{ width: 90, height: 100 }}
       />
       <View style={styles.avatarOverlayParentWrapper}>
         <View style={styles.avatarOverLayChildWrapper}></View>
@@ -20,18 +20,16 @@ const AvatarBlock = ({ userData }: { userData: UserInfoTypes }) => {
 export default AvatarBlock;
 
 const styles = StyleSheet.create({
-  bodyAvatarBlock: { position: "relative", top: 22, zIndex: 1 },
+  bodyAvatarBlock: { zIndex: 1, top: "-12%", position: "absolute" },
   authorName: {
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 35,
   },
   avatarOverlayParentWrapper: {
     position: "absolute",
     bottom: 0,
     right: "0%",
-    left: "16%",
     width: 30,
     height: 30,
     borderRadius: 50,
@@ -41,7 +39,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     top: "15%",
-    right: "auto",
     left: "16%",
     width: 21,
     height: 21,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StyleSheet, Platform, SafeAreaView } from "react-native";
@@ -10,27 +10,32 @@ import AuthStack from "./AuthStack";
 import { nameScreen } from "../constants/nameScreen";
 import UserDetailScreen from "../screens/UserScreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { RootContext } from "../context/providers/AppProvider";
 
 const Stack = createStackNavigator();
 export default function Router() {
-  return (
-    <NavigationContainer>
-      <StatusBar />
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName={nameScreen.AUTH}
-      >
-        {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
-        {/* <Stack.Screen
-                    name={nameSreen.AUTH}
-                    component={AuthStack}
-                /> */}
+  const { state, dispatch } = useContext(RootContext);
+  console.log(state.auth.isAuth);
 
-        {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
-        <Stack.Screen name={nameScreen.MAIN} component={MainStack} />
-      </Stack.Navigator>
-    </NavigationContainer>
+  return (
+    <SafeAreaProvider>
+      <StatusBar />
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName={
+            state.auth.isAuth ? nameScreen.MAIN : nameScreen.AUTH
+          }
+        >
+          {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
+          <Stack.Screen name={nameScreen.AUTH} component={AuthStack} />
+
+          {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
+          <Stack.Screen name={nameScreen.MAIN} component={MainStack} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }

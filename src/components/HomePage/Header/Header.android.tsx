@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 /*
 @Import Icon
 */
@@ -8,7 +8,7 @@ import { Feather } from "@expo/vector-icons";
 
 const Header = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeView}>
       <View style={styles.container}>
         <View style={styles.userLayout}>
           <View style={styles.userGroupImage}>
@@ -47,6 +47,9 @@ const Header = () => {
 };
 
 const styles = StyleSheet.create({
+  safeView: {
+    paddingTop: Dimensions.get("window").height * 0.05,
+  },
   container: {
     display: "flex",
     height: 80,

@@ -10,6 +10,7 @@ export type Tag = {
 export type Blogs = Blog[];
 
 export type Blog = {
+  _id: string;
   user: User;
   tags: Tags;
   thumnail: string;
@@ -17,6 +18,9 @@ export type Blog = {
   description: string;
   createdAt: string;
   minutedRead: number;
+  blogDetail: string;
+  likes: number;
+  comments: number;
 }
 
 export type User = {

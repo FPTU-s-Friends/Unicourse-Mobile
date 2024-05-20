@@ -17,7 +17,14 @@ const data = [
     price: "199.000đ",
   },
 ];
-const Course = () => {
+
+const Course = ({ navigate }: { navigate: any }) => {
+  const onPress = () => {
+    navigate.navigate("CourseDetailStack", {
+      screen: "BlogDetailScreen",
+    });
+  };
+
   return (
     <View style={styles.container}>
       {/* Title & More */}

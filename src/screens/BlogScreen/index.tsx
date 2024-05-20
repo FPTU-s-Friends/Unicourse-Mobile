@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Image,
     Text,
@@ -7,7 +7,8 @@ import {
     View,
     FlatList,
     SafeAreaView,
-    ScrollView
+    ScrollView,
+    Dimensions
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MainStackParamList } from "../../types/navigation.types";
@@ -17,7 +18,7 @@ import Highlight from "../../components/Blog/Highlight/Highlight";
 import Suggest from "../../components/Blog/Suggest/Suggest";
 import BLogItem from "../../components/Blog/BlogItem/BlogItem";
 import { Tags, Blogs } from "../../types";
-import { tagsData, blogsData } from "../../assets/data";
+import { tagsData, blogsData } from "../../assets/data/blogData";
 
 const BlogScreen = () => {
   const navigation =
@@ -25,8 +26,8 @@ const BlogScreen = () => {
 
     const title: string = "Bài viết nổi bật"
     const description: string = "Tổng hợp bài viết chia sẻ về kinh nghiệm tự học tập và phương pháp học tập của sinh viên và giảng viên."
-    const tags: Tags = tagsData;
-    const blogs: Blogs = blogsData;
+    const [blogs, setBlogs] = useState(blogsData);
+    const [tags, setTags] = useState(tagsData);
 
     return (
         <SafeAreaView style={styles.safeAreaView}>
@@ -41,7 +42,7 @@ const BlogScreen = () => {
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => (
-                        <BLogItem blog={item} />
+                        <BLogItem navigation={navigation} blog={item} />
                     )}
                     keyExtractor={(item) => item.title}
                 />
@@ -52,7 +53,8 @@ const BlogScreen = () => {
 
 const styles = StyleSheet.create({
     safeAreaView: {
-        flex: 1
+        flex: 1,
+        paddingTop: Dimensions.get("window").height * 0.05,
     },
     bodyContainer: {
         flex: 1,

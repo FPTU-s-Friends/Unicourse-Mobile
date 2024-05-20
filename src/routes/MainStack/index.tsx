@@ -16,8 +16,9 @@ export default function MainStack() {
       }}
       initialRouteName={nameScreen.HOMEPAGE}
     >
-      {/* <Stack.Screen name={nameSreen.HOMEPAGE} component={BottomStack} /> */}
-      {/* <Stack.Screen name={nameSreen.BLOGSTACK} component={BlogStack} /> */}
+      <Stack.Screen name={nameScreen.HOMEPAGE} component={BottomStack} />
+      <Stack.Screen name={nameScreen.BLOGSTACK} component={BlogStack} />
+      <Stack.Screen name={nameScreen.USER_STACK} component={UserStack} />
       <Stack.Screen
         name={nameScreen.COURSEDETAILS}
         component={CourseDetailStack}

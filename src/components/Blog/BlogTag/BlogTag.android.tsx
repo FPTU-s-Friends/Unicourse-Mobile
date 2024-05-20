@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import { backgroundColor, textColor, textFont } from "../../../constants";
 import { Tag } from "../../../types";
 
-const BlogTag = ({ tag }: { tag: Tag }) => {
+const BlogTag = ({ tag, style }: { tag: Tag; style?: Object }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <TouchableHighlight
         activeOpacity={0.6}
         style={[styles.button, { backgroundColor: tag.backgroundColor }]}
