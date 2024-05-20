@@ -11,11 +11,14 @@ Import Screen
 */
 import HomePageScreen from "../../screens/HomePageScreen";
 import BlogScreen from "../../screens/BlogScreen";
+import UserDetailScreen from "../../screens/UserScreen";
+
 /*
 Import Icon
 */
 import { AntDesign } from "@expo/vector-icons";
 import { textColor } from "../../constants";
+import { Ionicons } from "@expo/vector-icons";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -41,6 +44,15 @@ const BottomStack = () => {
         }}
         name="Bài viết"
         component={BlogScreen}
+      />
+      <BottomTabs.Screen
+        options={{
+          tabBarIcon: () => (
+            <Ionicons name="settings-outline" size={24} color="black" />
+          ),
+        }}
+        name="Cài đặt"
+        component={UserDetailScreen}
       />
     </BottomTabs.Navigator>
   );

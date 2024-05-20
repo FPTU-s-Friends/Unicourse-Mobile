@@ -5,8 +5,13 @@ import MyCarousel from "../../components/HomePage/Carousel/Carousel";
 import Category from "../../components/HomePage/Category/Category";
 import Course from "../../components/HomePage/Course/Course";
 import Lecture from "../../components/HomePage/Lecture/Lecture.ios";
+import { useContext } from "react";
+import { RootContext } from "../../context/providers/AppProvider";
 
 const HomePageScreen = () => {
+  const { state, dispatch } = useContext(RootContext);
+  console.log("isAuth", state.auth.isAuth);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
