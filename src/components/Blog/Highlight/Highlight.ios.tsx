@@ -22,18 +22,18 @@ const Highlight = ({ title, description } : { title: string, description: string
 const styles = StyleSheet.create({
     container: {
         width: "100%",
-        marginBottom: 20
+        marginBottom: 10
     },
     title: {
         width: "100%",
         color: textColor.titleTextColorBlack,
-        fontSize: textFont.titleSize,
+        fontSize: textFont.title,
         fontWeight: "700",
     },
     subTitle: {
         width: "95%",
         color: textColor.titleTextColorBlack,
-        fontSize: textFont.descriptionSize,
+        fontSize: textFont.titleNormal,
         textAlign: "justify",
         fontWeight: "300",
         lineHeight: 24,

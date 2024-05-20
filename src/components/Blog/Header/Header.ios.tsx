@@ -3,17 +3,30 @@ import {
     Image,
     StyleSheet,
     Text,
+    TouchableOpacity,
     View,
 } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-const Header = () => {
+const Header = ({ style }: { style?: Object }) => {
+    const navigation = useNavigation();
     return (
-        <View style={styles.container}>
-            <View style={styles.btn}>
-                <AntDesign name="arrowleft" size={25} color="black" />
-            </View>
+        <View style={[styles.container, style]}>
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.goBack();
+                }}
+            >
+                <View style={styles.btn}>
+                    <AntDesign
+                        name="arrowleft"
+                        size={25}
+                        color="black"
+                    />
+                </View>
+            </TouchableOpacity>
             <View style={styles.userLayout}>
                 <View style={styles.userGroupImage}>
                     <Image
@@ -27,7 +40,7 @@ const Header = () => {
                 </View>
                 <View style={styles.userTextInfo}>
                     <Text style={styles.title} numberOfLines={1}>
-                        Nguyễn Huy Khải 
+                        Nguyễn Huy Khải
                     </Text>
                     <Text style={styles.textRole} numberOfLines={1}>
                         Thành viên
