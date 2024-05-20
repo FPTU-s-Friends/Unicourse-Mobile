@@ -69,22 +69,28 @@ const userData = {
 const UserDetailScreen = () => {
   return (
     <LinearGradientWrapper>
-      <SafeAreaView>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          height: "100%",
+          width: "100%",
+        }}
+      >
         {/* Header body content view */}
         <HeaderInfo />
 
         {/* Body content view */}
         <View style={styles.bodyWrapper}>
           {/* Avatar block */}
-          <AvatarBlock userData={userData} />
+
           {/* Body container */}
           <BodyContainer
             dataNavigation={dataNavigation}
             progressRenderList={data}
             userData={userData}
           />
+
           {/* Logout button */}
-          <LogoutButton />
         </View>
       </SafeAreaView>
     </LinearGradientWrapper>
@@ -93,16 +99,11 @@ const UserDetailScreen = () => {
 
 const styles = StyleSheet.create({
   bodyWrapper: {
-    position: "relative",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    height: "100%",
     margin: "auto",
-  },
-  bodyContainer: {
-    backgroundColor: "#ffffff",
-    width: 355,
-    height: 650,
-    borderRadius: 15,
   },
 });
 
