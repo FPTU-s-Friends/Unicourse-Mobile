@@ -12,6 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { CompositeNavigationProp, useNavigation } from "@react-navigation/core";
 import { RootStackParamList } from "../../../../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { textFont } from "../../../../../constants";
 
 // Type for the navigation prop
 type AuthNavigationProp = CompositeNavigationProp<
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     height: 24,
   },
   textButton: {
-    fontSize: 18,
+    fontSize: textFont.h3,
     color: textColor.normalText,
     fontWeight: "bold",
   },

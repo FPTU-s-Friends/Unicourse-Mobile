@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     safeAreaView: {
         flex: 1,
         paddingTop: Dimensions.get("window").height * 0.05,
+        backgroundColor: "#fff"
     },
     bodyContainer: {
         flex: 1,

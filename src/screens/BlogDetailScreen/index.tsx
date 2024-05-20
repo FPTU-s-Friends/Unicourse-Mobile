@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
     paddingTop: Dimensions.get("window").height * 0.05,
-    backgroundColor: "#f7f8fc",
+    backgroundColor: "#fff"
   },
   container: {
     alignItems: "center",
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
     width: "100%",
+    backgroundColor: "#f7f8fc",
   },
 });
 
@@ -131,6 +132,7 @@ const stylesheet = StyleSheet.create({
   img: {
     marginTop: 10,
     marginBottom: 10,
+    marginHorizontal: "auto",
     width: "100%",
     height: 200,
     resizeMode: "cover",
