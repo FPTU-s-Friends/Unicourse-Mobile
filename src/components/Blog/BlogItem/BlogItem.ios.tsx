@@ -6,23 +6,28 @@ import {
     View,
     Dimensions,
     TouchableHighlight,
-    FlatList
+    FlatList,
+    Touchable,
+    TouchableOpacity
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { Blogs, Blog, Tag } from "../../../types";
+import { Blogs, Blog, Tag, RootStackParamList, MainStackParamList } from "../../../types";
 import { textColor, textFont } from "../../../constants";
 import BlogTag from "../BlogTag/BlogTag";
+
 
 const windowDimensions = Dimensions.get('window');
 const screenDimensions = Dimensions.get('screen');
 
-const BLogItem = ({ blog } : { blog: Blog }) => {
+const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
+    // Biến data
     const [data, setData] = useState(blog);
     const [dimensions, setDimensions] = useState({
         window: windowDimensions,
         screen: screenDimensions,
       });
+
 
     useEffect(() => {
         const subscription = Dimensions.addEventListener(
@@ -37,15 +42,20 @@ const BLogItem = ({ blog } : { blog: Blog }) => {
     useEffect(() => {
         setData(blog);
     }, [blog]);
+
+    const onPress = () => {
+        const blogPostId = blog._id; // Extract ID from blog data
+        navigation.navigate("BlogStack", { screen: "BlogDetailScreen", params: { id: blogPostId } });
+      };
       
     return (
         <View style={styles.container}>
             <View style={styles.userLayout}>
-                <Image
-                    style={styles.userImage}
-                    resizeMode="cover"
-                    source={{ uri: `${data.user.avatar}` }}
-                />
+                    <Image
+                        style={styles.userImage}
+                        resizeMode="cover"
+                        source={{ uri: `${data.user.avatar}` }}
+                    />
                 <View style={styles.userTextInfo}>
                     <Text style={styles.title} numberOfLines={1}>
                         {data.user.name}
@@ -72,23 +82,27 @@ const BLogItem = ({ blog } : { blog: Blog }) => {
                 </View>
             </View>
 
-            <View style={styles.groupThumbnail}>
-                <Image
-                    resizeMode={"cover"}
-                    style={styles.thumnail}
-                    source={{ uri: `${data.thumnail}` }}
-                />
-            </View>
+            <TouchableOpacity onPress={onPress}>
+                <View style={styles.groupThumbnail}>
+                    <Image
+                        resizeMode={"cover"}
+                        style={styles.thumnail}
+                        source={{ uri: `${data.thumnail}` }}
+                    />
+                </View>
+            </TouchableOpacity>
 
             <View style={styles.bodyBlog}>
                 <Text style={styles.titleBodyBlog}>{data.title}</Text>
-                <Text style={styles.descriptionBodyBlog}>
+                <Text style={styles.descriptionBodyBlog} numberOfLines={3} ellipsizeMode="tail">
                     {data.description}
                 </Text>
             </View>
 
             <View style={styles.bodyBlog2}>
-                <Text style={styles.descriptionBodyBlog2}>{data.createdAt} | </Text>
+                <Text style={styles.descriptionBodyBlog2}>
+                    {data.createdAt} |{" "}
+                </Text>
                 <Text style={styles.descriptionBodyBlog2}>
                     {data.minutedRead} phút đọc
                 </Text>
@@ -111,7 +125,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "#fff",
         borderRadius: 10,
-        height: windowDimensions.height * 0.56,
+        height: windowDimensions.height * 0.53,
         width: windowDimensions.width * 0.9,
         marginBottom: 30
     },
@@ -178,16 +192,16 @@ const styles = StyleSheet.create({
     },
     titleBodyBlog: {
         color: textColor.titleTextColorBlack,
-        fontSize: 18,
+        fontSize: textFont.title,
         fontWeight: "700",
     },
     descriptionBodyBlog: {
         color: textColor.titleTextColorBlack,
-        fontSize: textFont.descriptionSize,
+        fontSize: textFont.titleNormal,
         textAlign: "justify",
         fontWeight: "300",
         lineHeight: 24,
-        marginTop: 5
+        marginTop: 5,
     },
     bodyBlog2: {
         display: "flex",
@@ -206,7 +220,7 @@ const styles = StyleSheet.create({
     },
     descriptionBodyBlog2: {
         color: textColor.titleTextColorBlack,
-        fontSize: 14,
+        fontSize: textFont.titleNormal,
         fontWeight: "400",
         lineHeight: 24,
         marginTop: 5

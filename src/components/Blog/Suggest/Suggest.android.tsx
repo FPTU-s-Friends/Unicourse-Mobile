@@ -33,11 +33,11 @@ const Suggest = ({ tags } : { tags: Tags}) => {
 const styles = StyleSheet.create({
     container: {
         width: "100%",
-        marginBottom: 20,
+        marginBottom: 10,
     },
     title: {
         color: textColor.titleTextColorGray,
-        fontSize: textFont.descriptionSize,
+        fontSize: textFont.title,
         textTransform: "uppercase",
         fontWeight: "400",
         marginBottom: 10,

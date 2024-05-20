@@ -9,6 +9,7 @@ export const nameScreen = {
   //BLOG ZONE
   BLOGSTACK: "BlogStack",
   BLOG: "BlogScreen",
+  BLOGDETAIL: "BlogDetailScreen",
 
   // HOMEPAGE  ZONE
   HOMEPAGE: "HomePgaeScreen",
