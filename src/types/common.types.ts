@@ -21,7 +21,7 @@ export type Blog = {
   blogDetail: string;
   likes: number;
   comments: number;
-}
+};
 
 export type User = {
   name: string;
@@ -40,4 +40,5 @@ export type CourseType = {
   thumbnail: string;
   title: string;
   price: string;
+  navigate: any;
 };

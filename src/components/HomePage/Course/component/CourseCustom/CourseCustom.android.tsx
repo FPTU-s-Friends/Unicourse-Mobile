@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 /*
 Import Type
@@ -11,7 +11,13 @@ const CourseCustom: React.FC<CourseType> = ({
   title,
   thumbnail,
   price,
+  navigate,
 }) => {
+  const onPress = () => {
+    navigate.navigate("CourseDetailStack", {
+      screen: "CourseDetailsScreen",
+    });
+  };
   return (
     <View style={styles.container}>
       <Image
@@ -21,7 +27,9 @@ const CourseCustom: React.FC<CourseType> = ({
       />
 
       <View style={styles.course_info}>
-        <Text style={styles.title}>{title}</Text>
+        <Pressable onPress={onPress}>
+          <Text style={styles.title}>{title}</Text>
+        </Pressable>
         <Text style={styles.price}>{price}</Text>
       </View>
     </View>

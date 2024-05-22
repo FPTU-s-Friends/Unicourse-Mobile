@@ -30,7 +30,7 @@ const CourseDetailsScreen = () => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <ScrollView>
-        <HeaderCard />
+        <HeaderCard navigate={navigation} />
         <CourseCard fixPrice="240" newPrice="130" title="Keyboard" />
         <CourseDescription />
         <FooterCard />

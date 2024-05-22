@@ -12,7 +12,12 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
-const HeaderCard = () => {
+const HeaderCard = ({ navigate }: { navigate: any }) => {
+  const onPress = () => {
+    navigate.navigate("HomePgaeScreen", {
+      screen: "HomePgaeScreen",
+    });
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -20,12 +25,15 @@ const HeaderCard = () => {
         style={styles.logoImage}
       >
         <View style={styles.actionBar}>
-          <Ionicons
-            name="arrow-back"
-            size={21}
-            color="black"
-            style={[styles.ItemStyle]}
-          />
+          <Pressable onPress={onPress}>
+            <Ionicons
+              name="arrow-back"
+              size={21}
+              color="black"
+              style={[styles.ItemStyle]}
+            />
+          </Pressable>
+
           <View style={styles.actionBarRight}>
             <Pressable>
               <AntDesign

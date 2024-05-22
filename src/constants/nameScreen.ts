@@ -15,5 +15,5 @@ export const nameScreen = {
   HOMEPAGE: "HomePgaeScreen",
 
   // COURSE DETAIL ZONE
-  COURSEDETAILS: "CourseDetails",
+  COURSEDETAILS: "CourseDetailStack",
 };

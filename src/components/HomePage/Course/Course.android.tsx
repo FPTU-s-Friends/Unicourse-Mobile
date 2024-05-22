@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import CourseCustom from "./component/CourseCustom/CourseCustom";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { backgroundColor, textColor } from "../../../constants";
-
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MainStackParamList } from "../../../types/navigation.types";
+import { useNavigation } from "@react-navigation/native";
 const data = [
   {
     _id: 1,
@@ -18,13 +20,9 @@ const data = [
   },
 ];
 
-const Course = ({ navigate }: { navigate: any }) => {
-  const onPress = () => {
-    navigate.navigate("CourseDetailStack", {
-      screen: "BlogDetailScreen",
-    });
-  };
-
+const Course = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<MainStackParamList>>();
   return (
     <View style={styles.container}>
       {/* Title & More */}
@@ -41,6 +39,7 @@ const Course = ({ navigate }: { navigate: any }) => {
                 title={item.title}
                 thumbnail={item.thumbnail}
                 price={item.price}
+                navigate={navigation}
               />
             );
           })}
