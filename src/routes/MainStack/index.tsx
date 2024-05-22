@@ -4,6 +4,8 @@ import { nameScreen } from "../../constants/nameScreen";
 import BlogStack from "./BlogStack";
 import UserStack from "./UserStack";
 import BottomStack from "../BottomStack";
+import CourseDetailsScreen from "../../screens/CourseDetails";
+import CourseDetailStack from "./CourseDetailStack";
 const Stack = createStackNavigator();
 
 export default function MainStack() {
@@ -17,6 +19,10 @@ export default function MainStack() {
       <Stack.Screen name={nameScreen.HOMEPAGE} component={BottomStack} />
       <Stack.Screen name={nameScreen.BLOGSTACK} component={BlogStack} />
       <Stack.Screen name={nameScreen.USER_STACK} component={UserStack} />
+      <Stack.Screen
+        name={nameScreen.COURSEDETAILS}
+        component={CourseDetailStack}
+      />
     </Stack.Navigator>
   );
 }

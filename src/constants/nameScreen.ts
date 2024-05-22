@@ -13,4 +13,7 @@ export const nameScreen = {
 
   // HOMEPAGE  ZONE
   HOMEPAGE: "HomePgaeScreen",
+
+  // COURSE DETAIL ZONE
+  COURSEDETAILS: "CourseDetailStack",
 };

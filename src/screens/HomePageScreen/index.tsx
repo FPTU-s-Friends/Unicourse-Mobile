@@ -7,6 +7,7 @@ import Course from "../../components/HomePage/Course/Course";
 import Lecture from "../../components/HomePage/Lecture/Lecture.ios";
 import { useContext } from "react";
 import { RootContext } from "../../context/providers/AppProvider";
+import { useNavigation } from "@react-navigation/native";
 
 const HomePageScreen = () => {
   const { state, dispatch } = useContext(RootContext);
