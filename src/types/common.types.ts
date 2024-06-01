@@ -2,25 +2,35 @@
 export type Tags = Tag[];
 
 export type Tag = {
-  text: string;
-  textColor: string;
-  backgroundColor: string;
+  name: string;
+  code: string;
+  color: string;
 };
 
 export type Blogs = Blog[];
 
 export type Blog = {
   _id: string;
-  user: User;
+  userId: BlogUser;
   tags: Tags;
-  thumnail: string;
+  thumbnail_url: string;
   title: string;
   description: string;
-  createdAt: string;
-  minutedRead: number;
-  blogDetail: string;
-  likes: number;
-  comments: number;
+  created_at: string;
+  min_read: number;
+  content: string;
+  like: Object[];
+  comment_obj: Object[];
+  status: string;
+  flag: boolean;
+};
+
+export type BlogUser = {
+  _id: string;
+  email: string;
+  fullName: string;
+  profileName: string;
+  profile_image: string
 };
 
 export type User = {

@@ -16,6 +16,8 @@ import { Blogs, Blog, Tag, RootStackParamList, MainStackParamList } from "../../
 import { textColor, textFont } from "../../../constants";
 import BlogTag from "../BlogTag/BlogTag";
 
+import { format, parseISO } from 'date-fns';
+
 
 const windowDimensions = Dimensions.get('window');
 const screenDimensions = Dimensions.get('screen');
@@ -40,7 +42,9 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
     });
 
     useEffect(() => {
-        setData(blog);
+        const date = parseISO(blog.created_at);
+        const formattedDate = format(date, 'MM/dd/yyyy');
+        setData({ ...blog, created_at: formattedDate });
     }, [blog]);
 
     const onPress = () => {
@@ -54,14 +58,11 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
                     <Image
                         style={styles.userImage}
                         resizeMode="cover"
-                        source={{ uri: `${data.user.avatar}` }}
+                        source={{ uri: `${data.userId.profile_image}` }}
                     />
                 <View style={styles.userTextInfo}>
                     <Text style={styles.title} numberOfLines={1}>
-                        {data.user.name}
-                    </Text>
-                    <Text style={styles.textRole} numberOfLines={1}>
-                        {data.user.role}
+                        {data.userId.fullName}
                     </Text>
                 </View>
                 <View style={styles.groupIcon}>
@@ -87,7 +88,7 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
                     <Image
                         resizeMode={"cover"}
                         style={styles.thumnail}
-                        source={{ uri: `${data.thumnail}` }}
+                        source={{ uri: `${data.thumbnail_url}` }}
                     />
                 </View>
             </TouchableOpacity>
@@ -103,10 +104,10 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
 
             <View style={styles.bodyBlog2}>
                 <Text style={styles.descriptionBodyBlog2}>
-                    {data.createdAt} |{" "}
+                    {data.created_at} |{" "}
                 </Text>
                 <Text style={styles.descriptionBodyBlog2}>
-                    {data.minutedRead} phút đọc
+                    {data.min_read} phút đọc
                 </Text>
             </View>
 
@@ -117,7 +118,7 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => <BlogTag tag={item} />}
-                keyExtractor={(item) => item.text}
+                keyExtractor={(item) => item.code}
             />
         </View>
     );
