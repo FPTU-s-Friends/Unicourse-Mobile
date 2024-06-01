@@ -42,10 +42,11 @@ const BlogScreen = () => {
     useEffect(() => {
         const initBlogData = async () => {
             const initBlog = await fetchAllBlog();
-            setBlogs(initBlog.data);
-            setLoading(false);
+            if (initBlog.status === 200) {
+                setBlogs(initBlog.data);
+                setLoading(false);
+            }
         };
-
         initBlogData();
     }, []);
 

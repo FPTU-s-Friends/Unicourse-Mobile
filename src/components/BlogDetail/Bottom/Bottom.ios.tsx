@@ -25,7 +25,7 @@ const Bottom = ({ blog }: { blog: Blog }) => {
                         color="#757575"
                     />
                     <Text style={styles.textHearto}>
-                        {blog.likes}
+                        {blog.like.length}
                     </Text>
                 </View>
                 <View style={styles.groupComment}>
@@ -36,7 +36,7 @@ const Bottom = ({ blog }: { blog: Blog }) => {
                         color="#757575"
                     />
                     <Text style={styles.textComment}>
-                        {blog.comments}
+                        {blog.comment_obj.length}
                     </Text>
                 </View>
             </View>
@@ -49,7 +49,7 @@ const Bottom = ({ blog }: { blog: Blog }) => {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => <BlogTag tag={item} />}
-                keyExtractor={(item) => item.text}
+                keyExtractor={(item) => item.code}
             />
         </View>
     );
