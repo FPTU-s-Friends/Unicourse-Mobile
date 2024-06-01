@@ -19,7 +19,7 @@ export const useBlogService = () => {
     };
 
     const fetchBlogById = async (id: string) => {
-        return axios.get(`${environment.baseUrl}/api/blogs/${id}`)
+        return axios.get(`${environment.baseUrl}/api/blog/${id}`)
             .then(response => {
                 if (response.data) {
                     return response.data;

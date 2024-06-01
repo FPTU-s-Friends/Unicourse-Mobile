@@ -17,23 +17,32 @@ import Bottom from "../../components/BlogDetail/Bottom/Bottom";
 import { blogsData } from "../../assets/data/blogData";
 import { Tags, Blogs, Blog } from "../../types";
 
+// IMPORT API SERVICES
+import { useBlogService } from "../../core/services";
+
 const BlogDetailScreen = ({ route, navigation }: any) => {
   const { id } = route.params;
   const blogs = blogsData;
   const [blog, setBlog] = useState({} as Blog);
-  const [loading, setLoading] = useState(true);
   const [renderHtml, setRenderHtml] = useState("");
 
+  // Behavior variables
+  const [loading, setLoading] = useState(true);
+
+  // API variables
+  const { fetchBlogById } = useBlogService();
+
   useLayoutEffect(() => {
-    const foundBlog: Blog | undefined = blogs.find((blog) => blog._id === id);
-    if (foundBlog) {
-      setBlog(foundBlog);
-      const renderHtml = `
-            ${foundBlog.blogDetail}
-            `;
-      setRenderHtml(foundBlog.blogDetail);
-      setLoading(false);
+    const initBlogData = async (id: string) => {
+      const initBlog = await fetchBlogById(id);
+      if (initBlog.status === 200) {
+        setBlog(initBlog.data);
+        const renderHtml = `${initBlog.data.content}`;
+        setRenderHtml(renderHtml);
+        setLoading(false);
+      }
     }
+    initBlogData(id);
   }, [id]);
 
   // Function xử lý vấn đề quá nhiều space khi render HTML
@@ -45,21 +54,23 @@ const BlogDetailScreen = ({ route, navigation }: any) => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Header />
-      <ScrollView style={styles.bodyContainer}>
-        <Author blog={blog} />
-        {renderHtml ? (
-          <View style={styles.container}>
-            <HTMLView
-              stylesheet={stylesheet}
-              addLineBreaks={false}
-              value={`${trimNewLines(renderHtml)}`}
-            />
-          </View>
-        ) : (
-          <Text>Loading...</Text>
-        )}
-        <Bottom blog={blog} />
-      </ScrollView>
+      {loading ? <Text>Loading...</Text> : (
+        <ScrollView style={styles.bodyContainer}>
+          <Author blog={blog} />
+          {renderHtml ? (
+            <View style={styles.container}>
+              <HTMLView
+                stylesheet={stylesheet}
+                addLineBreaks={false}
+                value={`${trimNewLines(renderHtml)}`}
+              />
+            </View>
+          ) : (
+            <Text>Loading...</Text>
+          )}
+          <Bottom blog={blog} />
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };

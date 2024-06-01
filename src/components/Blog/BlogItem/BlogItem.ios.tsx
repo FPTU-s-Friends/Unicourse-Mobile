@@ -16,17 +16,19 @@ import { Blogs, Blog, Tag, RootStackParamList, MainStackParamList } from "../../
 import { textColor, textFont } from "../../../constants";
 import BlogTag from "../BlogTag/BlogTag";
 
+import { format, parseISO } from 'date-fns';
+
 
 const windowDimensions = Dimensions.get('window');
 const screenDimensions = Dimensions.get('screen');
 
-const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
+const BLogItem = ({ blog, navigation }: { blog: Blog, navigation: any }) => {
     // Biến data
     const [data, setData] = useState(blog);
     const [dimensions, setDimensions] = useState({
         window: windowDimensions,
         screen: screenDimensions,
-      });
+    });
 
 
     useEffect(() => {
@@ -40,28 +42,27 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
     });
 
     useEffect(() => {
-        setData(blog);
+        const date = parseISO(blog.created_at);
+        const formattedDate = format(date, 'MM/dd/yyyy');
+        setData({ ...blog, created_at: formattedDate });
     }, [blog]);
 
     const onPress = () => {
         const blogPostId = blog._id; // Extract ID from blog data
         navigation.navigate("BlogStack", { screen: "BlogDetailScreen", params: { id: blogPostId } });
-      };
-      
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.userLayout}>
-                    <Image
-                        style={styles.userImage}
-                        resizeMode="cover"
-                        source={{ uri: `${data.user.avatar}` }}
-                    />
+                <Image
+                    style={styles.userImage}
+                    resizeMode="cover"
+                    source={{ uri: `${data.userId.profile_image}` }}
+                />
                 <View style={styles.userTextInfo}>
                     <Text style={styles.title} numberOfLines={1}>
-                        {data.user.name}
-                    </Text>
-                    <Text style={styles.textRole} numberOfLines={1}>
-                        {data.user.role}
+                        {data.userId.fullName}
                     </Text>
                 </View>
                 <View style={styles.groupIcon}>
@@ -87,13 +88,15 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
                     <Image
                         resizeMode={"cover"}
                         style={styles.thumnail}
-                        source={{ uri: `${data.thumnail}` }}
+                        source={{ uri: `${data.thumbnail_url}` }}
                     />
                 </View>
             </TouchableOpacity>
 
             <View style={styles.bodyBlog}>
-                <Text style={styles.titleBodyBlog}>{data.title}</Text>
+                <TouchableOpacity onPress={onPress}>
+                    <Text style={styles.titleBodyBlog}>{data.title}</Text>
+                </TouchableOpacity>
                 <Text style={styles.descriptionBodyBlog} numberOfLines={3} ellipsizeMode="tail">
                     {data.description}
                 </Text>
@@ -101,10 +104,10 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
 
             <View style={styles.bodyBlog2}>
                 <Text style={styles.descriptionBodyBlog2}>
-                    {data.createdAt} |{" "}
+                    {data.created_at} |{" "}
                 </Text>
                 <Text style={styles.descriptionBodyBlog2}>
-                    {data.minutedRead} phút đọc
+                    {data.min_read} phút đọc
                 </Text>
             </View>
 
@@ -115,7 +118,7 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => <BlogTag tag={item} />}
-                keyExtractor={(item) => item.text}
+                keyExtractor={(item) => item.code}
             />
         </View>
     );
