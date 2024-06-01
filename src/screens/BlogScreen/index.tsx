@@ -17,36 +17,58 @@ import Header from "../../components/Blog/Header/Header";
 import Highlight from "../../components/Blog/Highlight/Highlight";
 import Suggest from "../../components/Blog/Suggest/Suggest";
 import BLogItem from "../../components/Blog/BlogItem/BlogItem";
-import { Tags, Blogs } from "../../types";
+import { Tags, Blogs, Blog } from "../../types";
 import { tagsData, blogsData } from "../../assets/data/blogData";
 
+// IMPORT API SERVICES
+import { useBlogService } from "../../core/services";
+
+
 const BlogScreen = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<MainStackParamList>>();
+    const navigation =
+        useNavigation<NativeStackNavigationProp<MainStackParamList>>();
 
     const title: string = "Bài viết nổi bật"
     const description: string = "Tổng hợp bài viết chia sẻ về kinh nghiệm tự học tập và phương pháp học tập của sinh viên và giảng viên."
     const [blogs, setBlogs] = useState(blogsData);
     const [tags, setTags] = useState(tagsData);
 
+    // Behavior variables
+    const [loading, setLoading] = useState(true);
+
+    // API variables
+    const { fetchAllBlog } = useBlogService();
+
+    useEffect(() => {
+        const initBlogData = async () => {
+            const initBlog = await fetchAllBlog();
+            setBlogs(initBlog.data);
+            setLoading(false);
+        };
+
+        initBlogData();
+    }, []);
+
     return (
         <SafeAreaView style={styles.safeAreaView}>
             <Header />
-            <ScrollView style={styles.bodyContainer}>
-                <Highlight title={title} description={description} />
-                <Suggest tags={tags} />
-                <FlatList
-                    style={styles.listContainer}
-                    data={blogs}
-                    scrollEnabled={false}
-                    showsVerticalScrollIndicator={false}
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({ item }) => (
-                        <BLogItem navigation={navigation} blog={item} />
-                    )}
-                    keyExtractor={(item) => item.title}
-                />
-            </ScrollView>
+            {loading ? <Text>Loading...</Text> : (
+                <ScrollView style={styles.bodyContainer}>
+                    <Highlight title={title} description={description} />
+                    <Suggest tags={tags} />
+                    <FlatList
+                        style={styles.listContainer}
+                        data={blogs}
+                        scrollEnabled={false}
+                        showsVerticalScrollIndicator={false}
+                        showsHorizontalScrollIndicator={false}
+                        renderItem={({ item }) => (
+                            <BLogItem navigation={navigation} blog={item} />
+                        )}
+                        keyExtractor={(item) => item.title}
+                    />
+                </ScrollView>
+            )}
         </SafeAreaView>
     );
 };
