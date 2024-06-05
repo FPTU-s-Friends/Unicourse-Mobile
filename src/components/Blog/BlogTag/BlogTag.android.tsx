@@ -8,10 +8,10 @@ const BlogTag = ({ tag, style }: { tag: Tag; style?: Object }) => {
     <View style={[styles.container, style]}>
       <TouchableHighlight
         activeOpacity={0.6}
-        style={[styles.button, { backgroundColor: tag.backgroundColor }]}
+        style={[styles.button, { backgroundColor: tag.color }]}
       >
-        <Text style={[styles.buttonText, { color: tag.textColor }]}>
-          {tag.text}
+        <Text style={[styles.buttonText]}>
+          {tag.name}
         </Text>
       </TouchableHighlight>
     </View>
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: textFont.tagSize,
     textAlign: "center",
+    color: "white"
   },
 });
 

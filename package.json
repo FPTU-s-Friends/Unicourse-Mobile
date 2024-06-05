@@ -23,6 +23,7 @@
     "@types/react-native-htmlview": "^0.16.5",
     "@types/react-native-swiper": "^1.5.12",
     "axios": "^1.6.8",
+    "date-fns": "^3.6.0",
     "expo": "~51.0.5",
     "expo-linear-gradient": "~13.0.2",
     "expo-status-bar": "~1.12.1",

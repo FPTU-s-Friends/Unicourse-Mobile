@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     StyleSheet,
     Text,
@@ -10,10 +10,21 @@ import { Blog } from "../../../types";
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
+import { format, parseISO } from 'date-fns';
+
 const Author = ({ blog }: { blog: Blog }) => {
+
+    const [data, setData] = useState(blog);
+
+    useEffect(() => {
+        const date = parseISO(blog.created_at);
+        const formattedDate = format(date, 'MM/dd/yyyy');
+        setData({ ...blog, created_at: formattedDate });
+    }, [blog]);
+    
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{blog.title}</Text>
+            <Text style={styles.title}>{data.title}</Text>
 
             <View style={styles.userLayout}>
                 <View style={styles.userGroupImage}>
@@ -21,20 +32,20 @@ const Author = ({ blog }: { blog: Blog }) => {
                         style={styles.userImage}
                         resizeMode="cover"
                         source={{
-                            uri: `${blog?.user?.avatar}`,
+                            uri: `${data?.userId?.profile_image}`,
                         }}
                     />
                 </View>
                 <View style={styles.userTextInfo}>
                     <Text style={styles.title} numberOfLines={1}>
-                        {blog?.user?.name}
+                        {data?.userId?.fullName}
                     </Text>
                     <View style={styles.subTitle}>
                         <Text style={styles.subDescription}>
-                            {blog?.createdAt} |{" "}
+                            {data?.created_at} |{" "}
                         </Text>
                         <Text style={styles.subDescription}>
-                            {blog?.minutedRead} phút đọc
+                            {data?.min_read} phút đọc
                         </Text>
                     </View>
                 </View>
