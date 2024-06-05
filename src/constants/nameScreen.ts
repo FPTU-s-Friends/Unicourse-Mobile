@@ -6,6 +6,9 @@ export const nameScreen = {
   // USER - ZOME
   USER_STACK: "UserStack",
   USER_DETAIL_SCREEN: "UserDetailScreen",
+  USER_FAVORITE_SCREEN: "UserFavoriteScreen",
+  USER_PROMOTION_SCREEN: "UserPromotionScreen",
+  USER_HISTORY_TRANSACTION_SCREEN: "UserHistoryTransactionScreen",
   //BLOG ZONE
   BLOGSTACK: "BlogStack",
   BLOG: "BlogScreen",
