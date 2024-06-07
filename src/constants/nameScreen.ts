@@ -19,4 +19,7 @@ export const nameScreen = {
 
   // COURSE DETAIL ZONE
   COURSEDETAILS: "CourseDetailStack",
+
+  // CART ZONE
+  CART: "CartScreen",
 };

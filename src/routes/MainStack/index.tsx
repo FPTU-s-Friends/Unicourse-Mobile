@@ -6,6 +6,7 @@ import UserStack from "./UserStack";
 import BottomStack from "../BottomStack";
 import CourseDetailsScreen from "../../screens/CourseDetails";
 import CourseDetailStack from "./CourseDetailStack";
+import CartStack from "./CartStack";
 const Stack = createStackNavigator();
 
 export default function MainStack() {
@@ -23,6 +24,7 @@ export default function MainStack() {
         name={nameScreen.COURSEDETAILS}
         component={CourseDetailStack}
       />
+      <Stack.Screen name={nameScreen.CART} component={CartStack} />
     </Stack.Navigator>
   );
 }

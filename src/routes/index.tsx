@@ -30,7 +30,7 @@ export default function Router() {
           }
         >
           {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
-          <Stack.Screen name={nameScreen.AUTH} component={AuthStack} />
+          {/* <Stack.Screen name={nameScreen.AUTH} component={AuthStack} /> */}
 
           {/* Nếu User  đăng nhập thì sẽ điều hướng đến Main Stack */}
           <Stack.Screen name={nameScreen.MAIN} component={MainStack} />
