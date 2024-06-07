@@ -18,7 +18,7 @@ const CourseDetailsScreen = () => {
         <HeaderCard navigate={navigation} />
         <CourseCard fixPrice="240" newPrice="130" title="Keyboard" />
         <CourseDescription />
-        <FooterCard />
+        <FooterCard navigate={navigation} />
       </ScrollView>
     </SafeAreaView>
   );

@@ -21,12 +21,7 @@ const HeaderCart = ({ navigate }: { navigate: any }) => {
   return (
     <View style={styles.container}>
       <Pressable onPress={onPress}>
-        <Ionicons
-          name="arrow-back"
-          size={24}
-          color="black"
-          style={[styles.ItemStyle]}
-        />
+        <Ionicons name="arrow-back" size={24} color="black" />
       </Pressable>
       <Text style={styles.actionBarText}>
         Giỏ hàng <Text style={{ fontSize: 16, color: "#16aef3" }}>(4)</Text>

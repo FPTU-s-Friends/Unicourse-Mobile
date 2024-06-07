@@ -4,10 +4,15 @@ import { textColor, textFont } from "../../../constants";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
-const FooterCard = () => {
+const FooterCard = ({ navigate }: { navigate: any }) => {
+  const onPress = () => {
+    navigate.navigate("CartScreen", {
+      screen: "CartScreen",
+    });
+  };
   return (
     <View style={styles.container}>
-      <Pressable style={styles.cartStyle}>
+      <Pressable style={styles.cartStyle} onPress={onPress}>
         <Feather name="shopping-cart" size={24} color="black" />
       </Pressable>
       <LinearGradient

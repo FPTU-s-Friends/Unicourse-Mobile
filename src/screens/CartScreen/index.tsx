@@ -23,7 +23,7 @@ const CartScreen = () => {
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    backgroundColor: "f7f8fc",
+    backgroundColor: "#f7f8fc",
   },
 });
 
