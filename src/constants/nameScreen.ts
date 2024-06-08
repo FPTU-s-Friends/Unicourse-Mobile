@@ -3,6 +3,7 @@ export const nameScreen = {
   AUTH: "AuthStack",
   MAIN: "MainStack",
   LOGINSCREEN: "LoginScreen",
+  SIGNUPSCREEN: "SignUpScreen",
   // USER - ZOME
   USER_STACK: "UserStack",
   USER_DETAIL_SCREEN: "UserDetailScreen",

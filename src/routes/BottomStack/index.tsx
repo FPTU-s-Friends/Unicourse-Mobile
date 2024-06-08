@@ -1,5 +1,6 @@
 import React, { StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /*
 Import constant
@@ -19,10 +20,28 @@ Import Icon
 import { AntDesign } from "@expo/vector-icons";
 import { textColor } from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
+import { useEffect, useState } from "react";
 
 const BottomTabs = createBottomTabNavigator();
 
 const BottomStack = () => {
+  const [userInfo, setUserInfo] = useState({});
+
+  useEffect(() => {
+    readData();
+  }, []);
+
+  const readData = async () => {
+    try {
+      const userData = await AsyncStorage.getItem('@user_info');
+      if (userData !== null) {
+        setUserInfo(userData);
+      }
+    } catch (e) {
+      console.log('error', e);
+    }
+  };
+
   return (
     <BottomTabs.Navigator
       screenOptions={{
