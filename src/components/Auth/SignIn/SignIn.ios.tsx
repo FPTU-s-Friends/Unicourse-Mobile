@@ -17,6 +17,7 @@ import { CompositeNavigationProp, useNavigation } from "@react-navigation/native
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList, User } from "../../../types";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthStackParamList } from "../../../types/navigation.types";
 
 // IMPORT COMPONENTS
 import AuthButton from "./components/Button/AuthButton";
@@ -28,6 +29,7 @@ import { jwtDecode } from "jwt-decode";
 import { useAuthService } from "../../../core/services";
 import { RootContext } from "../../../context/providers/AppProvider";
 import { AUTH_ACTION } from "../../../context/types/auth.types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 interface DecodedToken {
   [key: string]: any;
@@ -42,6 +44,7 @@ type AuthNavigationProp = CompositeNavigationProp<
 const LoginScreen = () => {
   const { state, dispatch } = useContext(RootContext);
   const navigation = useNavigation<AuthNavigationProp>();
+  const navigationAuth = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
   // State for the input text
   const [username, setUsername] = useState('');
@@ -76,10 +79,21 @@ const LoginScreen = () => {
   // Interaction with the server
   const handleSignIn = async () => {
     setIsLoading(true);
-    const signInResponse = await signIn(username, password);
-    if (signInResponse.status === 200) {
-      saveUserInfo(signInResponse.data.access_token);
+    try {
+      const signInResponse = await signIn(username, password);
+      if (signInResponse.status === 200) {
+        saveUserInfo(signInResponse.data.access_token);
+        setIsLoading(false);
+      }
+    } catch (error) {
       setIsLoading(false);
+      Alert.alert('Đăng nhập', 'Lỗi đăng nhập, vui lòng thử lại sau', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        }
+      ]);
     }
   }
 
@@ -135,10 +149,6 @@ const LoginScreen = () => {
       <View style={styles.content}>
         <Image resizeMode={"contain"} style={styles.logo} source={require('../../../assets/logo/Logo_Unicourse.png')} />
         <Text style={styles.title}>Unicourse</Text>
-        <Text style={styles.subTitle}>
-          Học theo cách của riêng bạn với các bài học tương tác và giao diện
-          trực quan.
-        </Text>
         {/* GROUP BTN */}
         {loginMode === "basic" ? (
           <>
@@ -157,19 +167,24 @@ const LoginScreen = () => {
               secureTextEntry
             />
             <AuthButton onPress={() => handleBasicSignIn()} text="Đăng nhập bằng tài khoản" />
+            <AuthButton onPress={() => navigationAuth.navigate("SignUpScreen")} text="Đăng ký" />
             <AuthButton onPress={() => toggleSignInMode()} text="Trở về" />
           </>
         ) : (
-          <>
-            <Text style={{ fontSize: 25, color: "#616161" }}>or</Text>
-            <AuthButton onPress={() =>
-              navigation.navigate("MainStack", { screen: "HomePageScreen" })
-            } text="Đăng nhập với Google" />
-            <AuthButton onPress={() =>
-              navigation.navigate("MainStack", { screen: "HomePageScreen" })
-            } text="Đăng nhập với GitHub" />
-            <AuthButton onPress={() => toggleSignInMode()} text="Đăng nhập bằng tài khoản" />
-          </>
+            <>
+              <Text style={styles.subTitle}>
+                Học theo cách của riêng bạn với các bài học tương tác và giao diện
+                trực quan.
+              </Text>
+              <Text style={{ fontSize: 25, color: "#616161" }}>or</Text>
+              <AuthButton onPress={() =>
+                navigation.navigate("MainStack", { screen: "HomePageScreen" })
+              } text="Đăng nhập với Google" />
+              <AuthButton onPress={() =>
+                navigation.navigate("MainStack", { screen: "HomePageScreen" })
+              } text="Đăng nhập với GitHub" />
+              <AuthButton onPress={() => toggleSignInMode()} text="Đăng nhập bằng tài khoản" />
+            </>
         )}
       </View>
     </LinearGradient>
