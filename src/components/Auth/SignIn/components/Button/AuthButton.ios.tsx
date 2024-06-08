@@ -22,9 +22,11 @@ type AuthNavigationProp = CompositeNavigationProp<
   StackNavigationProp<RootStackParamList>
 >;
 const AuthButton = ({
+  onPress,
   icon,
   text,
 }: {
+  onPress?: () => void;
   icon?: ImageSourcePropType;
   text: string;
 }) => {
@@ -60,7 +62,9 @@ const AuthButton = ({
           ]}
           colors={["#5EDFF5", "#9F80F8"]}
         >
-          <TouchableOpacity onPress={() => handleLogin(dispatch)}>
+            <TouchableOpacity
+            onPress={onPress}
+          >
             <Text style={[styles.textButton, { color: "white" }]}>{text}</Text>
           </TouchableOpacity>
         </LinearGradient>
