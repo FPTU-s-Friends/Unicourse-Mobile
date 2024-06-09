@@ -7,6 +7,8 @@ const AuthReducer: Reducer<AuthContextType, AuthAction> = (state, action) => {
       return { ...state, isAuth: action.payload };
     case AUTH_ACTION.SET_ACCESS_TOKEN:
       return { ...state, accessToken: action.payload };
+    case AUTH_ACTION.SET_USER:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

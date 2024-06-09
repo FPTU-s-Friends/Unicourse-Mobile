@@ -20,6 +20,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@react-navigation/stack": "^6.3.29",
+    "@types/jwt-decode": "^3.1.0",
     "@types/react-native-htmlview": "^0.16.5",
     "@types/react-native-swiper": "^1.5.12",
     "axios": "^1.6.8",

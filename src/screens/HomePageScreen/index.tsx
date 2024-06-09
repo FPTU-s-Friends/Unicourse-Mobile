@@ -11,7 +11,6 @@ import { useNavigation } from "@react-navigation/native";
 
 const HomePageScreen = () => {
   const { state, dispatch } = useContext(RootContext);
-  console.log("isAuth", state.auth.isAuth);
 
   return (
     <SafeAreaView style={styles.container}>

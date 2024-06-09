@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import HTMLView from "react-native-htmlview";
 import { textColor, textFont } from "../../constants";
 
@@ -17,10 +17,17 @@ import Bottom from "../../components/BlogDetail/Bottom/Bottom";
 import { blogsData } from "../../assets/data/blogData";
 import { Tags, Blogs, Blog } from "../../types";
 
+
+// IMPORT LOGIC STATE
+import { RootContext } from "../../context/providers/AppProvider";
+import { BLOG_ACTION } from "../../context/types/blog.types";
+
 // IMPORT API SERVICES
 import { useBlogService } from "../../core/services";
+import LoadingOverlay from "../../components/Common/LoadingOverlay/LoadingOverlay";
 
 const BlogDetailScreen = ({ route, navigation }: any) => {
+  const { state, dispatch } = useContext(RootContext);
   const { id } = route.params;
   const blogs = blogsData;
   const [blog, setBlog] = useState({} as Blog);
@@ -32,19 +39,30 @@ const BlogDetailScreen = ({ route, navigation }: any) => {
   // API variables
   const { fetchBlogById } = useBlogService();
 
-  useLayoutEffect(() => {
-    const initBlogData = async (id: string) => {
-      const initBlog = await fetchBlogById(id);
-      if (initBlog.status === 200) {
-        setBlog(initBlog.data);
-        const renderHtml = `${initBlog.data.content}`;
-        setRenderHtml(renderHtml);
-        setLoading(false);
-      }
+  // INIT DATA ZONE
+  // Init blog data
+  useEffect(() => {
+    if (state.blog.selectBlog._id === undefined) {
+      const initBlogData = async (id: string) => {
+        const initBlog = await fetchBlogById(id);
+        if (initBlog.status === 200) {
+          setBlog(initBlog.data);
+          dispatch({ type: BLOG_ACTION.FETCH_BLOG_DETAIL_INFO, payload: initBlog.data });
+          const renderHtml = `${initBlog.data.content}`;
+          setRenderHtml(renderHtml);
+          setLoading(false);
+        }
+      };
+      initBlogData(id);
+    } else {
+      const renderHtml = `${state.blog.selectBlog.content}`;
+      setBlog(state.blog.selectBlog);
+      setRenderHtml(renderHtml);
+      setLoading(false);
     }
-    initBlogData(id);
-  }, [id]);
-
+  }, [id, state.blog.selectBlog, fetchBlogById, dispatch]);
+  
+  // BEHAVIOR ZONE
   // Function xử lý vấn đề quá nhiều space khi render HTML
   function trimNewLines(text: any) {
     if (!text) return;
@@ -54,7 +72,7 @@ const BlogDetailScreen = ({ route, navigation }: any) => {
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Header />
-      {loading ? <Text>Loading...</Text> : (
+      {loading ? <LoadingOverlay visible={loading} /> : (
         <ScrollView style={styles.bodyContainer}>
           <Author blog={blog} />
           {renderHtml ? (
