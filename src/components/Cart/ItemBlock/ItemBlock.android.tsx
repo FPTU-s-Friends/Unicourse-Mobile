@@ -12,9 +12,11 @@ import { textColor, textFont } from "../../../constants";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Avatar, CheckBox } from "react-native-elements";
 import { AntDesign } from "@expo/vector-icons";
+import axios from "axios";
 
 const datas = [
   {
+    id: "1",
     name: "Đinh Gia Bảo",
     avatarImage: "../../CourseDetails/img/ganyu.jpg",
     items: [
@@ -40,6 +42,7 @@ const datas = [
     ],
   },
   {
+    id: "2",
     name: "Nguyễn Thành Đạt OCD",
     avatarImage: "../../CourseDetails/image/ganyu.jpg",
     items: [
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
   },
   bottomHalfContainer: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     marginBottom: 10,
   },
   bottomHalfContainerImg: {
@@ -184,8 +187,7 @@ const Items = ({ items }: { items: itemInterface[] }) => (
             <Text style={styles.informationText}>{item.title}</Text>
 
             <View style={styles.pricePlace}>
-              <Text style={styles.realPrice}>{item.oldprice}</Text>
-              <Text style={styles.discountPrice}>{item.newprice}</Text>
+              <Text style={styles.realPrice}>{item.newprice}</Text>
             </View>
           </View>
         </View>
@@ -197,9 +199,32 @@ const Items = ({ items }: { items: itemInterface[] }) => (
 const renderBlock = ({ item }: any) => <Block data={item} />;
 
 const ItemBlock = () => {
+  const verifyAccount = async () => {
+    try {
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjM5ZDVhOTE2MDE0OGNkMTE3YjgyZWQiLCJlbWFpbCI6InRodXlraGFuZ3ZuQGdtYWlsLmNvbSIsImZ1bGxOYW1lIjoixJDhuqF0IE5ndXnhu4VuIFRow6BuaCAzIiwiZGF0ZU9mQmlydGgiOm51bGwsInByb2ZpbGVfaW1hZ2UiOiJodHRwczovL2ZpcmViYXNlc3RvcmFnZS5nb29nbGVhcGlzLmNvbS92MC9iL3VuaWNvdXJzZS1mNDAyMC5hcHBzcG90LmNvbS9vL2ltYWdlcyUyRkF2YXRhciUyMCgxKS5wbmc_YWx0PW1lZGlhJnRva2VuPTUxMjUyMWNkLTk5NzQtNGIzMi04MmJhLTgyNjQzNWU0NGIxNCIsInJvbGUiOiJzdHVkZW50IiwiaXNfY29tbWVudF9ibG9ja2VkIjpmYWxzZSwiaXNfYmxvY2tlZCI6ZmFsc2UsImlzX2NoYXRfYmxvY2tlZCI6ZmFsc2UsIndpc2hfbGlzdCI6WyI2NWQyZDNlNmI1MGIwMDFlMGY1MmU5OTkiLCI2NWE5ZjQ3MzE5MDgwNjEwYmY4MzFjNTEiLCI2NWIyMDk2MDY4ZDI1OTNjYmE1ZDczZWQiLCI2NWQyZDY5YWI1MGIwMDFlMGY1MmU5YTEiLCI2NWE4NzkxZWEzMDk3OWEzNDdkMDI2Y2EiLCI2NWQyZDg1NWI1MGIwMDFlMGY1MmVhNGMiLCI2NWE5ZjVjMzE5MDgwNjEwYmY4MzFjNTUiLCI2NjUzMWE1ZjZhMDc0MjU4YTVlZWEzMTgiXSwiaWF0IjoxNzE3OTA1NjcyLCJleHAiOjE3MTgwNzg0NzJ9.gFkH0maOWBoU3dOVWK2rB5rUHg9uvDQU2Qo6c-NK7ak";
+
+      const url = `https://unicourse-api-production.up.railway.app/api/cart/retrieve-user-cart`;
+      const result = await axios.get(url, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(result);
+      return result;
+    } catch (err: any) {
+      console.log(err);
+    }
+  };
+  verifyAccount();
   return (
     <View style={styles.container}>
-      <FlatList data={datas} renderItem={renderBlock} />
+      <FlatList
+        data={datas}
+        renderItem={renderBlock}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 };

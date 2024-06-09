@@ -18,8 +18,9 @@ export const nameScreen = {
   HOMEPAGE: "HomePgaeScreen",
 
   // COURSE DETAIL ZONE
-  COURSEDETAILS: "CourseDetailStack",
-
+  COURSEDETAILS_STACK: "CourseDetailStack",
+  COURSEDETAILS_SCREEN: "CourseDetailScreen",
   // CART ZONE
+  CART_STACK: "CartStack",
   CART: "CartScreen",
 };

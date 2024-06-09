@@ -21,10 +21,10 @@ export default function MainStack() {
       <Stack.Screen name={nameScreen.BLOGSTACK} component={BlogStack} />
       <Stack.Screen name={nameScreen.USER_STACK} component={UserStack} />
       <Stack.Screen
-        name={nameScreen.COURSEDETAILS}
+        name={nameScreen.COURSEDETAILS_STACK}
         component={CourseDetailStack}
       />
-      <Stack.Screen name={nameScreen.CART} component={CartStack} />
+      <Stack.Screen name={nameScreen.CART_STACK} component={CartStack} />
     </Stack.Navigator>
   );
 }
