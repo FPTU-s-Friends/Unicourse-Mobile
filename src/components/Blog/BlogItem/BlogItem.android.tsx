@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { Blogs, Blog, Tag, RootStackParamList, MainStackParamList } from "../../../types";
+import { Blog } from "../../../models";
 import { textColor, textFont } from "../../../constants";
 import BlogTag from "../BlogTag/BlogTag";
 
@@ -22,13 +22,13 @@ import { format, parseISO } from 'date-fns';
 const windowDimensions = Dimensions.get('window');
 const screenDimensions = Dimensions.get('screen');
 
-const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
+const BLogItem = ({ blog, navigation }: { blog: Blog, navigation: any }) => {
     // Biến data
-    const [data, setData] = useState(blog);
+    const [data, setData] = useState(blog as any);
     const [dimensions, setDimensions] = useState({
         window: windowDimensions,
         screen: screenDimensions,
-      });
+    });
 
 
     useEffect(() => {
@@ -42,24 +42,24 @@ const BLogItem = ({ blog, navigation } : { blog: Blog, navigation: any }) => {
     });
 
     useEffect(() => {
-        const date = parseISO(blog.created_at);
-        const formattedDate = format(date, 'MM/dd/yyyy');
+        // const date = parseISO(blog.created_at);
+        const formattedDate = format(blog.created_at, 'MM/dd/yyyy');
         setData({ ...blog, created_at: formattedDate });
     }, [blog]);
 
     const onPress = () => {
         const blogPostId = blog._id; // Extract ID from blog data
-        navigation.navigate("BlogStack", { screen: "BlogDetailScreen", params: { id: blogPostId } });
-      };
-      
+        navigation.navigate("BlogStack", { screen: "BlogDetailScreen", params: { id: blog._id } });
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.userLayout}>
-                    <Image
-                        style={styles.userImage}
-                        resizeMode="cover"
-                        source={{ uri: `${data.userId.profile_image}` }}
-                    />
+                <Image
+                    style={styles.userImage}
+                    resizeMode="cover"
+                    source={{ uri: `${data.userId.profile_image}` }}
+                />
                 <View style={styles.userTextInfo}>
                     <Text style={styles.title} numberOfLines={1}>
                         {data.userId.fullName}

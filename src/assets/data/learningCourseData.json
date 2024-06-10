@@ -1,0 +1,361 @@
+{
+    "message": "Get course by id successfully !",
+    "status": 200,
+    "data": {
+        "_id": "66546ca3d77173375ec3d8d2",
+        "title": "Khóa học PRM392",
+        "titleDescription": "Sau khóa học, sinh viên sẽ nắm vững kiến thức cơ bản về lập trình di động, thành thạo các điều khiển Android phổ biến, hiểu biết về các thành phần Android nâng cao, lưu trữ dữ liệu và sử dụng API kết nối dữ liệu từ máy chủ. Sinh viên cũng sẽ có khả năng tự học và làm việc nhóm hiệu quả.",
+        "subTitle": "Bạn sẽ học được gì?",
+        "subTitleDescription": [
+            "Nắm được kiến ​​thức cơ bản về lập trình di động",
+            "Có được một số kinh nghiệm với tất cả các điều khiển phổ biến của Android",
+            "Có kiến ​​thức về một số thành phần nâng cao của Android",
+            "Có kiến ​​thức về lưu trữ dữ liệu trong ứng dụng di động, có thể sử dụng api để kết nối dữ liệu từ máy chủ từ ứng dụng di động",
+            "Nắm vững kiến ​​thức lập trình Android giúp học viên có thể tự học dễ dàng hơn",
+            "Có khả năng làm việc nhóm và trình bày kết quả của nhóm"
+        ],
+        "tracks": [
+            {
+                "_id": "66546cc6d77173375ec3d8e0",
+                "position": 1,
+                "chapterTitle": "Bài 1: Tổng quan về Android",
+                "track_steps": [
+                    {
+                        "_id": "66546cc6d77173375ec3d8de",
+                        "title": "[PRM392]Bài 1: Tổng quan về Android",
+                        "content_url": "7JyTjObkPuc",
+                        "position": 1,
+                        "duration": 18,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:21:42.128Z",
+                        "chapterTitle": "Bài 1: Tổng quan về Android"
+                    },
+                    {
+                        "_id": "66546cf8d77173375ec3d8f5",
+                        "title": "Lập trình Android - Bài 1.0: Hướng dẫn cài đặt và sử dụng Android Studio 2022",
+                        "content_url": "Q1nfS_OC7X8",
+                        "position": 2,
+                        "duration": 5,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:22:32.326Z",
+                        "chapterTitle": "Bài 1: Tổng quan về Android"
+                    }
+                ],
+                "created_at": "2024-05-27T11:21:42.403Z"
+            },
+            {
+                "_id": "66546d10d77173375ec3d908",
+                "position": 2,
+                "chapterTitle": "Bài 2: Cấu trúc chương trình Android",
+                "track_steps": [
+                    {
+                        "_id": "66546d10d77173375ec3d906",
+                        "title": "[PRM392]Bài 2: Cấu trúc chương trình Android",
+                        "content_url": "ZHnAO7GUqwA",
+                        "position": 1,
+                        "duration": 19,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:22:56.143Z",
+                        "chapterTitle": "Bài 2: Cấu trúc chương trình Android"
+                    }
+                ],
+                "created_at": "2024-05-27T11:22:56.422Z"
+            },
+            {
+                "_id": "66546d26d77173375ec3d91a",
+                "position": 3,
+                "chapterTitle": "Bài 3: Tìm hiểu Simple UI Widget",
+                "track_steps": [
+                    {
+                        "_id": "66546d26d77173375ec3d918",
+                        "title": "[PRM392]Bài 3: Tìm hiểu Simple UI Widget",
+                        "content_url": "kxOh8kwJZYo",
+                        "position": 1,
+                        "duration": 24,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:23:18.147Z",
+                        "chapterTitle": "Bài 3: Tìm hiểu Simple UI Widget"
+                    },
+                    {
+                        "_id": "66546d3ed77173375ec3d92b",
+                        "title": "[PRM392]Lab 3: How to create a custom ViewGroup",
+                        "content_url": "HqARFmOStnQ",
+                        "position": 2,
+                        "duration": 7,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:23:42.836Z",
+                        "chapterTitle": "Bài 3: Tìm hiểu Simple UI Widget"
+                    }
+                ],
+                "created_at": "2024-05-27T11:23:18.418Z"
+            },
+            {
+                "_id": "66546d54d77173375ec3d93e",
+                "position": 4,
+                "chapterTitle": "Bài 4: Tìm hiểu Style và Theme",
+                "track_steps": [
+                    {
+                        "_id": "66546d53d77173375ec3d93c",
+                        "title": "[PRM392]Bài 4: Tìm hiểu Style và Theme",
+                        "content_url": "P5UWVzg0mrw",
+                        "position": 1,
+                        "duration": 14,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:24:03.764Z",
+                        "chapterTitle": "Bài 4: Tìm hiểu Style và Theme"
+                    }
+                ],
+                "created_at": "2024-05-27T11:24:04.035Z"
+            },
+            {
+                "_id": "66546d68d77173375ec3d950",
+                "position": 5,
+                "chapterTitle": "Bài 5: Tìm hiểu Binding View và Handling Action trong Android Studio",
+                "track_steps": [
+                    {
+                        "_id": "66546d67d77173375ec3d94e",
+                        "title": "[PRM392]Bài 5: Tìm hiểu Binding View và Handling Action trong Android Studio",
+                        "content_url": "BTxeUX6q3PQ",
+                        "position": 1,
+                        "duration": 10,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:24:23.991Z",
+                        "chapterTitle": "Bài 5: Tìm hiểu Binding View và Handling Action trong Android Studio"
+                    },
+                    {
+                        "_id": "66546d87d77173375ec3d961",
+                        "title": "[PRM392]Lab 4: Using images and Menu Navigation Button",
+                        "content_url": "d3ueMnqXseQ",
+                        "position": 2,
+                        "duration": 9,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:24:55.168Z",
+                        "chapterTitle": "Bài 5: Tìm hiểu Binding View và Handling Action trong Android Studio"
+                    }
+                ],
+                "created_at": "2024-05-27T11:24:24.262Z"
+            },
+            {
+                "_id": "66546d9cd77173375ec3d974",
+                "position": 6,
+                "chapterTitle": "Bài 6: Tìm hiểu Activity Lifecycle File",
+                "track_steps": [
+                    {
+                        "_id": "66546d9cd77173375ec3d972",
+                        "title": "[PRM392]Bài 6: Tìm hiểu Activity Lifecycle File",
+                        "content_url": "gDEiuk-sZYU",
+                        "position": 1,
+                        "duration": 18,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:25:16.585Z",
+                        "chapterTitle": "Bài 6: Tìm hiểu Activity Lifecycle File"
+                    }
+                ],
+                "created_at": "2024-05-27T11:25:16.862Z"
+            },
+            {
+                "_id": "66546db0d77173375ec3d986",
+                "position": 7,
+                "chapterTitle": "Bài 7: Tìm hiểu Intent & Connecting Activities",
+                "track_steps": [
+                    {
+                        "_id": "66546db0d77173375ec3d984",
+                        "title": "[PRM392]Bài 7: Tìm hiểu Intent & Connecting Activities",
+                        "content_url": "UvXZFq50uHg",
+                        "position": 1,
+                        "duration": 13,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:25:36.249Z",
+                        "chapterTitle": "Bài 7: Tìm hiểu Intent & Connecting Activities"
+                    }
+                ],
+                "created_at": "2024-05-27T11:25:36.533Z"
+            },
+            {
+                "_id": "66546dc5d77173375ec3d998",
+                "position": 8,
+                "chapterTitle": "Bài 8: Tìm hiểu RecyclerView và Demo",
+                "track_steps": [
+                    {
+                        "_id": "66546dc5d77173375ec3d996",
+                        "title": "[PRM392]Bài 8: Tìm hiểu RecyclerView và Demo",
+                        "content_url": "MXqsODsubcQ",
+                        "position": 1,
+                        "duration": 22,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:25:57.030Z",
+                        "chapterTitle": "Bài 8: Tìm hiểu RecyclerView và Demo"
+                    },
+                    {
+                        "_id": "66546dd6d77173375ec3d9a9",
+                        "title": "Chuyển máy ảo của Android Studio sang ổ khác",
+                        "content_url": "08m0fuVL1Pk",
+                        "position": 2,
+                        "duration": 4,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:26:14.942Z",
+                        "chapterTitle": "Bài 8: Tìm hiểu RecyclerView và Demo"
+                    }
+                ],
+                "created_at": "2024-05-27T11:25:57.301Z"
+            },
+            {
+                "_id": "66546defd77173375ec3d9bc",
+                "position": 9,
+                "chapterTitle": "Bài 9: Tìm hiểu ImageView và Menu",
+                "track_steps": [
+                    {
+                        "_id": "66546deed77173375ec3d9ba",
+                        "title": "[PRM392]Bài 9: Tìm hiểu ImageView và Menu",
+                        "content_url": "XOiAhK87RLY",
+                        "position": 1,
+                        "duration": 31,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:26:38.970Z",
+                        "chapterTitle": "Bài 9: Tìm hiểu ImageView và Menu"
+                    },
+                    {
+                        "_id": "66546e01d77173375ec3d9cd",
+                        "title": "[PRM392]Hướng dẫn làm Music App đơn giản kết hợp Permission và Notification",
+                        "content_url": "EjJzqIGp7xM",
+                        "position": 2,
+                        "duration": 12,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:26:57.194Z",
+                        "chapterTitle": "Bài 9: Tìm hiểu ImageView và Menu"
+                    }
+                ],
+                "created_at": "2024-05-27T11:26:39.246Z"
+            },
+            {
+                "_id": "66546e16d77173375ec3d9e0",
+                "position": 10,
+                "chapterTitle": "Bài 10: Tìm hiểu Android Permission",
+                "track_steps": [
+                    {
+                        "_id": "66546e16d77173375ec3d9de",
+                        "title": "[PRM392]Bài 10: Tìm hiểu Android Permission",
+                        "content_url": "XFJ-OiKABcw",
+                        "position": 1,
+                        "duration": 7,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:27:18.148Z",
+                        "chapterTitle": "Bài 10: Tìm hiểu Android Permission"
+                    }
+                ],
+                "created_at": "2024-05-27T11:27:18.425Z"
+            },
+            {
+                "_id": "66546e29d77173375ec3d9f2",
+                "position": 11,
+                "chapterTitle": "Bài 11: Tìm hiểu Android Notification và Demo",
+                "track_steps": [
+                    {
+                        "_id": "66546e29d77173375ec3d9f0",
+                        "title": "[PRM392]Bài 11: Tìm hiểu Android Notification và Demo",
+                        "content_url": "O7OwsifVL1o",
+                        "position": 1,
+                        "duration": 10,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:27:37.131Z",
+                        "chapterTitle": "Bài 11: Tìm hiểu Android Notification và Demo"
+                    }
+                ],
+                "created_at": "2024-05-27T11:27:37.417Z"
+            },
+            {
+                "_id": "66546e3bd77173375ec3da04",
+                "position": 12,
+                "chapterTitle": "Bài 12: Tìm hiểu DataStorage Database",
+                "track_steps": [
+                    {
+                        "_id": "66546e3ad77173375ec3da02",
+                        "title": "[PRM392]Bài 12: Tìm hiểu DataStorage Database",
+                        "content_url": "TU_VNkklyUE",
+                        "position": 1,
+                        "duration": 31,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:27:54.933Z",
+                        "chapterTitle": "Bài 12: Tìm hiểu DataStorage Database"
+                    },
+                    {
+                        "_id": "66546e4ad77173375ec3da15",
+                        "title": "Hướng dẫn Fix Background của Button View trong Android Studio",
+                        "content_url": "jxENnUK06ig",
+                        "position": 2,
+                        "duration": 4,
+                        "type": "video",
+                        "created_at": "2024-05-27T11:28:10.944Z",
+                        "chapterTitle": "Bài 12: Tìm hiểu DataStorage Database"
+                    }
+                ],
+                "created_at": "2024-05-27T11:27:55.205Z"
+            }
+        ],
+        "enrollmentCount": 16,
+        "status": "active",
+        "type": "free",
+        "quiz": [],
+        "amount": 0,
+        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/unicourse-f4020.appspot.com/o/Course%2FCN8%2FPRM392.png?alt=media&token=a2164ded-1dc9-47c6-b952-b499872868b4",
+        "lecture": {
+            "_id": "662f61f6b57741e90fac0a5b",
+            "email": "lecture1@gmail.com",
+            "fullName": "Thầy Uni Cóc",
+            "profileName": "Thầy Uni Cóc",
+            "profile_image": "https://firebasestorage.googleapis.com/v0/b/unicourse-f4020.appspot.com/o/User%2F9334415.jpg?alt=media&token=4a681abc-ae97-4c94-96fd-6a5c7fddf16d",
+            "lecture_info": {
+                "_id": "66352d64799aa75ca32dc001",
+                "my_course": [
+                    "664f01c27380f3521316bcd1",
+                    "66504f0883bc32fc61bb78ed",
+                    "66505bebdd08ba2b50a19fec",
+                    "66507061dd08ba2b50a1ab62",
+                    "665318aa6a074258a5eea2ef",
+                    "66531a5f6a074258a5eea318",
+                    "66539780bca1d7daa0fa3037",
+                    "6653982abca1d7daa0fa304e",
+                    "665398ccbca1d7daa0fa306a",
+                    "665402c3360ed08deef9df5c",
+                    "665428f94e6762b3817652ee",
+                    "665429202f130538239caaf4",
+                    "66542a5fc5c39aaf6482ff3a",
+                    "66544cce53646badd496cc1d",
+                    "665456307dcfc97210c05707",
+                    "66545cdf7dcfc97210c05bba",
+                    "66545ebf7dcfc97210c05c14",
+                    "66545f937dcfc97210c05c38",
+                    "6654690b7dcfc97210c05e6a",
+                    "66546ca3d77173375ec3d8d2",
+                    "665ed43701f6629b5005f5d3"
+                ],
+                "my_schedule": [],
+                "feedback": [
+                    {
+                        "_id": "665d89d2371d840c98e1c7cc",
+                        "content": "Khóa học chất lượng, giảng viên quá uy tín. Cảm ơn Unicourse đã có những khoá học chất lượng như thế này",
+                        "rating": 5,
+                        "course_id": "66546ca3d77173375ec3d8d2",
+                        "user_id": {
+                            "_id": "66571c31e320b68e8a7535f6",
+                            "email": "nt.dat2001dt@gmail.com",
+                            "fullName": "Thanh Dat",
+                            "profileName": "",
+                            "profile_image": "https://lh3.googleusercontent.com/a/ACg8ocI2yAgm-pnKzAo3rCa2zHWB7ouwIaJfZlyjzQTVFS1v=s96-c",
+                            "created_at": "2024-05-29T12:14:41.758Z",
+                            "updated_at": "2024-06-04T08:42:43.516Z"
+                        },
+                        "status": "active",
+                        "created_at": "2024-06-03T09:16:02.372Z",
+                        "updated_at": "2024-06-03T09:16:38.124Z"
+                    }
+                ],
+                "description": "Tại Unicourse, chúng tôi tự hào giới thiệu một đội ngũ giảng viên đa dạng và giàu kinh nghiệm, đồng lòng với mục tiêu tạo ra một môi trường học tập đầy sáng tạo và chất lượng cao. Với sự đa dạng về lĩnh vực chuyên môn và nền tảng giáo dục, các giảng viên của chúng tôi mang đến cho bạn những trải nghiệm học tập đa chiều và phong phú."
+            }
+        },
+        "semester_number": 8,
+        "created_at": "2024-05-27T11:21:07.768Z",
+        "updated_at": "2024-06-04T09:26:51.165Z",
+        "__v": 0
+    }
+}

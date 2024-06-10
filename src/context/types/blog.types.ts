@@ -1,4 +1,4 @@
-import { Blog } from "../../types";
+import { Blog } from "../../models";
 
 export enum BLOG_ACTION {
     FETCH_BLOG = "FETCH_BLOG",

@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import { backgroundColor, textColor, textFont } from "../../../constants";
-import { Tag } from "../../../types";
 
-const BlogTag = ({ tag, style }: { tag: Tag; style?: Object }) => {
+const BlogTag = ({ tag, style }: { tag: any; style?: Object }) => {
   return (
     <View style={[styles.container, style]}>
       <TouchableHighlight

@@ -10,12 +10,14 @@ import {
   ScrollView,
   Dimensions,
   View,
+  Alert,
 } from "react-native";
 import Header from "../../components/Blog/Header/Header";
 import Author from "../../components/BlogDetail/Author/Author";
 import Bottom from "../../components/BlogDetail/Bottom/Bottom";
 import { blogsData } from "../../assets/data/blogData";
-import { Tags, Blogs, Blog } from "../../types";
+// import { Tags, Blogs, Blog } from "../../types";
+import { Blog } from "../../models";
 
 
 // IMPORT LOGIC STATE
@@ -42,26 +44,40 @@ const BlogDetailScreen = ({ route, navigation }: any) => {
   // INIT DATA ZONE
   // Init blog data
   useEffect(() => {
-    if (state.blog.selectBlog._id === undefined) {
+    console.log("id", id);
+    if (id) {
       const initBlogData = async (id: string) => {
         const initBlog = await fetchBlogById(id);
-        if (initBlog.status === 200) {
-          setBlog(initBlog.data);
+        if (initBlog && initBlog.status === 200 && initBlog.data.content) {
+          setBlog({ ...initBlog.data } as Blog);
           dispatch({ type: BLOG_ACTION.FETCH_BLOG_DETAIL_INFO, payload: initBlog.data });
           const renderHtml = `${initBlog.data.content}`;
           setRenderHtml(renderHtml);
           setLoading(false);
+        } else {
+          setLoading(false);
+          Alert.alert('Bài viết', 'Lỗi lấy thông tin bài viết', [
+            {
+              text: 'Cancel',
+              onPress: () => navigation.goBack(),
+              style: 'cancel',
+            }
+          ]);
         }
       };
       initBlogData(id);
     } else {
-      const renderHtml = `${state.blog.selectBlog.content}`;
-      setBlog(state.blog.selectBlog);
-      setRenderHtml(renderHtml);
       setLoading(false);
+      Alert.alert('Bài viết', 'Không tìm thấy bài viết', [
+        {
+          text: 'Cancel',
+          onPress: () => navigation.goBack(),
+          style: 'cancel',
+        }
+      ]);
     }
-  }, [id, state.blog.selectBlog, fetchBlogById, dispatch]);
-  
+  }, [id]);
+
   // BEHAVIOR ZONE
   // Function xử lý vấn đề quá nhiều space khi render HTML
   function trimNewLines(text: any) {
@@ -69,11 +85,19 @@ const BlogDetailScreen = ({ route, navigation }: any) => {
     return text.replace(/(\r\n|\n|\r)/gm, "");
   }
 
+  if (blog._id === undefined || loading) {
+    return (
+      <SafeAreaView style={styles.safeAreaView}>
+        <Header />
+        <LoadingOverlay visible={loading} />
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <Header />
-      {loading ? <LoadingOverlay visible={loading} /> : (
-        <ScrollView style={styles.bodyContainer}>
+      <ScrollView style={styles.bodyContainer}>
           <Author blog={blog} />
           {renderHtml ? (
             <View style={styles.container}>
@@ -88,7 +112,6 @@ const BlogDetailScreen = ({ route, navigation }: any) => {
           )}
           <Bottom blog={blog} />
         </ScrollView>
-      )}
     </SafeAreaView>
   );
 };

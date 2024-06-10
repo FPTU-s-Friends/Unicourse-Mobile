@@ -1,4 +1,4 @@
-import { User } from "../../types";
+import { User } from "../../models";
 
 export enum AUTH_ACTION {
   SET_USER = "SET_USER",
@@ -14,14 +14,7 @@ export interface AuthContextType {
 
 export const initialAuthState: AuthContextType = {
   isAuth: false,
-  user: {
-    _id: "",
-    email: "",
-    fullName: "",
-    profileName: "",
-    profile_image: "https://firebasestorage.googleapis.com/v0/b/unicourse-f4020.appspot.com/o/User%2Fdefault-avatar.png?alt=media&token=e9ad363c-de79-4457-9fa5-1864a911c686",
-    role: "student",
-  },
+  user: {} as User,
   accessToken: "",
 };
 
