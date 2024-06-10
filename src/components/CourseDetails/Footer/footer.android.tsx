@@ -1,11 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { textColor, textFont } from "../../../constants";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const FooterCard = ({ navigate }: { navigate: any }) => {
-  const onPress = () => {
+const FooterCard = ({
+  navigate,
+  courseId,
+}: {
+  navigate: any;
+  courseId: string;
+}) => {
+  const [Token, setToken] = useState({});
+
+  useEffect(() => {
+    readData();
+  }, []);
+
+  const readData = async () => {
+    try {
+      const userData = await AsyncStorage.getItem("@access_token");
+      if (userData !== null) {
+        setToken(userData);
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
+
+  const addToCart = async () => {
+    try {
+      const url = `https://unicourse-server-test.up.railway.app/api/cart/add-to-cart/${courseId}`;
+      const result = await axios.post(
+        url,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Token}`,
+          },
+        }
+      );
+      console.log("🚀 ~ addToCart ~ result:", result.data);
+    } catch (err: any) {
+      console.log(err.message);
+    }
+  };
+
+  const onPress = async () => {
+    await addToCart();
     navigate.navigate("CartStack", {
       screen: "CartScreen",
     });

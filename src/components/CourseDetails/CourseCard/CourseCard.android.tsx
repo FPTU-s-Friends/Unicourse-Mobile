@@ -6,17 +6,24 @@ import { MaterialIcons } from "@expo/vector-icons";
 const CourseCard = ({
   title,
   fixPrice,
-  newPrice,
+  enrollmentCount,
+  feedback,
 }: {
   title: string;
-  fixPrice: string;
-  newPrice: string;
+  fixPrice: number;
+  enrollmentCount: number;
+  feedback: any[];
 }) => {
+  const formatter = new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
+  if (feedback === undefined) {
+    feedback = [];
+  }
   return (
     <View style={styles.container}>
-      <Text style={[styles.textStyle]}>
-        Làm chủ Javascript trong phát triển Website - ReactJS
-      </Text>
+      <Text style={[styles.textStyle]}>{title}</Text>
       <View style={styles.stars}>
         <MaterialIcons name="star" size={18} style={styles.starselected} />
         <MaterialIcons name="star" size={18} style={styles.starselected} />
@@ -28,12 +35,11 @@ const CourseCard = ({
           style={styles.starselected}
         />
         <Text style={styles.reviewerStatistic}>
-          258 Đánh giá | 1983 Học viên
+          {feedback.length} Đánh giá | {enrollmentCount} Học viên
         </Text>
       </View>
       <View style={styles.pricePlace}>
-        <Text style={styles.realPrice}>27.346 VND</Text>
-        <Text style={styles.discountPrice}>34.982 VND</Text>
+        <Text style={styles.discountPrice}>{formatter.format(fixPrice)}</Text>
       </View>
     </View>
   );
@@ -69,13 +75,13 @@ const styles = StyleSheet.create({
     columnGap: 5,
     alignItems: "baseline",
   },
-  discountPrice: {
+  oldPrice: {
     fontSize: 14,
     opacity: 0.5,
     textDecorationLine: "line-through",
     // verticalAlign: "bottom",
   },
-  realPrice: {
+  discountPrice: {
     fontSize: 24,
     fontWeight: "bold",
     color: "#16aef3",
