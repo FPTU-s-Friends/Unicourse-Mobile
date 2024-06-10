@@ -12,20 +12,30 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
-const HeaderCard = ({ navigate }: { navigate: any }) => {
-  const onPress = () => {
+const HeaderCard = ({
+  navigate,
+  logoImage,
+}: {
+  navigate: any;
+  logoImage: string;
+}) => {
+  const onPressHomePage = () => {
     navigate.navigate("HomePgaeScreen", {
       screen: "HomePgaeScreen",
     });
   };
+
+  const onPressCart = async () => {
+    navigate.navigate("CartStack", {
+      screen: "CartScreen",
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../img/course_logo.png")}
-        style={styles.logoImage}
-      >
+      <ImageBackground source={{ uri: logoImage }} style={styles.logoImage}>
         <View style={styles.actionBar}>
-          <Pressable onPress={onPress}>
+          <Pressable onPress={onPressHomePage}>
             <Ionicons
               name="arrow-back"
               size={21}
@@ -43,7 +53,7 @@ const HeaderCard = ({ navigate }: { navigate: any }) => {
                 style={[{ marginRight: 10 }, styles.ItemStyle]}
               />
             </Pressable>
-            <Pressable>
+            <Pressable onPress={onPressCart}>
               <Feather
                 name="shopping-cart"
                 size={21}

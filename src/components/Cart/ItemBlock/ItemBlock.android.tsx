@@ -15,6 +15,7 @@ import { AntDesign } from "@expo/vector-icons";
 import axios from "axios";
 import { RootContext } from "../../../context/providers/AppProvider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import HeaderCart from "../Header/header.android";
 
 const datas = [
   {
@@ -23,54 +24,32 @@ const datas = [
     avatarImage: "../../CourseDetails/img/ganyu.jpg",
     items: [
       {
-        image: require("../image/creeper_head.png"),
+        thumbnail: require("../image/creeper_head.png"),
         title: "Làm chủ JavaScript trong phát triển Website - ReactJS",
-        oldprice: "$15.00",
+        amount: "$15.00",
         newprice: "$10.00",
         ischecked: true,
       },
       {
-        image: require("../image/spinner.png"),
+        thumbnail: require("../image/spinner.png"),
         title: "Làm chủ JavaScript trong phát triển Website - ReactJS",
-        oldprice: "$15.00",
+        amount: "$15.00",
         newprice: "$10.00",
       },
       {
-        image: require("../image/book.png"),
+        thumbnail: require("../image/book.png"),
         title: "Làm chủ JavaScript trong phát triển Website - ReactJS",
-        oldprice: "$17.50",
-        newprice: "$10.00",
-      },
-    ],
-  },
-  {
-    id: "2",
-    name: "Nguyễn Thành Đạt OCD",
-    avatarImage: "../../CourseDetails/image/ganyu.jpg",
-    items: [
-      {
-        image: require("../image/creeper_head.png"),
-        title: "Làm chủ JavaScript trong phát triển Website - ReactJS",
-        oldprice: "$15.00",
-        newprice: "$10.00",
-        ischecked: true,
-      },
-      {
-        image: require("../image/spinner.png"),
-        title: "Làm chủ JavaScript trong phát triển Website - ReactJS",
-        oldprice: "$15.00",
+        amount: "$17.50",
         newprice: "$10.00",
       },
     ],
   },
 ];
 
-interface itemInterface {
-  title: String;
-  image: String;
-  oldprice: String;
-  newprice: String;
-}
+const formatter = new Intl.NumberFormat("vi-VN", {
+  style: "currency",
+  currency: "VND",
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -117,13 +96,14 @@ const styles = StyleSheet.create({
   bottomHalfContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
+    alignItems: "center",
     marginBottom: 10,
   },
   bottomHalfContainerImg: {
     overflow: "hidden",
     resizeMode: "contain",
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
   },
   information: {
     marginLeft: 15,
@@ -170,12 +150,12 @@ const SectionHeader = ({ name }: any) => (
 
 const Block = ({ data }: any) => (
   <View style={styles.itemContainer}>
-    <SectionHeader name={data.name} />
+    <SectionHeader name={data.user_id.email} />
     <Items items={data.items} />
   </View>
 );
 
-const Items = ({ items }: { items: itemInterface[] }) => (
+const Items = ({ items }: { items: any }) => (
   <View style={{ marginTop: 15 }}>
     {items.map(
       (
@@ -184,12 +164,17 @@ const Items = ({ items }: { items: itemInterface[] }) => (
       ) => (
         <View style={styles.bottomHalfContainer} key={index}>
           <CheckBox />
-          <Image source={item.image} style={styles.bottomHalfContainerImg} />
+          <Image
+            source={{ uri: item.thumbnail }}
+            style={styles.bottomHalfContainerImg}
+          />
           <View style={styles.information}>
             <Text style={styles.informationText}>{item.title}</Text>
 
             <View style={styles.pricePlace}>
-              <Text style={styles.realPrice}>{item.newprice}</Text>
+              <Text style={styles.realPrice}>
+                {formatter.format(item.amount)}
+              </Text>
             </View>
           </View>
         </View>
@@ -202,10 +187,13 @@ const renderBlock = ({ item }: any) => <Block data={item} />;
 
 const ItemBlock = () => {
   const [Token, setToken] = useState({});
+  const [cart, setCart] = useState(null);
+  console.log("🚀 ~ ItemBlock ~ cart:", cart);
   console.log("🚀 ~ ItemBlock ~ Token:", Token);
 
   useEffect(() => {
     readData();
+    getCart();
   }, []);
 
   const readData = async () => {
@@ -219,29 +207,63 @@ const ItemBlock = () => {
     }
   };
 
-  const verifyAccount = async () => {
+  const getCart = async () => {
     try {
-      const url = `https://unicourse-api-production.up.railway.app/api/cart/retrieve-user-cart`;
+      const url = `https://unicourse-server-test.up.railway.app/api/cart/retrieve-user-cart`;
       const result = await axios.get(url, {
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${Token}`,
         },
       });
-      console.log(result);
-      return result;
+      setCart(result.data.data);
     } catch (err: any) {
       console.log(err);
     }
   };
-  verifyAccount();
+
   return (
     <View style={styles.container}>
-      <FlatList
-        data={datas}
-        renderItem={renderBlock}
-        keyExtractor={(item) => item.id}
-      />
+      <View style={styles.itemContainer}>
+        <View style={styles.headerContainer}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Avatar
+              rounded
+              source={require("../../CourseDetails/img/ganyu.jpg")}
+            />
+            <Text style={styles.headerText}>{cart?.user_id.email}</Text>
+          </View>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Pressable style={styles.headerIcon}>
+              <AntDesign name="edit" size={18} color="#16aef3" />
+            </Pressable>
+
+            <Pressable style={styles.headerButton}>
+              <Text style={{ color: "#16aef3" }}>Chọn tất cả</Text>
+            </Pressable>
+          </View>
+        </View>
+
+        <View style={{ marginTop: 15 }}>
+          {cart?.items.map((item, key) => (
+            <View style={styles.bottomHalfContainer} key={key}>
+              <CheckBox />
+              <Image
+                source={{ uri: item.thumbnail }}
+                style={styles.bottomHalfContainerImg}
+              />
+              <View style={styles.information}>
+                <Text style={styles.informationText}>{item.title}</Text>
+
+                <View style={styles.pricePlace}>
+                  <Text style={styles.realPrice}>
+                    {formatter.format(item.amount)}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          ))}
+        </View>
+      </View>
     </View>
   );
 };

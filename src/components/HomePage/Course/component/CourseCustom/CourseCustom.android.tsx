@@ -15,7 +15,8 @@ const CourseCustom: React.FC<CourseType> = ({
 }) => {
   const onPress = () => {
     navigate.navigate("CourseDetailStack", {
-      screen: "CourseDetailsScreen",
+      screen: "CourseDetailScreen",
+      params: { id: _id },
     });
   };
   return (
