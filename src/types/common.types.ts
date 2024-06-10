@@ -1,4 +1,4 @@
-// Blog Tags
+// ----------------------- BLOG ZONE -----------------------
 export type Tags = Tag[];
 
 export type Tag = {
@@ -33,7 +33,9 @@ export type BlogUser = {
   profile_image: string,
   role: string;
 };
+// ----------------------- END BLOG ZONE -------------------
 
+// ----------------------- USER ZONE -----------------------
 export type User = {
   _id: string;
   email: string;
@@ -49,6 +51,9 @@ export type LectureType = {
   avatar: string;
 };
 
+// ----------------------- END USER ZONE -------------------
+
+// ----------------------- COURSE ZONE ---------------------
 export type CourseType = {
   _id: string;
   thumbnail: string;
@@ -56,3 +61,5 @@ export type CourseType = {
   price: string;
   navigate: any;
 };
+
+// ----------------------- END COURSE ZONE -----------------

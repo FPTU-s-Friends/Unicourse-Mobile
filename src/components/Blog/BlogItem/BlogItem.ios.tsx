@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { Blogs, Blog, Tag, RootStackParamList, MainStackParamList } from "../../../types";
+import { Blog } from "../../../models";
 import { textColor, textFont } from "../../../constants";
 import BlogTag from "../BlogTag/BlogTag";
 
@@ -24,7 +24,7 @@ const screenDimensions = Dimensions.get('screen');
 
 const BLogItem = ({ blog, navigation }: { blog: Blog, navigation: any }) => {
     // Biến data
-    const [data, setData] = useState(blog);
+    const [data, setData] = useState(blog as any);
     const [dimensions, setDimensions] = useState({
         window: windowDimensions,
         screen: screenDimensions,
@@ -42,14 +42,14 @@ const BLogItem = ({ blog, navigation }: { blog: Blog, navigation: any }) => {
     });
 
     useEffect(() => {
-        const date = parseISO(blog.created_at);
-        const formattedDate = format(date, 'MM/dd/yyyy');
+        // const date = parseISO(blog.created_at);
+        const formattedDate = format(blog.created_at, 'MM/dd/yyyy');
         setData({ ...blog, created_at: formattedDate });
     }, [blog]);
 
     const onPress = () => {
         const blogPostId = blog._id; // Extract ID from blog data
-        navigation.navigate("BlogStack", { screen: "BlogDetailScreen", params: { id: blogPostId } });
+        navigation.navigate("BlogStack", { screen: "BlogDetailScreen", params: { id: blog._id } });
     };
 
     return (

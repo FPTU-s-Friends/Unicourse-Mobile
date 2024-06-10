@@ -8,7 +8,7 @@ import {
     FlatList
 } from "react-native";
 import { backgroundColor, textColor, textFont } from "../../../constants";
-import { Blog } from "../../../types";
+import { Blog } from "../../../models";
 import { AntDesign } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import BlogTag from "../../Blog/BlogTag/BlogTag";
@@ -49,7 +49,7 @@ const Bottom = ({ blog }: { blog: Blog }) => {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => <BlogTag tag={item} />}
-                keyExtractor={(item) => item.code}
+                keyExtractor={(item) => item.code.toString()}
             />
         </View>
     );
