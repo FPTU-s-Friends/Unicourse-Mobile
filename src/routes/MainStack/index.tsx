@@ -7,6 +7,7 @@ import BottomStack from "../BottomStack";
 import CourseDetailsScreen from "../../screens/CourseDetails";
 import CourseDetailStack from "./CourseDetailStack";
 import CartStack from "./CartStack";
+import LearningScreen from "../../screens/LearningScreen";
 const Stack = createStackNavigator();
 
 export default function MainStack() {

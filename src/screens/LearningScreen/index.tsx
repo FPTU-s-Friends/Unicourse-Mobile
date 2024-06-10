@@ -1,107 +1,126 @@
-// import React, { useContext, useEffect, useState } from "react";
-// import {
-//     Image,
-//     Text,
-//     StyleSheet,
-//     TouchableOpacity,
-//     View,
-//     FlatList,
-//     SafeAreaView,
-//     ScrollView,
-//     Dimensions
-// } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
-// import { MainStackParamList } from "../../types/navigation.types";
-// import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-// import { Tags, Blogs, Blog } from "../../types";
-// import { tagsData, blogsData } from "../../assets/data/blogData";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { StatusBar } from 'expo-status-bar';
+import {
+    Image,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    View,
+    FlatList,
+    SafeAreaView,
+    ScrollView,
+    Dimensions,
+    Alert,
+    PixelRatio,
+    Button
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { MainStackParamList } from "../../types/navigation.types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Tags, Blogs, Blog } from "../../types";
+import { tagsData, blogsData } from "../../assets/data/blogData";
+import { Video, ResizeMode } from 'expo-av';
+import YoutubeIframe from 'react-native-youtube-iframe';
 
-// // IMPORT COMPONENTS
-// import LoadingOverlay from "../../components/Common/LoadingOverlay/LoadingOverlay";
-// import Header from "../../components/Blog/Header/Header";
-// import Highlight from "../../components/Blog/Highlight/Highlight";
-// import Suggest from "../../components/Blog/Suggest/Suggest";
-// import BLogItem from "../../components/Blog/BlogItem/BlogItem";
+// IMPORT COMPONENTS
+import LoadingOverlay from "../../components/Common/LoadingOverlay/LoadingOverlay";
+import Header from "../../components/Learning/Header/Header";
 
-// // IMPORT LOGIC STATE
-// import { RootContext } from "../../context/providers/AppProvider";
-// import { BLOG_ACTION } from "../../context/types/blog.types";
+// IMPORT LOGIC STATE
+import { RootContext } from "../../context/providers/AppProvider";
 
-// // IMPORT API SERVICES
-// import { useBlogService } from "../../core/services";
+// IMPORT API SERVICES
+//...
 
-// //IMPORT FAKE DATA
-// import learningCourseData from '../../assets/data/learningCourseData.json';
+// IMPORT MODEL
+import { Course, Track, TrackStep } from "../../models";
 
-// const LearningScreen = () => {
-//     const { state, dispatch } = useContext(RootContext);
-//     const navigation =
-//         useNavigation<NativeStackNavigationProp<MainStackParamList>>();
+//IMPORT FAKE DATA
+import learningCourseData from '../../assets/data/learningCourseData.json';
 
-//     const title: string = "Bài viết nổi bật"
-//     const description: string = "Tổng hợp bài viết chia sẻ về kinh nghiệm tự học tập và phương pháp học tập của sinh viên và giảng viên."
-//     const [blogs, setBlogs] = useState(blogsData);
-//     const [tags, setTags] = useState(tagsData);
+const videoSource =
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
-//     // Behavior variables
-//     const [loading, setLoading] = useState(true);
+const LearningScreen = () => {
+    const { state, dispatch } = useContext(RootContext);
+    const navigation =
+        useNavigation<NativeStackNavigationProp<MainStackParamList>>();
+    const [data, setData] = useState({} as any);
+    const [videoId, setVideoId] = useState("");
 
-//     // API variables
-//     const { fetchAllBlog } = useBlogService();
+    const video = React.useRef(null as any);
+    const [status, setStatus] = React.useState({} as any);
 
-//     useEffect(() => {
-//         if (!state.blog || state.blog.blogs.length === 0) {
-//           const initBlogData = async () => {
-//             const initBlog = await fetchAllBlog();
-//             if (initBlog.status === 200) {
-//               setBlogs(initBlog.data);
-//               dispatch({ type: BLOG_ACTION.FETCH_BLOG, payload: initBlog.data });
-//               setLoading(false);
-//             }
-//           };
-//           initBlogData();
-//         } else {
-//           setBlogs(state.blog.blogs);
-//           setLoading(false); // Data already exists, so no need to fetch
-//         }
-//       }, [state.blog.blogs, fetchAllBlog, dispatch]);
+    // Behavior variables
+    const [loading, setLoading] = useState(true);
 
-//     return (
-//         <SafeAreaView style={styles.safeAreaView}>
-//             <Header />
-//             {loading ? <LoadingOverlay visible={loading} /> : (
-//                 <ScrollView style={styles.bodyContainer}>
-//                     <Highlight title={title} description={description} />
-//                     <Suggest tags={tags} />
-//                     <FlatList
-//                         style={styles.listContainer}
-//                         data={blogs}
-//                         scrollEnabled={false}
-//                         showsVerticalScrollIndicator={false}
-//                         showsHorizontalScrollIndicator={false}
-//                         renderItem={({ item }) => (
-//                             <BLogItem navigation={navigation} blog={item} />
-//                         )}
-//                         keyExtractor={(item) => item.title}
-//                     />
-//                 </ScrollView>
-//             )}
-//         </SafeAreaView>
-//     );
-// };
+    // API variables
+    // const { fetchAllBlog } = useBlogService();
 
-// const styles = StyleSheet.create({
-//     safeAreaView: {
-//         flex: 1,
-//         paddingTop: Dimensions.get("window").height * 0.05,
-//         backgroundColor: "#fff"
-//     },
-//     bodyContainer: {
-//         flex: 1,
-//         paddingHorizontal: 20,
-//         paddingTop: 10,
-//         backgroundColor: "#f7f8fc"
-//     }
-// });
+    useEffect(() => {
+        initCourseData();
+      }, []);
 
-// export default LearningScreen;
+    // INIT DATA ZONE
+    const initCourseData = async () => {
+        setData({...learningCourseData?.data});
+        setVideoId(`https://www.youtube.com/embed/${learningCourseData.data.tracks[0].track_steps[0].content_url}`);
+        setLoading(false);
+    };
+
+    return (
+        <SafeAreaView style={styles.safeAreaView}>
+            <Header />
+            {loading ? <LoadingOverlay visible={loading} /> : (
+                <ScrollView style={styles.bodyContainer}>
+                   <Text>Learning Screen</Text>
+                    <Video
+                        ref={video}
+                        style={styles.video}
+                        source={{ uri: "https://drive.google.com/uc?export=download&id=11jkmGh_yVEVcWGEfZjqOFos7USfK8Cy_" }}
+                        useNativeControls
+                        resizeMode={ResizeMode.CONTAIN}
+                        isLooping
+                        onPlaybackStatusUpdate={setStatus}
+                    />
+                    <View style={styles.buttons}>
+                        <Button title="Play from 5s" onPress={() => video.current.playFromPositionAsync(5000)} />
+                        <Button title={status.isLooping ? "Set to not loop" : "Set to loop"} onPress={() => video.current.setIsLoopingAsync(!status.isLooping)} />
+                    </View>
+
+                    <YoutubeIframe
+                        height={200}
+                        play={true}
+                        videoId={`2qCmRJz3NOE`} // Make sure this key exists in your JSON data
+                    />
+                </ScrollView>
+            )}
+            <StatusBar style="auto" />
+        </SafeAreaView>
+    );
+};
+
+const styles = StyleSheet.create({
+    safeAreaView: {
+        flex: 1,
+        paddingTop: Dimensions.get("window").height * 0.05,
+        backgroundColor: "#fff"
+    },
+    bodyContainer: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 10,
+        backgroundColor: "#f7f8fc"
+    },
+    video: {
+        flex: 1,
+        alignSelf: 'stretch',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height / 3,
+    },
+    buttons: {
+        margin: 16
+    }
+});
+
+export default LearningScreen;
