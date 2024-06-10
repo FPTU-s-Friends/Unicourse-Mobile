@@ -1,14 +1,17 @@
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { UserInfoTypes } from "../../../types/userDetail.types";
+import { IUserDetailProps } from "../../../types";
 
-const AvatarBlock = ({ userData }: { userData: UserInfoTypes }) => {
+const AvatarBlock = ({ userData }: { userData: IUserDetailProps }) => {
   return (
     <View style={styles.bodyAvatarBlock}>
       <ImageBackground
         resizeMode="contain"
-        source={userData.avatar as any}
-        style={{ width: 90, height: 100 }}
+        borderRadius={50}
+        source={{
+          uri: userData.profile_image,
+        }}
+        style={{ width: 90, height: 90 }}
       />
       <View style={styles.avatarOverlayParentWrapper}>
         <View style={styles.avatarOverLayChildWrapper}></View>
@@ -20,7 +23,7 @@ const AvatarBlock = ({ userData }: { userData: UserInfoTypes }) => {
 export default AvatarBlock;
 
 const styles = StyleSheet.create({
-  bodyAvatarBlock: { zIndex: 1, top: "-12%", position: "absolute" },
+  bodyAvatarBlock: { zIndex: 1, top: "-10%", position: "absolute" },
   authorName: {
     fontSize: 24,
     fontWeight: "bold",
