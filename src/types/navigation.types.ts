@@ -1,6 +1,7 @@
 export type MainStackParamList = {
   BlogStack: { screen: keyof BlogStackParamList };
   HomePageScreen: undefined;
+  UserStack: { screen: keyof UserStackParamList };
 };
 
 export type AuthStackParamList = {
@@ -17,4 +18,11 @@ export type RootStackParamList = {
 export type BlogStackParamList = {
   BlogScreen: undefined;
   BlogDetailScreen: { id: string };
-}
+};
+
+export type UserStackParamList = {
+  UserDetailScreen: undefined;
+  UserFavoriteScreen: undefined;
+  UserPromotionScreen: undefined;
+  UserHistoryTransactionScreen: undefined;
+};

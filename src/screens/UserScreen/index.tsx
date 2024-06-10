@@ -31,7 +31,7 @@ const data = [
 const dataNavigation = [
   {
     icon: require("../../assets/thumb/love.png"),
-    title: "Yêu thích (12)",
+    title: "Yêu thích",
   },
   {
     icon: require("../../assets/thumb/recently.png"),
@@ -76,19 +76,14 @@ const UserDetailScreen = () => {
       >
         {/* Header body content view */}
         <HeaderInfo />
-
         {/* Body content view */}
         <View style={styles.bodyWrapper}>
-          {/* Avatar block */}
-
           {/* Body container */}
           <BodyContainer
             dataNavigation={dataNavigation}
             progressRenderList={data}
             userData={userData}
           />
-
-          {/* Logout button */}
         </View>
       </SafeAreaView>
     </LinearGradientWrapper>

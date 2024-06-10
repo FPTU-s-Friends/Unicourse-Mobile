@@ -7,13 +7,13 @@ const AppBarHeader = ({
   onMagnifyPress,
   title,
 }: {
-  onBackPress: (event: GestureResponderEvent) => void | undefined;
-  onMagnifyPress: (event: GestureResponderEvent) => void | undefined;
+  onBackPress: (event?: GestureResponderEvent) => void | undefined;
+  onMagnifyPress: (event?: GestureResponderEvent) => void | undefined;
   title: string;
 }) => {
   return (
     <Appbar.Header mode="small">
-      <Appbar.BackAction onPress={() => {}} />
+      <Appbar.BackAction onPress={onBackPress} />
       <Appbar.Content
         titleStyle={{
           fontSize: 20,
@@ -21,7 +21,7 @@ const AppBarHeader = ({
         }}
         title={title}
       />
-      <Appbar.Action icon="magnify" onPress={() => {}} />
+      <Appbar.Action icon="magnify" onPress={onMagnifyPress} />
     </Appbar.Header>
   );
 };

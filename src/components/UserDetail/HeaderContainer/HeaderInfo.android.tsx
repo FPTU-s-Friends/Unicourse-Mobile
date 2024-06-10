@@ -3,11 +3,24 @@ import { StyleSheet, View } from "react-native";
 import ArrowButton from "../Button/ArrowButton.android";
 import CustomIconButton from "../Button/CustomIconButton.android";
 import ShoppingCartButton from "../Button/ShoppingCartButton.android";
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native";
+import { nameScreen } from "../../../constants/nameScreen";
 
 const HeaderInfo = () => {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>()!;
+  const onBackPress = () => {
+    navigation.navigate(nameScreen.HOMEPAGE, {
+      screen: "Trang chủ",
+    });
+  };
+
   return (
     <View style={styles.wrapperHeaderButtonGroup}>
-      <ArrowButton direction="left" />
+      <ArrowButton direction="left" onPress={onBackPress} />
       <View style={{ flexDirection: "row" }}>
         <ShoppingCartButton itemCount={12} />
         <CustomIconButton buttonName="edit-3" />

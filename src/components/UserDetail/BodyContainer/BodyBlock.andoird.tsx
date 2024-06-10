@@ -10,7 +10,6 @@ import CategoryListItems from "./CategoryListItems.android";
 import AvatarBlock from "./AvatarBlock.android";
 import LogoutButton from "../Button/LogoutButton.android";
 
-const { height } = Dimensions.get("window");
 const BodyContainer = ({
   userData,
   dataNavigation,

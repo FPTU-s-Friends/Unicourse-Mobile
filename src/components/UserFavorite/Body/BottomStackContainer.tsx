@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { ListRenderFavoriteProps } from "../../../types/userDetail.types";
+import { StyleSheet, Text, View } from "react-native";
 import { Image } from "react-native-elements";
+import { ListRenderFavoriteProps } from "../../../types/userDetail.types";
 
 const BottomStackContainer = ({ item }: { item: ListRenderFavoriteProps }) => {
   return (
@@ -14,35 +14,10 @@ const BottomStackContainer = ({ item }: { item: ListRenderFavoriteProps }) => {
         <Image source={item.user_url} style={styles.avatar} />
         <Text>{item.user}</Text>
       </View>
-      <Text
-        style={{
-          fontSize: 17,
-          fontWeight: "bold",
-          marginVertical: 5,
-        }}
-      >
-        {item.title}
-      </Text>
+      <Text style={styles.title}>{item.title}</Text>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: "bold",
-            color: "#15ADF3",
-          }}
-        >
-          {item.price}
-        </Text>
-        <Text
-          style={{
-            fontSize: 12,
-            marginLeft: 5,
-            color: "#FF0000",
-            textDecorationLine: "line-through",
-          }}
-        >
-          {item.oldPrice}
-        </Text>
+        <Text style={styles.price}>{item.price}</Text>
+        <Text style={styles.oldPrice}>{item.oldPrice}</Text>
       </View>
     </View>
   );
@@ -60,6 +35,22 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: "row",
     alignItems: "center",
+    marginVertical: 5,
+  },
+  price: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#15ADF3",
+  },
+  oldPrice: {
+    fontSize: 12,
+    marginLeft: 5,
+    color: "#FF0000",
+    textDecorationLine: "line-through",
+  },
+  title: {
+    fontSize: 17,
+    fontWeight: "bold",
     marginVertical: 5,
   },
 });
