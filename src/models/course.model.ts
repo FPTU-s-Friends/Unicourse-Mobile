@@ -7,6 +7,7 @@ export interface TrackStep {
   duration: number;
   content_url: string;
   type: string;
+  platform: string; // youtube, vimeo, google-drive, ...
 }
 
 export interface Track {

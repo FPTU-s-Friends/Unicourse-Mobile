@@ -101,9 +101,7 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         backgroundColor: "#f7f8fc"
     },
-    listContainer: {
-
-    }
+    listContainer: {}
 });
 
 export default BlogScreen;

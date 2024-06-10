@@ -4,7 +4,9 @@ export const textColor = {
   titleTextColorWhite: "#fff",
   titleTextColorBlack: "#000",
   titleTextColorGray: "#BEBFC2",
-  reactText: "#757575"
+  titleTextColorGray500: "#8D8A8A",
+  reactText: "#757575",
+  borderColor: "#E5E5E5",
 } as const;
 
 export const backgroundColor = {
