@@ -6,22 +6,29 @@ import {
     Image
 } from "react-native";
 import { textColor, textFont } from "../../../constants";
-import { Blog } from "../../../types";
+import { Blog } from "../../../models";
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
 import { format, parseISO } from 'date-fns';
 
+const formatDate = (date: Date): string => {
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+};
+
 const Author = ({ blog }: { blog: Blog }) => {
 
-    const [data, setData] = useState(blog);
+    const [data, setData] = useState(blog as any);
 
     useEffect(() => {
-        const date = parseISO(blog.created_at);
-        const formattedDate = format(date, 'MM/dd/yyyy');
+        // const date = parseISO(blog.created_at);
+        const formattedDate = format(blog.created_at, 'MM/dd/yyyy');
         setData({ ...blog, created_at: formattedDate });
     }, [blog]);
-    
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{data.title}</Text>
@@ -45,7 +52,7 @@ const Author = ({ blog }: { blog: Blog }) => {
                             {data?.created_at} |{" "}
                         </Text>
                         <Text style={styles.subDescription}>
-                            {data?.min_read} phút đọc
+                            {String(data?.min_read)} phút đọc
                         </Text>
                     </View>
                 </View>

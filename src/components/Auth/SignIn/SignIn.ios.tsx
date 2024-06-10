@@ -15,7 +15,8 @@ import { LOGO } from "../../../assets";
 import { textColor } from "../../../constants/appColors";
 import { CompositeNavigationProp, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList, User } from "../../../types";
+import { RootStackParamList } from "../../../types";
+import { User } from "../../../models";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthStackParamList } from "../../../types/navigation.types";
 
@@ -178,10 +179,22 @@ const LoginScreen = () => {
               </Text>
               <Text style={{ fontSize: 25, color: "#616161" }}>or</Text>
               <AuthButton onPress={() =>
-                navigation.navigate("MainStack", { screen: "HomePageScreen" })
+                Alert.alert('Đăng nhập', 'Chức năng này đang trong giai đoạn phát triển', [
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  }
+                ])
               } text="Đăng nhập với Google" />
               <AuthButton onPress={() =>
-                navigation.navigate("MainStack", { screen: "HomePageScreen" })
+                Alert.alert('Đăng nhập', 'Chức năng này đang trong giai đoạn phát triển', [
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  }
+                ])
               } text="Đăng nhập với GitHub" />
               <AuthButton onPress={() => toggleSignInMode()} text="Đăng nhập bằng tài khoản" />
             </>
