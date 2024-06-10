@@ -3,7 +3,6 @@ import { FlatList, StyleSheet, View } from "react-native";
 import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader";
 import BottomStackContainer from "../../components/UserFavorite/Body/BottomStackContainer";
 import TopStackContainer from "../../components/UserFavorite/Body/TopStackContainer";
-import { ListRenderFavoriteProps } from "../../types/userDetail.types";
 import {
   NavigationProp,
   ParamListBase,
@@ -11,6 +10,7 @@ import {
 } from "@react-navigation/native";
 import { nameScreen } from "../../constants/nameScreen";
 import BodyContainer from "../../components/UserFavorite/Body/BodyContainer";
+import { ListRenderFavoriteProps } from "../../types";
 
 const items = [
   {

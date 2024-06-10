@@ -78,19 +78,19 @@ const UserDetailScreen = () => {
   const { state } = React.useContext(RootContext);
   const { isAuth, user, accessToken } = state.auth;
 
-  // React.useEffect(() => {
-  //   if (![isAuth, user, accessToken].every(Boolean))
-  //     navigation.navigate(nameScreen.AUTH);
-  // }, [isAuth, user, accessToken]);
-  console.log("user", user);
+  React.useEffect(() => {
+    if (![isAuth, user, accessToken].every(Boolean))
+      navigation.navigate(nameScreen.AUTH);
+  }, [isAuth, user, accessToken]);
   const {
-    data: userRes = {} as IUserDetailProps,
+    data: userRes = {},
     isError,
     isFetching,
     isSuccess,
     error,
-  } = useGetUserByIdQuery(user._id || skipToken);
-  console.log("userRes", userRes);
+  } = useGetUserByIdQuery({ id: user._id, accessToken } || skipToken);
+
+  console.log(isAuth, user, accessToken);
   const userExtract = React.useMemo(() => {
     const userExtract = userRes.data as IUserDetailProps;
     return {
@@ -121,13 +121,7 @@ const UserDetailScreen = () => {
   } else if (isSuccess) {
     content = (
       <LinearGradientWrapper>
-        <SafeAreaView
-          style={{
-            flex: 1,
-            height: "100%",
-            width: "100%",
-          }}
-        >
+        <SafeAreaView style={styles.fullScreenView}>
           {/* Header body content view */}
           <HeaderInfo />
           {/* Body content view */}
@@ -150,6 +144,11 @@ const UserDetailScreen = () => {
 const styles = StyleSheet.create({
   spinnerTextStyle: {
     color: "#FFF",
+  },
+  fullScreenView: {
+    flex: 1,
+    height: "100%",
+    width: "100%",
   },
   container: {
     flex: 1,
