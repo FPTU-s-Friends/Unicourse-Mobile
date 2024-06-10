@@ -26,6 +26,7 @@
                         "content_url": "7JyTjObkPuc",
                         "position": 1,
                         "duration": 18,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:21:42.128Z",
                         "chapterTitle": "Bài 1: Tổng quan về Android"
@@ -36,6 +37,7 @@
                         "content_url": "Q1nfS_OC7X8",
                         "position": 2,
                         "duration": 5,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:22:32.326Z",
                         "chapterTitle": "Bài 1: Tổng quan về Android"
@@ -54,6 +56,7 @@
                         "content_url": "ZHnAO7GUqwA",
                         "position": 1,
                         "duration": 19,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:22:56.143Z",
                         "chapterTitle": "Bài 2: Cấu trúc chương trình Android"
@@ -72,6 +75,7 @@
                         "content_url": "kxOh8kwJZYo",
                         "position": 1,
                         "duration": 24,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:23:18.147Z",
                         "chapterTitle": "Bài 3: Tìm hiểu Simple UI Widget"
@@ -82,6 +86,7 @@
                         "content_url": "HqARFmOStnQ",
                         "position": 2,
                         "duration": 7,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:23:42.836Z",
                         "chapterTitle": "Bài 3: Tìm hiểu Simple UI Widget"
@@ -100,6 +105,7 @@
                         "content_url": "P5UWVzg0mrw",
                         "position": 1,
                         "duration": 14,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:24:03.764Z",
                         "chapterTitle": "Bài 4: Tìm hiểu Style và Theme"
@@ -118,6 +124,7 @@
                         "content_url": "BTxeUX6q3PQ",
                         "position": 1,
                         "duration": 10,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:24:23.991Z",
                         "chapterTitle": "Bài 5: Tìm hiểu Binding View và Handling Action trong Android Studio"
@@ -128,6 +135,7 @@
                         "content_url": "d3ueMnqXseQ",
                         "position": 2,
                         "duration": 9,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:24:55.168Z",
                         "chapterTitle": "Bài 5: Tìm hiểu Binding View và Handling Action trong Android Studio"
@@ -146,6 +154,7 @@
                         "content_url": "gDEiuk-sZYU",
                         "position": 1,
                         "duration": 18,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:25:16.585Z",
                         "chapterTitle": "Bài 6: Tìm hiểu Activity Lifecycle File"
@@ -164,6 +173,7 @@
                         "content_url": "UvXZFq50uHg",
                         "position": 1,
                         "duration": 13,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:25:36.249Z",
                         "chapterTitle": "Bài 7: Tìm hiểu Intent & Connecting Activities"
@@ -182,6 +192,7 @@
                         "content_url": "MXqsODsubcQ",
                         "position": 1,
                         "duration": 22,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:25:57.030Z",
                         "chapterTitle": "Bài 8: Tìm hiểu RecyclerView và Demo"
@@ -192,6 +203,7 @@
                         "content_url": "08m0fuVL1Pk",
                         "position": 2,
                         "duration": 4,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:26:14.942Z",
                         "chapterTitle": "Bài 8: Tìm hiểu RecyclerView và Demo"
@@ -210,6 +222,7 @@
                         "content_url": "XOiAhK87RLY",
                         "position": 1,
                         "duration": 31,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:26:38.970Z",
                         "chapterTitle": "Bài 9: Tìm hiểu ImageView và Menu"
@@ -220,6 +233,7 @@
                         "content_url": "EjJzqIGp7xM",
                         "position": 2,
                         "duration": 12,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:26:57.194Z",
                         "chapterTitle": "Bài 9: Tìm hiểu ImageView và Menu"
@@ -238,6 +252,7 @@
                         "content_url": "XFJ-OiKABcw",
                         "position": 1,
                         "duration": 7,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:27:18.148Z",
                         "chapterTitle": "Bài 10: Tìm hiểu Android Permission"
@@ -256,6 +271,7 @@
                         "content_url": "O7OwsifVL1o",
                         "position": 1,
                         "duration": 10,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:27:37.131Z",
                         "chapterTitle": "Bài 11: Tìm hiểu Android Notification và Demo"
@@ -274,6 +290,7 @@
                         "content_url": "TU_VNkklyUE",
                         "position": 1,
                         "duration": 31,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:27:54.933Z",
                         "chapterTitle": "Bài 12: Tìm hiểu DataStorage Database"
@@ -284,6 +301,7 @@
                         "content_url": "jxENnUK06ig",
                         "position": 2,
                         "duration": 4,
+                        "platform": "youtube",
                         "type": "video",
                         "created_at": "2024-05-27T11:28:10.944Z",
                         "chapterTitle": "Bài 12: Tìm hiểu DataStorage Database"

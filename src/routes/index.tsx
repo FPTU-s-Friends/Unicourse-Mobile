@@ -23,10 +23,9 @@ export default function Router() {
           screenOptions={{
             headerShown: false,
           }}
-          // initialRouteName={
-          //   state.auth.isAuth ? nameScreen.MAIN : nameScreen.AUTH
-          // }
-          initialRouteName={nameScreen.MAIN}
+          initialRouteName={
+            state.auth.isAuth ? nameScreen.MAIN : nameScreen.AUTH
+          }
         >
           {/* Nếu User chưa đăng nhập thì sẽ điều hướng đến Auth Stack */}
           <Stack.Screen name={nameScreen.AUTH} component={AuthStack} />

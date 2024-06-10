@@ -123,15 +123,22 @@ const SignUp = () => {
       return Promise.reject(new Error('Token decoding failed'));
     }
   
-    AsyncStorage.clear()
-      .then(() => AsyncStorage.setItem('@user_info', JSON.stringify(decodedToken)))
-      .then(() => AsyncStorage.setItem('@access_token', token))
+    AsyncStorage.getAllKeys()
+      .then((keys) => {
+        if (keys.length > 0) {
+          return AsyncStorage.multiRemove(keys);
+        }
+      })
+      .then(() =>
+        AsyncStorage.setItem("@user_info", JSON.stringify(decodedToken))
+      )
+      .then(() => AsyncStorage.setItem("@access_token", token))
       .then(() => {
         const userData = JSON.stringify(decodedToken) as any;
         dispatch({ type: AUTH_ACTION.SET_IS_AUTH, payload: true });
         dispatch({ type: AUTH_ACTION.SET_ACCESS_TOKEN, payload: token });
         dispatch({ type: AUTH_ACTION.SET_USER, payload: decodedToken as User });
-        navigation.navigate('MainStack', { screen: 'HomePageScreen' });
+        navigation.navigate("MainStack", { screen: "HomePageScreen" });
       })
       .catch(e => {
         console.log(e);
