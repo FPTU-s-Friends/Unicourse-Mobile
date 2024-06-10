@@ -65,7 +65,9 @@ export type CourseType = {
   navigate: any;
 };
 
-// USER STACK
+// ----------------------- END COURSE ZONE -----------------
+
+// ----------------------- USER ZONE -----------------
 export interface IUserDetailProps extends User {
   quiz_interest: string[];
   wish_list: string[];
@@ -111,4 +113,4 @@ export interface StartRatingCustomProps
   rating: number;
 }
 
-// ----------------------- END COURSE ZONE -----------------
+// -----------------------END USER ZONE -----------------
