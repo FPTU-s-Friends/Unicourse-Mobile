@@ -8,6 +8,7 @@ export type AuthStackParamList = {
   OnboardingScreen: undefined;
   AuthScreen: undefined;
   LoginScreen: undefined;
+  SignUpScreen: undefined;
 };
 
 export type RootStackParamList = {

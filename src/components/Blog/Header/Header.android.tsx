@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     Image,
     StyleSheet,
@@ -9,9 +9,26 @@ import {
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { RootContext } from "../../../context/providers/AppProvider";
 
 const Header = ({ style }: { style?: Object }) => {
+    const { state, dispatch } = useContext(RootContext);
     const navigation = useNavigation();
+    const [user, setUser] = useState({
+        _id: "",
+        email: "",
+        fullName: "",
+        profileName: "",
+        profile_image: "https://firebasestorage.googleapis.com/v0/b/unicourse-f4020.appspot.com/o/User%2Fdefault-avatar.png?alt=media&token=e9ad363c-de79-4457-9fa5-1864a911c686",
+        role: "student",
+    });
+
+    // INIT DATA ZONE
+    // Init user data
+    useEffect(() => {
+        setUser(state.auth.user);
+    }, [state.auth.user]);
+
     return (
         <View style={[styles.container, style]}>
             <TouchableOpacity
@@ -33,17 +50,17 @@ const Header = ({ style }: { style?: Object }) => {
                         style={styles.userImage}
                         resizeMode="cover"
                         source={{
-                            uri: "https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/Unicourse%20Project%2Fuser5.jpg?alt=media&token=cfaa77cb-0586-4271-84ad-3ecd9a4f4dd4",
+                            uri: user.profile_image,
                         }}
                     />
                     <View style={styles.onlineIcon} />
                 </View>
                 <View style={styles.userTextInfo}>
                     <Text style={styles.title} numberOfLines={1}>
-                        Nguyễn Huy Khải
+                        {user.fullName}
                     </Text>
                     <Text style={styles.textRole} numberOfLines={1}>
-                        Thành viên
+                        {user.role === "student" ? "Học viên" : "Giáo viên"}
                     </Text>
                 </View>
             </View>

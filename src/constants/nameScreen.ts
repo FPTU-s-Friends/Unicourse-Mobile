@@ -3,6 +3,7 @@ export const nameScreen = {
   AUTH: "AuthStack",
   MAIN: "MainStack",
   LOGINSCREEN: "LoginScreen",
+  SIGNUPSCREEN: "SignUpScreen",
   // USER - ZOME
   USER_STACK: "UserStack",
   USER_DETAIL_SCREEN: "UserDetailScreen",
@@ -18,8 +19,9 @@ export const nameScreen = {
   HOMEPAGE: "HomePgaeScreen",
 
   // COURSE DETAIL ZONE
-  COURSEDETAILS: "CourseDetailStack",
-
+  COURSEDETAILS_STACK: "CourseDetailStack",
+  COURSEDETAILS_SCREEN: "CourseDetailScreen",
   // CART ZONE
+  CART_STACK: "CartStack",
   CART: "CartScreen",
 };

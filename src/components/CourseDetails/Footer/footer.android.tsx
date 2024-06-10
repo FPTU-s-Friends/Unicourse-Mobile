@@ -6,7 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const FooterCard = ({ navigate }: { navigate: any }) => {
   const onPress = () => {
-    navigate.navigate("CartScreen", {
+    navigate.navigate("CartStack", {
       screen: "CartScreen",
     });
   };

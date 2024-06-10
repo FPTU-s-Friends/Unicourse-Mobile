@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     Image,
     Text,
@@ -13,18 +13,27 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { MainStackParamList } from "../../types/navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Tags, Blogs, Blog } from "../../types";
+import { tagsData, blogsData } from "../../assets/data/blogData";
+
+// IMPORT COMPONENTS
+import LoadingOverlay from "../../components/Common/LoadingOverlay/LoadingOverlay";
 import Header from "../../components/Blog/Header/Header";
 import Highlight from "../../components/Blog/Highlight/Highlight";
 import Suggest from "../../components/Blog/Suggest/Suggest";
 import BLogItem from "../../components/Blog/BlogItem/BlogItem";
-import { Tags, Blogs, Blog } from "../../types";
-import { tagsData, blogsData } from "../../assets/data/blogData";
+
+// IMPORT LOGIC STATE
+import { RootContext } from "../../context/providers/AppProvider";
+import { BLOG_ACTION } from "../../context/types/blog.types";
 
 // IMPORT API SERVICES
 import { useBlogService } from "../../core/services";
+import { set } from "date-fns";
 
 
 const BlogScreen = () => {
+    const { state, dispatch } = useContext(RootContext);
     const navigation =
         useNavigation<NativeStackNavigationProp<MainStackParamList>>();
 
@@ -40,20 +49,26 @@ const BlogScreen = () => {
     const { fetchAllBlog } = useBlogService();
 
     useEffect(() => {
-        const initBlogData = async () => {
+        if (!state.blog || state.blog.blogs.length === 0) {
+          const initBlogData = async () => {
             const initBlog = await fetchAllBlog();
             if (initBlog.status === 200) {
-                setBlogs(initBlog.data);
-                setLoading(false);
+              setBlogs(initBlog.data);
+              dispatch({ type: BLOG_ACTION.FETCH_BLOG, payload: initBlog.data });
+              setLoading(false);
             }
-        };
-        initBlogData();
-    }, []);
+          };
+          initBlogData();
+        } else {
+          setBlogs(state.blog.blogs);
+          setLoading(false); // Data already exists, so no need to fetch
+        }
+      }, [state.blog.blogs, fetchAllBlog, dispatch]);
 
     return (
         <SafeAreaView style={styles.safeAreaView}>
             <Header />
-            {loading ? <Text>Loading...</Text> : (
+            {loading ? <LoadingOverlay visible={loading} /> : (
                 <ScrollView style={styles.bodyContainer}>
                     <Highlight title={title} description={description} />
                     <Suggest tags={tags} />

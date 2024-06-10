@@ -41,7 +41,7 @@ type AuthNavigationProp = CompositeNavigationProp<
   StackNavigationProp<RootStackParamList>
 >;
 
-const LoginScreen = () => {
+const SignUp = () => {
   const { state, dispatch } = useContext(RootContext);
   const navigation = useNavigation<AuthNavigationProp>();
   const navigationAuth = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
@@ -49,17 +49,18 @@ const LoginScreen = () => {
   // State for the input text
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [usernameError, setUsernameError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   // API variables
-  const { signIn } = useAuthService();
+  const { signUp } = useAuthService();
   
   // Behavior state
-  const [loginMode, setLoginMode] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleBasicSignIn = () => {
+  const handleBasicSignUp = () => {
     // Validate the username
     if (!username) {
       setUsernameError('Tên đăng nhập không được để trống');
@@ -72,22 +73,28 @@ const LoginScreen = () => {
       setPasswordError('Mật khẩu phải có ít nhất 8 ký tự, 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt');
       return;
     }
+
+    // Validate the confirm password
+    if (password !== confirmPassword) {
+      setConfirmPasswordError('Mật khẩu không khớp');
+      return;
+    }
     
-    handleSignIn();
+    handleSignUp();
   };
 
   // Interaction with the server
-  const handleSignIn = async () => {
+  const handleSignUp = async () => {
     setIsLoading(true);
     try {
-      const signInResponse = await signIn(username, password);
-      if (signInResponse.status === 200) {
-        saveUserInfo(signInResponse.data.access_token);
+      const signUpResponse = await signUp(username, password);
+      if (signUpResponse.status === 200) {
+        saveUserInfo(signUpResponse.data.access_token);
         setIsLoading(false);
       }
-    } catch (error) {
+    } catch (e) {
       setIsLoading(false);
-      Alert.alert('Đăng nhập', 'Lỗi đăng nhập, vui lòng thử lại sau', [
+      Alert.alert('Đăng ký', 'Lỗi đăng ký, vui lòng thử lại sau', [
         {
           text: 'Cancel',
           onPress: () => console.log('Cancel Pressed'),
@@ -127,7 +134,7 @@ const LoginScreen = () => {
       })
       .catch(e => {
         console.log(e);
-        Alert.alert('Đăng nhập', 'Lỗi đăng nhập, vui lòng thử lại sau', [
+        Alert.alert('Đăng ký', 'Lỗi đăng ký, vui lòng thử lại sau', [
           {
             text: 'Cancel',
             onPress: () => console.log('Cancel Pressed'),
@@ -137,55 +144,35 @@ const LoginScreen = () => {
       });
   };
 
-  // Behavior screen
-  const toggleSignInMode = () => {
-    setLoginMode(loginMode === "basic" ? "" : "basic");
-    setUsernameError('');
-    setPasswordError('');
-  };
-
   return (
     <LinearGradient style={styles.container} colors={["#5EDFF5", "#9F80F8"]}>
       <View style={styles.content}>
         <Image resizeMode={"contain"} style={styles.logo} source={require('../../../assets/logo/Logo_Unicourse.png')} />
         <Text style={styles.title}>Unicourse</Text>
         {/* GROUP BTN */}
-        {loginMode === "basic" ? (
-          <>
-            {isLoading && <LoadingOverlay visible={isLoading} />}
-            <CustomInput
-              containerStyle={{ marginHorizontal: 20, marginTop: 10 }}
-              placeholder={'Username or Email'}
-              error={usernameError}
-              onChangeText={setUsername}
-            />
-            <CustomInput
-              containerStyle={{ marginHorizontal: 20, marginTop: 10 }}
-              placeholder={'Password'}
-              onChangeText={setPassword}
-              error={passwordError}
-              secureTextEntry
-            />
-            <AuthButton onPress={() => handleBasicSignIn()} text="Đăng nhập bằng tài khoản" />
-            <AuthButton onPress={() => navigationAuth.navigate("SignUpScreen")} text="Đăng ký" />
-            <AuthButton onPress={() => toggleSignInMode()} text="Trở về" />
-          </>
-        ) : (
-            <>
-              <Text style={styles.subTitle}>
-                Học theo cách của riêng bạn với các bài học tương tác và giao diện
-                trực quan.
-              </Text>
-              <Text style={{ fontSize: 25, color: "#616161" }}>or</Text>
-              <AuthButton onPress={() =>
-                navigation.navigate("MainStack", { screen: "HomePageScreen" })
-              } text="Đăng nhập với Google" />
-              <AuthButton onPress={() =>
-                navigation.navigate("MainStack", { screen: "HomePageScreen" })
-              } text="Đăng nhập với GitHub" />
-              <AuthButton onPress={() => toggleSignInMode()} text="Đăng nhập bằng tài khoản" />
-            </>
-        )}
+        {isLoading && <LoadingOverlay visible={isLoading} />}
+        <CustomInput
+          containerStyle={{ marginHorizontal: 20, marginTop: 10 }}
+          placeholder={'Username or Email'}
+          error={usernameError}
+          onChangeText={setUsername}
+        />
+        <CustomInput
+          containerStyle={{ marginHorizontal: 20, marginTop: 10 }}
+          placeholder={'Password'}
+          onChangeText={setPassword}
+          error={passwordError}
+          secureTextEntry
+        />
+        <CustomInput
+          containerStyle={{ marginHorizontal: 20, marginTop: 10 }}
+          placeholder={'Nhập lại password'}
+          onChangeText={setConfirmPassword}
+          error={confirmPasswordError}
+          secureTextEntry
+        />
+        <AuthButton onPress={() => handleBasicSignUp()} text="Đăng ký" />
+        <AuthButton onPress={() => navigationAuth.navigate("LoginScreen")} text="Đăng nhập" />
       </View>
     </LinearGradient>
   );
@@ -196,9 +183,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    marginTop: "30%",
+    marginTop: "50%",
     backgroundColor: "#fff",
-    height: 700,
+    height: "80%",
     borderRadius: 36,
     flexDirection: "column",
     alignItems: "center",
@@ -209,17 +196,17 @@ const styles = StyleSheet.create({
   },
   title: {
     color: textColor.normalText,
-    paddingTop: 5,
+    paddingTop: 10,
     fontSize: 26,
     fontWeight: "bold",
   },
   subTitle: {
-    marginBottom: "2%",
+    marginBottom: "10%",
     fontSize: 14,
     textAlign: "center",
     lineHeight: 20,
     width: "60%",
-    fontWeight: "400",
+    fontWeight: 400,
     marginTop: 10,
     color: textColor.subTitleColor,
   },
@@ -230,4 +217,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen;
+export default SignUp;

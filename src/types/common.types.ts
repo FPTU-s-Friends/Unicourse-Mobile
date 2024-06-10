@@ -19,7 +19,7 @@ export type Blog = {
   created_at: string;
   min_read: number;
   content: string;
-  like: Object[];
+  like: string[];
   comment_obj: Object[];
   status: string;
   flag: boolean;
@@ -30,12 +30,16 @@ export type BlogUser = {
   email: string;
   fullName: string;
   profileName: string;
-  profile_image: string
+  profile_image: string,
+  role: string;
 };
 
 export type User = {
-  name: string;
-  avatar: string;
+  _id: string;
+  email: string;
+  fullName: string;
+  profileName: string;
+  profile_image: string,
   role: string;
 };
 

@@ -13,7 +13,7 @@ const CourseDetailStack = () => {
       }}
     >
       <Stack.Screen
-        name={nameScreen.COURSEDETAILS}
+        name={nameScreen.COURSEDETAILS_SCREEN}
         component={CourseDetailsScreen}
       />
     </Stack.Navigator>
