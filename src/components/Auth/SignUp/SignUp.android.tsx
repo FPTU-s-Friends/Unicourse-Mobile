@@ -15,7 +15,8 @@ import { LOGO } from "../../../assets";
 import { textColor } from "../../../constants/appColors";
 import { CompositeNavigationProp, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList, User } from "../../../types";
+import { RootStackParamList } from "../../../types";
+import { User } from "../../../models";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthStackParamList } from "../../../types/navigation.types";
 

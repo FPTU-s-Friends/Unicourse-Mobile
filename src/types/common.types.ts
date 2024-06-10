@@ -1,3 +1,4 @@
+// ----------------------- BLOG ZONE -----------------------
 import { View } from "react-native";
 
 // Blog Tags
@@ -35,7 +36,9 @@ export type BlogUser = {
   profile_image: string;
   role: string;
 };
+// ----------------------- END BLOG ZONE -------------------
 
+// ----------------------- USER ZONE -----------------------
 export type User = {
   _id: string;
   email: string;
@@ -51,6 +54,9 @@ export type LectureType = {
   avatar: string;
 };
 
+// ----------------------- END USER ZONE -------------------
+
+// ----------------------- COURSE ZONE ---------------------
 export type CourseType = {
   _id: string;
   thumbnail: string;
@@ -104,3 +110,5 @@ export interface StartRatingCustomProps
   extends React.ComponentProps<typeof View> {
   rating: number;
 }
+
+// ----------------------- END COURSE ZONE -----------------

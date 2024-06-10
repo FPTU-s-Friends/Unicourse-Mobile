@@ -13,7 +13,6 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { MainStackParamList } from "../../types/navigation.types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Tags, Blogs, Blog } from "../../types";
 import { tagsData, blogsData } from "../../assets/data/blogData";
 
 // IMPORT COMPONENTS
@@ -30,6 +29,7 @@ import { BLOG_ACTION } from "../../context/types/blog.types";
 // IMPORT API SERVICES
 import { useBlogService } from "../../core/services";
 import { set } from "date-fns";
+import { Blog } from "../../models";
 
 
 const BlogScreen = () => {
@@ -39,7 +39,7 @@ const BlogScreen = () => {
 
     const title: string = "Bài viết nổi bật"
     const description: string = "Tổng hợp bài viết chia sẻ về kinh nghiệm tự học tập và phương pháp học tập của sinh viên và giảng viên."
-    const [blogs, setBlogs] = useState(blogsData);
+    const [blogs, setBlogs] = useState([] as Blog[]);
     const [tags, setTags] = useState(tagsData);
 
     // Behavior variables
@@ -81,7 +81,7 @@ const BlogScreen = () => {
                         renderItem={({ item }) => (
                             <BLogItem navigation={navigation} blog={item} />
                         )}
-                        keyExtractor={(item) => item.title}
+                        keyExtractor={(item) => item._id}
                     />
                 </ScrollView>
             )}
