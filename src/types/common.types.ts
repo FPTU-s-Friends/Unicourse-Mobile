@@ -1,4 +1,7 @@
 // ----------------------- BLOG ZONE -----------------------
+import { View } from "react-native";
+
+// Blog Tags
 export type Tags = Tag[];
 
 export type Tag = {
@@ -30,7 +33,7 @@ export type BlogUser = {
   email: string;
   fullName: string;
   profileName: string;
-  profile_image: string,
+  profile_image: string;
   role: string;
 };
 // ----------------------- END BLOG ZONE -------------------
@@ -41,7 +44,7 @@ export type User = {
   email: string;
   fullName: string;
   profileName: string;
-  profile_image: string,
+  profile_image: string;
   role: string;
 };
 
@@ -63,3 +66,51 @@ export type CourseType = {
 };
 
 // ----------------------- END COURSE ZONE -----------------
+
+// ----------------------- USER ZONE -----------------
+export interface IUserDetailProps extends User {
+  quiz_interest: string[];
+  wish_list: string[];
+  enrollCourses: string[];
+}
+
+export interface UserInfoTypes {
+  name: string;
+  avatar: any;
+}
+
+export interface DataNavigation {
+  icon: string;
+  title: string;
+  object?: Array<ExtraInformation>;
+}
+
+export interface ExtraInformation {
+  title: string;
+  thumb: string;
+  backgroundColor: string;
+}
+
+export interface ProgressRenderingProps {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface ListRenderFavoriteProps {
+  id: string;
+  title: string;
+  price: string;
+  oldPrice: string;
+  rating: number;
+  user: string;
+  user_url: any;
+  favorite_url: any;
+}
+
+export interface StartRatingCustomProps
+  extends React.ComponentProps<typeof View> {
+  rating: number;
+}
+
+// -----------------------END USER ZONE -----------------

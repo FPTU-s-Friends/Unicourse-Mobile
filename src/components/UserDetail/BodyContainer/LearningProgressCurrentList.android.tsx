@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet } from "react-native";
-import { ExtraInformation } from "../../../types/userDetail.types";
 import LearningProgressStackItem from "../Button/LearningProgressStackItem.android";
+import { ExtraInformation } from "../../../types";
 
 const LearningProgressCurrentList = ({
   progressListItem,

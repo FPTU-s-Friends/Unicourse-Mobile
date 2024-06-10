@@ -1,40 +1,61 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import {
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native";
 import { RootContext } from "../../../context/providers/AppProvider";
+import { nameScreen } from "../../../constants/nameScreen";
 
 const Header = () => {
   const { state, dispatch } = useContext(RootContext);
-    const navigation = useNavigation();
-    const [user, setUser] = useState({
-        _id: "",
-        email: "",
-        fullName: "",
-        profileName: "",
-        profile_image: "https://firebasestorage.googleapis.com/v0/b/unicourse-f4020.appspot.com/o/User%2Fdefault-avatar.png?alt=media&token=e9ad363c-de79-4457-9fa5-1864a911c686",
-        role: "student",
-    });
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+  const [user, setUser] = useState({
+    _id: "",
+    email: "",
+    fullName: "",
+    profileName: "",
+    profile_image:
+      "https://firebasestorage.googleapis.com/v0/b/unicourse-f4020.appspot.com/o/User%2Fdefault-avatar.png?alt=media&token=e9ad363c-de79-4457-9fa5-1864a911c686",
+    role: "student",
+  });
 
-    // INIT DATA ZONE
-    // Init user data
-    useEffect(() => {
-        setUser(state.auth.user);
-    }, [state.auth.user]);
-    
+  const handleAvatarPress = () => {
+    navigation.navigate(nameScreen.USER_STACK, {
+      screen: nameScreen.USER_DETAIL_SCREEN,
+    });
+  };
+
+  // INIT DATA ZONE
+  // Init user data
+  useEffect(() => {
+    setUser(state.auth.user);
+  }, [state.auth.user]);
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.userLayout}>
           <View style={styles.userGroupImage}>
-            <Image
-              style={styles.userImage}
-              resizeMode="cover"
-              source={{
-                uri: user.profile_image
-              }}
-            />
+            <TouchableHighlight onPress={handleAvatarPress}>
+              <Image
+                style={styles.userImage}
+                resizeMode="cover"
+                source={{
+                  uri: user.profile_image,
+                }}
+              />
+            </TouchableHighlight>
             <View style={styles.onlineIcon} />
           </View>
           <View style={styles.userTextInfo}>
