@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { ExtraInformation } from "../../../types/userDetail.types";
+import { ExtraInformation } from "../../../types";
 
 const LearningProgressStackItem = ({ item }: { item: ExtraInformation }) => {
   return (

@@ -10,6 +10,12 @@ import {
 import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader";
 import { Image, Text } from "react-native-elements";
 import moment from "moment";
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native";
+import { nameScreen } from "../../constants/nameScreen";
 
 interface TransactionDataDetails {
   id: string;
@@ -112,16 +118,15 @@ const data = [
 
 const UserTransactionHistory = () => {
   const [expanded, setExpanded] = React.useState(false);
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
   const setChangeExpendStatus = (id: string) => {
     console.warn("ID", id);
     setExpanded(!expanded);
   };
-
   const onBackPress = () => {
-    console.log("Back");
+    navigation.navigate(nameScreen.USER_DETAIL_SCREEN);
   };
-
   const onMagnifyPress = () => {
     console.log("Magnify");
   };

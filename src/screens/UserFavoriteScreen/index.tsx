@@ -3,9 +3,16 @@ import { FlatList, StyleSheet, View } from "react-native";
 import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader";
 import BottomStackContainer from "../../components/UserFavorite/Body/BottomStackContainer";
 import TopStackContainer from "../../components/UserFavorite/Body/TopStackContainer";
-import { ListRenderFavoriteProps } from "../../types/userDetail.types";
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native";
+import { nameScreen } from "../../constants/nameScreen";
+import BodyContainer from "../../components/UserFavorite/Body/BodyContainer";
+import { ListRenderFavoriteProps } from "../../types";
 
-const data = [
+const items = [
   {
     id: "1",
     title: "MAD101 - Toán rời rạc",
@@ -67,11 +74,12 @@ const data = [
     favorite_url: require("../../assets/thumb/conis.png"),
   },
   // Add more items here
-];
+] as ListRenderFavoriteProps[];
 
 const UserFavoriteScreen = () => {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
   const onBackPress = () => {
-    console.log("Back");
+    navigation.navigate(nameScreen.USER_DETAIL_SCREEN);
   };
 
   const onMagnifyPress = () => {
@@ -84,27 +92,7 @@ const UserFavoriteScreen = () => {
         onMagnifyPress={onMagnifyPress}
         title="Yêu thích"
       />
-      <View
-        style={{
-          flex: 1,
-          padding: 5,
-        }}
-      >
-        <FlatList
-          data={data}
-          renderItem={({ item }: { item: ListRenderFavoriteProps }) => {
-            return (
-              <View style={styles.cardContainer}>
-                <TopStackContainer item={item} />
-                <BottomStackContainer item={item} />
-              </View>
-            );
-          }}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
-          columnWrapperStyle={styles.row}
-        />
-      </View>
+      <BodyContainer items={items} />
     </View>
   );
 };
@@ -128,16 +116,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     margin: 10,
   },
+  cardContainer: {
+    width: 180,
+    height: 320,
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: "#ffffffa8",
+  },
   container: {
     flex: 1,
     height: "100%",
     backgroundColor: "#E0E7FF",
-  },
-  cardContainer: {
-    width: 180,
-    height: 290,
-    borderRadius: 10,
-    padding: 10,
-    backgroundColor: "#ffffffa8",
   },
 });

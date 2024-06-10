@@ -1,23 +1,27 @@
 import React, { useContext, useState } from "react";
-import { 
-  Image, 
-  StyleSheet, 
-  Text, 
-  TextInput, 
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  View, 
+  View,
   StatusBar,
   Dimensions,
-  Alert} from "react-native";
+  Alert,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { LOGO } from "../../../assets";
 import { textColor } from "../../../constants/appColors";
-import { CompositeNavigationProp, useNavigation } from "@react-navigation/native";
+import {
+  CompositeNavigationProp,
+  useNavigation,
+} from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../types";
 import { User } from "../../../models";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthStackParamList } from "../../../types/navigation.types";
 
 // IMPORT COMPONENTS
@@ -45,17 +49,18 @@ type AuthNavigationProp = CompositeNavigationProp<
 const LoginScreen = () => {
   const { state, dispatch } = useContext(RootContext);
   const navigation = useNavigation<AuthNavigationProp>();
-  const navigationAuth = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
+  const navigationAuth =
+    useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
 
   // State for the input text
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [usernameError, setUsernameError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
 
   // API variables
   const { signIn } = useAuthService();
-  
+
   // Behavior state
   const [loginMode, setLoginMode] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
@@ -63,17 +68,20 @@ const LoginScreen = () => {
   const handleBasicSignIn = () => {
     // Validate the username
     if (!username) {
-      setUsernameError('Tên đăng nhập không được để trống');
+      setUsernameError("Tên đăng nhập không được để trống");
       return;
     }
 
     // Validate the password
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.@#$%^&*])(?=.{8,})/;
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!.@#$%^&*])(?=.{8,})/;
     if (!passwordRegex.test(password)) {
-      setPasswordError('Mật khẩu phải có ít nhất 8 ký tự, 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt');
+      setPasswordError(
+        "Mật khẩu phải có ít nhất 8 ký tự, 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt"
+      );
       return;
     }
-    
+
     handleSignIn();
   };
 
@@ -88,52 +96,59 @@ const LoginScreen = () => {
       }
     } catch (error) {
       setIsLoading(false);
-      Alert.alert('Đăng nhập', 'Lỗi đăng nhập, vui lòng thử lại sau', [
+      Alert.alert("Đăng nhập", "Lỗi đăng nhập, vui lòng thử lại sau", [
         {
-          text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        }
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
       ]);
     }
-  }
+  };
 
   const saveUserInfo = (data: string) => {
     if (!data) {
-      return Promise.reject(new Error('No token data provided'));
+      return Promise.reject(new Error("No token data provided"));
     }
-  
-    const tokenParts = data.split(' ');
-    if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
-      return Promise.reject(new Error('Invalid token format'));
+
+    const tokenParts = data.split(" ");
+    if (tokenParts.length !== 2 || tokenParts[0] !== "Bearer") {
+      return Promise.reject(new Error("Invalid token format"));
     }
-  
+
     const token = tokenParts[1];
     let decodedToken: DecodedToken;
     try {
       decodedToken = jwtDecode(token);
     } catch (e) {
-      return Promise.reject(new Error('Token decoding failed'));
+      return Promise.reject(new Error("Token decoding failed"));
     }
-  
-    AsyncStorage.clear()
-      .then(() => AsyncStorage.setItem('@user_info', JSON.stringify(decodedToken)))
-      .then(() => AsyncStorage.setItem('@access_token', token))
+
+    AsyncStorage.getAllKeys()
+      .then((keys) => {
+        if (keys.length > 0) {
+          return AsyncStorage.multiRemove(keys);
+        }
+      })
+      .then(() =>
+        AsyncStorage.setItem("@user_info", JSON.stringify(decodedToken))
+      )
+      .then(() => AsyncStorage.setItem("@access_token", token))
       .then(() => {
         const userData = JSON.stringify(decodedToken) as any;
         dispatch({ type: AUTH_ACTION.SET_IS_AUTH, payload: true });
         dispatch({ type: AUTH_ACTION.SET_ACCESS_TOKEN, payload: token });
         dispatch({ type: AUTH_ACTION.SET_USER, payload: decodedToken as User });
-        navigation.navigate('MainStack', { screen: 'HomePageScreen' });
+        navigation.navigate("MainStack", { screen: "HomePageScreen" });
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
-        Alert.alert('Đăng nhập', 'Lỗi đăng nhập, vui lòng thử lại sau', [
+        Alert.alert("Đăng nhập", "Lỗi đăng nhập, vui lòng thử lại sau", [
           {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          }
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
         ]);
       });
   };
@@ -141,14 +156,18 @@ const LoginScreen = () => {
   // Behavior screen
   const toggleSignInMode = () => {
     setLoginMode(loginMode === "basic" ? "" : "basic");
-    setUsernameError('');
-    setPasswordError('');
+    setUsernameError("");
+    setPasswordError("");
   };
 
   return (
     <LinearGradient style={styles.container} colors={["#5EDFF5", "#9F80F8"]}>
       <View style={styles.content}>
-        <Image resizeMode={"contain"} style={styles.logo} source={require('../../../assets/logo/Logo_Unicourse.png')} />
+        <Image
+          resizeMode={"contain"}
+          style={styles.logo}
+          source={require("../../../assets/logo/Logo_Unicourse.png")}
+        />
         <Text style={styles.title}>Unicourse</Text>
         {/* GROUP BTN */}
         {loginMode === "basic" ? (
@@ -156,48 +175,71 @@ const LoginScreen = () => {
             {isLoading && <LoadingOverlay visible={isLoading} />}
             <CustomInput
               containerStyle={{ marginHorizontal: 20, marginTop: 10 }}
-              placeholder={'Username or Email'}
+              placeholder={"Username or Email"}
               error={usernameError}
               onChangeText={setUsername}
             />
             <CustomInput
               containerStyle={{ marginHorizontal: 20, marginTop: 10 }}
-              placeholder={'Password'}
+              placeholder={"Password"}
               onChangeText={setPassword}
               error={passwordError}
               secureTextEntry
             />
-            <AuthButton onPress={() => handleBasicSignIn()} text="Đăng nhập bằng tài khoản" />
-            <AuthButton onPress={() => navigationAuth.navigate("SignUpScreen")} text="Đăng ký" />
+            <AuthButton
+              onPress={() => handleBasicSignIn()}
+              text="Đăng nhập bằng tài khoản"
+            />
+            <AuthButton
+              onPress={() => navigationAuth.navigate("SignUpScreen")}
+              text="Đăng ký"
+            />
             <AuthButton onPress={() => toggleSignInMode()} text="Trở về" />
           </>
         ) : (
-            <>
-              <Text style={styles.subTitle}>
-                Học theo cách của riêng bạn với các bài học tương tác và giao diện
-                trực quan.
-              </Text>
-              <Text style={{ fontSize: 25, color: "#616161" }}>or</Text>
-              <AuthButton onPress={() =>
-                Alert.alert('Đăng nhập', 'Chức năng này đang trong giai đoạn phát triển', [
-                  {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                  }
-                ])
-              } text="Đăng nhập với Google" />
-              <AuthButton onPress={() =>
-                Alert.alert('Đăng nhập', 'Chức năng này đang trong giai đoạn phát triển', [
-                  {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                  }
-                ])
-              } text="Đăng nhập với GitHub" />
-              <AuthButton onPress={() => toggleSignInMode()} text="Đăng nhập bằng tài khoản" />
-            </>
+          <>
+            <Text style={styles.subTitle}>
+              Học theo cách của riêng bạn với các bài học tương tác và giao diện
+              trực quan.
+            </Text>
+            <Text style={{ fontSize: 25, color: "#616161" }}>or</Text>
+            <AuthButton
+              onPress={() =>
+                Alert.alert(
+                  "Đăng nhập",
+                  "Chức năng này đang trong giai đoạn phát triển",
+                  [
+                    {
+                      text: "Cancel",
+                      onPress: () => console.log("Cancel Pressed"),
+                      style: "cancel",
+                    },
+                  ]
+                )
+              }
+              text="Đăng nhập với Google"
+            />
+            <AuthButton
+              onPress={() =>
+                Alert.alert(
+                  "Đăng nhập",
+                  "Chức năng này đang trong giai đoạn phát triển",
+                  [
+                    {
+                      text: "Cancel",
+                      onPress: () => console.log("Cancel Pressed"),
+                      style: "cancel",
+                    },
+                  ]
+                )
+              }
+              text="Đăng nhập với GitHub"
+            />
+            <AuthButton
+              onPress={() => toggleSignInMode()}
+              text="Đăng nhập bằng tài khoản"
+            />
+          </>
         )}
       </View>
     </LinearGradient>
@@ -237,10 +279,10 @@ const styles = StyleSheet.create({
     color: textColor.subTitleColor,
   },
   loadingIcon: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: 1,
     top: Dimensions.get("screen").height / 50,
-  }
+  },
 });
 
 export default LoginScreen;

@@ -6,6 +6,7 @@ export type MainStackParamList = {
 
 export type CourseDetailStackList = {
   CourseDetailsScreen: { _id: string };
+  UserStack: { screen: keyof UserStackParamList };
 };
 
 export type AuthStackParamList = {
@@ -23,4 +24,11 @@ export type RootStackParamList = {
 export type BlogStackParamList = {
   BlogScreen: undefined;
   BlogDetailScreen: { id: string };
+};
+
+export type UserStackParamList = {
+  UserDetailScreen: undefined;
+  UserFavoriteScreen: undefined;
+  UserPromotionScreen: undefined;
+  UserHistoryTransactionScreen: undefined;
 };

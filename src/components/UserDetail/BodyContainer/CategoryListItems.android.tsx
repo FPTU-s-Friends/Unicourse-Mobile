@@ -1,8 +1,8 @@
 import React from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
-import { DataNavigation } from "../../../types/userDetail.types";
 import ItemSeparatorGeneratorView from "../Common/ItemSeparatorGeneratorView.android";
 import CategoryItem from "./CategoryItems.android";
+import { DataNavigation } from "../../../types";
 
 const CategoryListItems = ({
   dataNavigation,

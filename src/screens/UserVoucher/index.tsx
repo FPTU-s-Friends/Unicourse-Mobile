@@ -10,6 +10,12 @@ import {
 import { Image } from "react-native-elements";
 import { Text } from "react-native-paper";
 import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader";
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native";
+import { nameScreen } from "../../constants/nameScreen";
 
 interface PromotionsData {
   id: string;
@@ -66,8 +72,9 @@ const section_obj = [
 ];
 
 const UserPromotions = () => {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
   const onBackPress = () => {
-    console.log("Back");
+    navigation.navigate(nameScreen.USER_DETAIL_SCREEN);
   };
 
   const onMagnifyPress = () => {
