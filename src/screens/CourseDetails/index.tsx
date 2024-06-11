@@ -11,16 +11,18 @@ import CourseCard from "../../components/CourseDetails/CourseCard/CourseCard.and
 import CourseDescription from "../../components/CourseDetails/CourseDescriptions/CourseDescriptions.android";
 import FooterCard from "../../components/CourseDetails/Footer/footer.android";
 import axios from "axios";
+import { Course } from "../../models";
+import { environment } from "../../../environments/environment.development";
 
 const CourseDetailsScreen = ({ route }: any) => {
-  const [course, setCourse] = useState({});
+  const [course, setCourse] = useState({} as Course);
   const navigation =
     useNavigation<NativeStackNavigationProp<MainStackParamList>>();
   const { id } = route.params;
 
   const getCourse = async () => {
     try {
-      const url = `https://unicourse-server-test.up.railway.app/api/course/${id}`;
+      const url = `${environment.baseUrl}/api/course/${id}`;
       const result = await axios.get(url, {
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +46,6 @@ const CourseDetailsScreen = ({ route }: any) => {
           fixPrice={course?.amount}
           title={course?.title}
           enrollmentCount={course?.enrollmentCount}
-          feedback={course?.feedback}
         />
         <CourseDescription />
         <FooterCard navigate={navigation} courseId={id} />

@@ -85,6 +85,15 @@ const LoginScreen = () => {
       if (signInResponse.status === 200) {
         saveUserInfo(signInResponse.data.access_token);
         setIsLoading(false);
+      } else {
+        setIsLoading(false);
+        Alert.alert('Đăng nhập', 'Tên đăng nhập hoặc mật khẩu không đúng', [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          }
+        ]);
       }
     } catch (error) {
       setIsLoading(false);

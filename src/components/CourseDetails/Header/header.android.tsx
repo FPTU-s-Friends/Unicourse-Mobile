@@ -33,7 +33,6 @@ const HeaderCard = ({
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={{ uri: logoImage }} style={styles.logoImage}>
         <View style={styles.actionBar}>
           <Pressable onPress={onPressHomePage}>
             <Ionicons
@@ -71,7 +70,9 @@ const HeaderCard = ({
             </Pressable>
           </View>
         </View>
-      </ImageBackground>
+        <View style={styles.imgContainer}>
+          <ImageBackground source={{ uri: logoImage }} style={styles.logoImage} />
+        </View>
     </View>
   );
 };
@@ -81,64 +82,36 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 15,
     marginTop: 40,
-    marginBottom: 30,
+    marginBottom: 15,
     overflow: "hidden", // Clip logo image
     position: "relative", // For positioning actionBar
-    // backgroundColor: "red",
   },
   actionBar: {
     flexDirection: "row",
     justifyContent: "space-between",
-    // alignItems: "center",
-    // position: "absolute",
-    // top: 20, // Adjust top positioning
-    // left: 45,
-    // right: 45,
-    marginTop: 15,
-    marginHorizontal: 15,
     opacity: 0.8,
     zIndex: 1,
-    // alignSelf: "center",
+    marginVertical: 10,
   },
   actionBarRight: {
     flexDirection: "row",
   },
+  imgContainer: {
+    borderRadius: 10,
+    overflow: "hidden",
+  },
   logoImage: {
     width: "100%",
     alignSelf: "center",
-
-    // padding: 1,
-    // borderRadius: 10,
-    height: 200, // Set a fixed height
-    resizeMode: "contain", // Maintain aspect ratio but fit within height
+    height: 200,
+    resizeMode: "contain",
+    overflow: 'hidden'
   },
   ItemStyle: {
-    backgroundColor: "#9fb2c7",
-    borderRadius: 20,
-    padding: 5,
+    backgroundColor: textColor.titleTextColorGray,
+    borderRadius: 50,
+    padding: 6
   },
 });
-
-// const styles = StyleSheet.create({
-//   logoImage: {
-//     width: "100%",
-//     height: "60%",
-//     alignSelf: "flex-start",
-//   },
-//   actionBar: {
-//     position: "absolute",
-//     alignItems: "center",
-//     flexDirection: "row",
-//     justifyContent: "space-between",
-//     // marginBottom: 20, // Add spacing
-//   },
-//   container: {
-//     position: "relative",
-//     width: "100%",
-//     marginTop: 30,
-//     borderRadius: 10,
-//     padding: 20,
-//   },
-// });
 
 export default HeaderCard;
