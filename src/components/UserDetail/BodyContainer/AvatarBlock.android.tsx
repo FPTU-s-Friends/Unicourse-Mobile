@@ -23,7 +23,7 @@ const AvatarBlock = ({ userData }: { userData: IUserDetailProps }) => {
 export default AvatarBlock;
 
 const styles = StyleSheet.create({
-  bodyAvatarBlock: { zIndex: 1, top: "-10%", position: "absolute" },
+  bodyAvatarBlock: { zIndex: 1, top: "-8%", position: "absolute" },
   authorName: {
     fontSize: 24,
     fontWeight: "bold",

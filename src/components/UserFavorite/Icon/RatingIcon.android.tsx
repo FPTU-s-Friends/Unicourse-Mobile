@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { StartRatingCustomProps } from "../../../types/userDetail.types";
 import { Ionicons as Icon } from "@expo/vector-icons";
+import { StartRatingCustomProps } from "../../../types";
 
 const StartRating = ({ rating, ...props }: StartRatingCustomProps) => {
   let arr = [];

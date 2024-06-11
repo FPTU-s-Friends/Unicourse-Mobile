@@ -1,10 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { ListRenderFavoriteProps } from "../../../types/userDetail.types";
-import TopStackContainer from "./TopStackContainer";
-import BottomStackContainer from "./BottomStackContainer";
+import TopStackContainer from "./TopStackContainer.android";
+import BottomStackContainer from "./BottomStackContainer.android";
+import { IUserFavoriteList } from "../../../screens/UserFavoriteScreen";
 
-const BodyContainer = ({ items }: { items: ListRenderFavoriteProps[] }) => {
+const BodyContainer = ({ data }: { data: IUserFavoriteList[] }) => {
   return (
     <View
       style={{
@@ -13,8 +13,8 @@ const BodyContainer = ({ items }: { items: ListRenderFavoriteProps[] }) => {
       }}
     >
       <FlatList
-        data={items}
-        renderItem={({ item }: { item: ListRenderFavoriteProps }) => {
+        data={data}
+        renderItem={({ item }: { item: IUserFavoriteList }) => {
           return (
             <View style={styles.cardContainer}>
               <TopStackContainer item={item} />
@@ -22,7 +22,7 @@ const BodyContainer = ({ items }: { items: ListRenderFavoriteProps[] }) => {
             </View>
           );
         }}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         numColumns={2}
         columnWrapperStyle={styles.row}
       />

@@ -9,10 +9,25 @@ import UserPromotions from "../../../screens/UserVoucher";
 import { Provider } from "react-redux";
 import store from "../../../stores";
 import { UserStackParamList } from "../../../types";
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native";
+import { RootContext } from "../../../context/providers/AppProvider";
 
 const Stack = createStackNavigator<UserStackParamList>();
 
 const UserStack = () => {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+  const { state } = React.useContext(RootContext);
+  const { isAuth, user, accessToken } = state.auth;
+
+  React.useEffect(() => {
+    if (![isAuth, user, accessToken].every(Boolean))
+      navigation.navigate(nameScreen.AUTH);
+  }, [isAuth, user, accessToken]);
+
   return (
     <PaperProvider>
       <Provider store={store}>
