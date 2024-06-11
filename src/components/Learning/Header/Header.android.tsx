@@ -37,7 +37,7 @@ const Header = ({ style }: { style?: Object }) => {
 const styles = StyleSheet.create({
     container: {
         display: "flex",
-        height: 80,
+        height: 60,
         width: "100%",
         flexDirection: "row",
         paddingHorizontal: 20,
