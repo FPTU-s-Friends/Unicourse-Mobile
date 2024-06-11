@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Image } from "react-native-elements";
 import { Text } from "react-native-paper";
-import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader";
+import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader.android";
 import {
   NavigationProp,
   ParamListBase,

@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ImageSourcePropType, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Image } from "react-native-elements";
-import StartRating from "../Icon/RatingIcon";
-import { ListRenderFavoriteProps } from "../../../types/userDetail.types";
+import StartRating from "../Icon/RatingIcon.android";
+import { ListRenderFavoriteProps } from "../../../types";
+import { IUserFavoriteList } from "../../../screens/UserFavoriteScreen";
 
-const TopStackContainer = ({ item }: { item: ListRenderFavoriteProps }) => {
+const TopStackContainer = ({ item }: { item: IUserFavoriteList }) => {
   return (
     <View
       style={{
@@ -14,13 +15,12 @@ const TopStackContainer = ({ item }: { item: ListRenderFavoriteProps }) => {
     >
       <Image
         style={styles.imageStyle}
-        source={item.favorite_url}
-        resizeMode="contain"
+        source={{
+          uri: item.thumbnail as string,
+        }}
+        resizeMode="cover"
       />
-      <StartRating
-        style={styles.ratingIconStyle}
-        rating={item.rating as number}
-      />
+      <StartRating style={styles.ratingIconStyle} rating={5} />
     </View>
   );
 };

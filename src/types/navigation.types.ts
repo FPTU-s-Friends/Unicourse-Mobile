@@ -1,7 +1,11 @@
+import { NavigatorScreenParams } from "@react-navigation/native";
+import { StackScreenProps } from "@react-navigation/stack";
+
 export type MainStackParamList = {
   BlogStack: { screen: keyof BlogStackParamList };
   HomePageScreen: undefined;
   CourseDetailsScreen: { screen: keyof CourseDetailStackList };
+  UserStack: NavigatorScreenParams<UserStackParamList>;
 };
 
 export type CourseDetailStackList = {
@@ -18,7 +22,7 @@ export type AuthStackParamList = {
 
 export type RootStackParamList = {
   AuthStack: undefined;
-  MainStack: { screen: keyof MainStackParamList };
+  MainStack: NavigatorScreenParams<MainStackParamList>;
 };
 
 export type BlogStackParamList = {
@@ -27,8 +31,11 @@ export type BlogStackParamList = {
 };
 
 export type UserStackParamList = {
-  UserDetailScreen: undefined;
-  UserFavoriteScreen: undefined;
-  UserPromotionScreen: undefined;
-  UserHistoryTransactionScreen: undefined;
+  UserDetailScreen: { userId: string; accessToken: string };
+  UserFavoriteScreen: { userId: string; accessToken: string };
+  UserPromotionScreen: { accessToken: string };
+  UserHistoryTransactionScreen: { userId: string; accessToken: string };
 };
+
+export type UserStackScreenProps<T extends keyof UserStackParamList> =
+  StackScreenProps<UserStackParamList, T>;

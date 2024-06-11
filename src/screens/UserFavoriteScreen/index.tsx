@@ -1,18 +1,35 @@
-import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader";
-import BottomStackContainer from "../../components/UserFavorite/Body/BottomStackContainer";
-import TopStackContainer from "../../components/UserFavorite/Body/TopStackContainer";
 import {
+  CommonActions,
   NavigationProp,
   ParamListBase,
   useNavigation,
+  useRoute,
 } from "@react-navigation/native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader.android";
+import BodyContainer from "../../components/UserFavorite/Body/BodyContainer.android";
 import { nameScreen } from "../../constants/nameScreen";
-import BodyContainer from "../../components/UserFavorite/Body/BodyContainer";
-import { ListRenderFavoriteProps } from "../../types";
+import { ListRenderFavoriteProps, UserStackScreenProps } from "../../types";
+import { useGetWishlistCourseQuery } from "../../stores/slices/apiSlice";
+import { skipToken } from "@reduxjs/toolkit/query";
+import Spinner from "react-native-loading-spinner-overlay";
+import { Text } from "react-native-elements";
 
-const items = [
+export interface IUserFavoriteList {
+  _id: string;
+  title: string;
+  titleDescription: string;
+  subTitle: string;
+  subTitleDescription: string;
+  thumbnail: string;
+  amount: number;
+  type: string;
+  lectureName: string;
+  lectureImage: string;
+}
+
+export const items = [
   {
     id: "1",
     title: "MAD101 - Toán rời rạc",
@@ -77,24 +94,69 @@ const items = [
 ] as ListRenderFavoriteProps[];
 
 const UserFavoriteScreen = () => {
-  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+  const route = useRoute<UserStackScreenProps<"UserFavoriteScreen">["route"]>();
+  const navigation =
+    useNavigation<UserStackScreenProps<"UserDetailScreen">["navigation"]>();
+
+  const { accessToken } = route.params;
+  const {
+    data: userFavoriteList = [] as IUserFavoriteList[],
+    isError,
+    isFetching,
+    isSuccess,
+    error,
+  } = useGetWishlistCourseQuery({ accessToken } || skipToken);
+
+  const userFavoriteExtract = React.useMemo(() => {
+    return userFavoriteList.map((item: IUserFavoriteList) => {
+      return {
+        _id: item?._id,
+        title: item?.title,
+        titleDescription: item?.titleDescription,
+        subTitle: item?.subTitle,
+        subTitleDescription: item?.subTitleDescription,
+        thumbnail: item?.thumbnail,
+        amount: item?.amount,
+        type: item?.type,
+        lectureName: item?.lectureName,
+        lectureImage: item?.lectureImage,
+      };
+    });
+  }, [userFavoriteList]);
+
   const onBackPress = () => {
-    navigation.navigate(nameScreen.USER_DETAIL_SCREEN);
+    navigation.dispatch(CommonActions.goBack());
   };
 
   const onMagnifyPress = () => {
     console.log("Magnify");
   };
-  return (
-    <View style={styles.container}>
-      <AppBarHeader
-        onBackPress={onBackPress}
-        onMagnifyPress={onMagnifyPress}
-        title="Yêu thích"
+
+  let content = null;
+  if (isFetching) {
+    content = (
+      <Spinner
+        visible={isFetching}
+        textContent={"Loading..."}
+        textStyle={styles.spinnerTextStyle}
       />
-      <BodyContainer items={items} />
-    </View>
-  );
+    );
+  } else if (isError) {
+    content = <Text>{error.toString()}</Text>;
+  } else if (isSuccess) {
+    content = (
+      <>
+        <AppBarHeader
+          onBackPress={onBackPress}
+          onMagnifyPress={onMagnifyPress}
+          title="Yêu thích"
+        />
+        <BodyContainer data={userFavoriteExtract} />
+      </>
+    );
+  }
+
+  return <View style={styles.container}>{content}</View>;
 };
 
 export default UserFavoriteScreen;
@@ -127,5 +189,8 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     backgroundColor: "#E0E7FF",
+  },
+  spinnerTextStyle: {
+    color: "#FFF",
   },
 });

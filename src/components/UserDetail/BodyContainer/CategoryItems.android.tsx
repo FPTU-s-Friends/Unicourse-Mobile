@@ -5,16 +5,21 @@ import {
 } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { DataNavigation } from "../../../types/userDetail.types";
 import CustomIconButton from "../Button/CustomIconButton.android";
 import LearningProgressCurrentList from "./LearningProgressCurrentList.android";
 import { nameScreen } from "../../../constants/nameScreen";
+import { DataNavigation } from "../../../types";
+import { RootContext } from "../../../context/providers/AppProvider";
 export type SubStackParamList = {
   SubStackNestedScreen: undefined;
 };
 
 const CategoryItem = ({ item }: { item: DataNavigation }) => {
   const navigation = useNavigation<NavigationProp<ParamListBase>>()!;
+  const { state } = React.useContext(RootContext);
+
+  const { user, accessToken } = state.auth;
+
   const onPressReducer = (title: string) => {
     switch (title) {
       case "Yêu thích":
@@ -32,11 +37,18 @@ const CategoryItem = ({ item }: { item: DataNavigation }) => {
   const onFavoritePress = () => {
     return navigation.navigate(nameScreen.USER_STACK, {
       screen: nameScreen.USER_FAVORITE_SCREEN,
+      params: {
+        userId: user._id,
+        accessToken: accessToken,
+      },
     });
   };
   const onPromotionCodePress = () => {
     return navigation.navigate(nameScreen.USER_STACK, {
       screen: nameScreen.USER_PROMOTION_SCREEN,
+      params: {
+        accessToken: accessToken,
+      },
     });
   };
 
@@ -44,12 +56,11 @@ const CategoryItem = ({ item }: { item: DataNavigation }) => {
     return navigation.navigate(nameScreen.USER_STACK, {
       screen: nameScreen.USER_HISTORY_TRANSACTION_SCREEN,
       params: {
-        title: "Transaction History",
+        accessToken: accessToken,
+        userId: user._id,
       },
     });
   };
-
-  const onRecentLearningViewPress = () => {};
 
   return (
     <>

@@ -1,29 +1,21 @@
+import { useRoute } from "@react-navigation/native";
+import { skipToken } from "@reduxjs/toolkit/query";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "react-native-elements";
+import Spinner from "react-native-loading-spinner-overlay";
 import { SafeAreaView } from "react-native-safe-area-context";
-import BodyContainer from "../../components/UserDetail/BodyContainer/BodyBlock.andoird";
+import BodyContainer from "../../components/UserDetail/BodyContainer/BodyBlock.android";
 import LinearGradientWrapper from "../../components/UserDetail/Common/LinearGradientWrapper.android";
 import HeaderInfo from "../../components/UserDetail/HeaderContainer/HeaderInfo.android";
 import { useGetUserByIdQuery } from "../../stores/slices/apiSlice";
-import Spinner from "react-native-loading-spinner-overlay";
 import {
   DataNavigation,
   IUserDetailProps,
   ProgressRenderingProps,
-  UserInfoTypes,
+  UserStackScreenProps,
 } from "../../types";
-import { RootContext } from "../../context/providers/AppProvider";
-import {
-  NavigationProp,
-  ParamListBase,
-  useNavigation,
-} from "@react-navigation/native";
-import { nameScreen } from "../../constants/nameScreen";
-import { FetchBaseQueryError, skipToken } from "@reduxjs/toolkit/query";
-import { SerializedError } from "@reduxjs/toolkit";
 
-type FetchingQueryError = FetchBaseQueryError | SerializedError | undefined;
 const data = [
   {
     icon: require("../../assets/thumb/Time.png"),
@@ -74,25 +66,20 @@ const dataNavigation = [
 ] as Array<DataNavigation>;
 
 const UserDetailScreen = () => {
-  const navigation = useNavigation<NavigationProp<ParamListBase>>();
-  const { state } = React.useContext(RootContext);
-  const { isAuth, user, accessToken } = state.auth;
-
-  React.useEffect(() => {
-    if (![isAuth, user, accessToken].every(Boolean))
-      navigation.navigate(nameScreen.AUTH);
-  }, [isAuth, user, accessToken]);
+  const route = useRoute<UserStackScreenProps<"UserDetailScreen">["route"]>();
+  const [refreshing, setRefreshing] = React.useState(false);
+  const { userId, accessToken } = route.params;
   const {
     data: userRes = {},
     isError,
     isFetching,
     isSuccess,
     error,
-  } = useGetUserByIdQuery({ id: user._id, accessToken } || skipToken);
+    refetch,
+  } = useGetUserByIdQuery({ id: userId || "", accessToken } || skipToken);
 
-  console.log(isAuth, user, accessToken);
   const userExtract = React.useMemo(() => {
-    const userExtract = userRes.data as IUserDetailProps;
+    const userExtract = userRes as IUserDetailProps;
     return {
       _id: userExtract?._id,
       profileName: userExtract?.profileName,
@@ -105,6 +92,14 @@ const UserDetailScreen = () => {
       enrollCourses: userExtract?.enrollCourses,
     };
   }, [userRes]);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    refetch();
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   let content = null;
 
@@ -122,17 +117,24 @@ const UserDetailScreen = () => {
     content = (
       <LinearGradientWrapper>
         <SafeAreaView style={styles.fullScreenView}>
-          {/* Header body content view */}
-          <HeaderInfo />
-          {/* Body content view */}
-          <View style={styles.bodyWrapper}>
-            {/* Body container */}
-            <BodyContainer
-              dataNavigation={dataNavigation}
-              progressRenderList={data}
-              userData={userExtract}
-            />
-          </View>
+          <ScrollView
+            contentContainerStyle={styles.fullScreenView}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
+            {/* Header body content view */}
+            <HeaderInfo />
+            {/* Body content view */}
+            <View style={styles.bodyWrapper}>
+              {/* Body container */}
+              <BodyContainer
+                dataNavigation={dataNavigation}
+                progressRenderList={data}
+                userData={userExtract}
+              />
+            </View>
+          </ScrollView>
         </SafeAreaView>
       </LinearGradientWrapper>
     );

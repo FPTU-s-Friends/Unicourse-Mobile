@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader";
+import AppBarHeader from "../../components/UserFavorite/AppBar/AppBarHeader.android";
 import { Image, Text } from "react-native-elements";
 import moment from "moment";
 import {
