@@ -52,12 +52,12 @@ const CourseDescription = () => {
             </View>
           </View>
           <Pressable style={styles.informationBarButton}>
-            <Text style={{ color: "white" }}>Xem thông tin</Text>
+            <Text style={styles.infoText}>Xem thông tin</Text>
           </Pressable>
         </View>
 
         <View style={styles.descriptionBox}>
-          <Text style={{ fontSize: 16 }}>
+          <Text style={styles.descriptionText}>
             "Thiết kế không chỉ là trông nó như thế nào và cảm thấy như thế nào.
             Thiết kế là cách nó hoạt động"
           </Text>
@@ -69,23 +69,23 @@ const CourseDescription = () => {
 
 const styles = StyleSheet.create({
   textStyle: {
-    fontSize: 18,
+    fontSize: textFont.h3,
+    fontWeight: "500",
+    paddingBottom: 5,
   },
   container: {
     marginHorizontal: 15,
     marginBottom: 15,
-    // backgroundColor: "red",
   },
   selectionBar: {
     flexDirection: "row",
-    // columnGap: 25,
     justifyContent: "space-between",
     marginBottom: 20,
+    paddingHorizontal: 20,
   },
   activeTabText: {
-    borderBottomWidth: 5,
+    borderBottomWidth: 2,
     borderBottomColor: "#16aef3",
-    borderRadius: 6,
   },
   stars: {
     display: "flex",
@@ -110,17 +110,25 @@ const styles = StyleSheet.create({
   },
   informationBarButton: {
     padding: 8,
-    // flex: 1,
-    // textAlign: "center",
     overflow: "hidden",
     backgroundColor: "#4284f4",
     borderRadius: 10,
     flexShrink: 1,
   },
+  infoText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: textFont.titleNormal
+  },
   descriptionBox: {
-    backgroundColor: "#f7f8fc",
-    padding: 10,
+    backgroundColor: "#F7F8FC",
+    paddingHorizontal: 5,
+    paddingVertical: 10,
     borderRadius: 10,
+  },
+  descriptionText: {
+    fontSize: textFont.h4,
+    textAlign: "justify"
   },
   informationCardContainer: {
     backgroundColor: "white",

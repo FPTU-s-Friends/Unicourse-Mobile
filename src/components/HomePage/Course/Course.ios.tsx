@@ -1,8 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import CourseCustom from "./component/CourseCustom/CourseCustom";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { backgroundColor, textColor } from "../../../constants";
-
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import {
+  CourseDetailStackList,
+  MainStackParamList,
+} from "../../../types/navigation.types";
+import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import { useEffect, useState } from "react";
 const data = [
   {
     _id: 1,
@@ -17,23 +24,43 @@ const data = [
     price: "199.000đ",
   },
 ];
+
 const Course = () => {
+  const [course, setCourse] = useState([]);
+
+  useEffect(() => {
+    getCourse();
+  }, []);
+
+  const getCourse = async () => {
+    try {
+      const url = `https://unicourse-server-test.up.railway.app/api/course/get-all-course-fee`;
+      const result = await axios.get(url);
+      setCourse(result.data.data);
+    } catch (err: any) {
+      console.log(err);
+    }
+  };
+
+  const navigation =
+    useNavigation<NativeStackNavigationProp<CourseDetailStackList>>();
   return (
     <View style={styles.container}>
       {/* Title & More */}
       <View style={styles.titleAndBtnMore}>
         <Text style={styles.title}>Khoá học nổi bật</Text>
       </View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {data &&
-          data.map((item: any, index: number) => {
+      <ScrollView style={styles.scrollViewContainer} horizontal showsHorizontalScrollIndicator={false}>
+        {course &&
+          course.map((item: any, index: number) => {
             return (
               <CourseCustom
                 key={item._id}
                 _id={item._id}
                 title={item.title}
                 thumbnail={item.thumbnail}
-                price={item.price}
+                price={item.amount}
+                navigate={navigation}
               />
             );
           })}
@@ -70,6 +97,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
   },
+  scrollViewContainer: {
+    marginTop: "2%",
+    width: "100%",
+  }
 });
 
 export default Course;

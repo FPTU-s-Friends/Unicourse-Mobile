@@ -14,10 +14,9 @@ const HomePageScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header */}
+      <Header />
       <ScrollView>
-        {/* Header */}
-        <Header />
-
         {/* Carousel */}
         <MyCarousel />
 

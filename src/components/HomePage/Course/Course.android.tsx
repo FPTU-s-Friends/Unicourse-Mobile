@@ -50,7 +50,7 @@ const Course = () => {
       <View style={styles.titleAndBtnMore}>
         <Text style={styles.title}>Khoá học nổi bật</Text>
       </View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView style={styles.scrollViewContainer} horizontal showsHorizontalScrollIndicator={false}>
         {course &&
           course.map((item: any, index: number) => {
             return (
@@ -97,6 +97,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
   },
+  scrollViewContainer: {
+    marginTop: "2%",
+    width: "100%",
+  }
 });
 
 export default Course;
