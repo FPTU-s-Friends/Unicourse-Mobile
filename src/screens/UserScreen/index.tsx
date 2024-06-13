@@ -70,28 +70,13 @@ const UserDetailScreen = () => {
   const [refreshing, setRefreshing] = React.useState(false);
   const { userId, accessToken } = route.params;
   const {
-    data: userRes = {},
+    data: userRes = {} as IUserDetailProps,
     isError,
     isFetching,
     isSuccess,
     error,
     refetch,
   } = useGetUserByIdQuery({ id: userId || "", accessToken } || skipToken);
-
-  const userExtract = React.useMemo(() => {
-    const userExtract = userRes as IUserDetailProps;
-    return {
-      _id: userExtract?._id,
-      profileName: userExtract?.profileName,
-      fullName: userExtract?.fullName,
-      profile_image: userExtract?.profile_image,
-      email: userExtract?.email,
-      role: userExtract?.role,
-      quiz_interest: userExtract?.quiz_interest,
-      wish_list: userExtract?.wish_list,
-      enrollCourses: userExtract?.enrollCourses,
-    };
-  }, [userRes]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -131,7 +116,7 @@ const UserDetailScreen = () => {
               <BodyContainer
                 dataNavigation={dataNavigation}
                 progressRenderList={data}
-                userData={userExtract}
+                userData={userRes}
               />
             </View>
           </ScrollView>

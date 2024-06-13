@@ -34,7 +34,7 @@ export type UserStackParamList = {
   UserDetailScreen: { userId: string; accessToken: string };
   UserFavoriteScreen: { userId: string; accessToken: string };
   UserPromotionScreen: { accessToken: string };
-  UserHistoryTransactionScreen: { userId: string; accessToken: string };
+  UserHistoryTransactionScreen: { accessToken: string };
 };
 
 export type UserStackScreenProps<T extends keyof UserStackParamList> =

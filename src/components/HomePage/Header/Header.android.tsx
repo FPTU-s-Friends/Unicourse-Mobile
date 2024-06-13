@@ -58,7 +58,7 @@ const Header = () => {
       <View style={styles.container}>
         <View style={styles.userLayout}>
           <View style={styles.userGroupImage}>
-            <TouchableHighlight onPress={handleAvatarPress}>
+            <TouchableHighlight activeOpacity={1} onPress={handleAvatarPress}>
               <Image
                 style={styles.userImage}
                 resizeMode="cover"
