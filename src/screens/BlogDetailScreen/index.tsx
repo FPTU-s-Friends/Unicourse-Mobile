@@ -19,7 +19,6 @@ import { blogsData } from "../../assets/data/blogData";
 // import { Tags, Blogs, Blog } from "../../types";
 import { Blog } from "../../models";
 
-
 // IMPORT LOGIC STATE
 import { RootContext } from "../../context/providers/AppProvider";
 import { BLOG_ACTION } from "../../context/types/blog.types";
@@ -50,30 +49,33 @@ const BlogDetailScreen = ({ route, navigation }: any) => {
         const initBlog = await fetchBlogById(id);
         if (initBlog && initBlog.status === 200 && initBlog.data.content) {
           setBlog({ ...initBlog.data } as Blog);
-          dispatch({ type: BLOG_ACTION.FETCH_BLOG_DETAIL_INFO, payload: initBlog.data });
+          dispatch({
+            type: BLOG_ACTION.FETCH_BLOG_DETAIL_INFO,
+            payload: initBlog.data,
+          });
           const renderHtml = `${initBlog.data.content}`;
           setRenderHtml(renderHtml);
           setLoading(false);
         } else {
           setLoading(false);
-          Alert.alert('Bài viết', 'Lỗi lấy thông tin bài viết', [
+          Alert.alert("Bài viết", "Lỗi lấy thông tin bài viết", [
             {
-              text: 'Cancel',
+              text: "Cancel",
               onPress: () => navigation.goBack(),
-              style: 'cancel',
-            }
+              style: "cancel",
+            },
           ]);
         }
       };
       initBlogData(id);
     } else {
       setLoading(false);
-      Alert.alert('Bài viết', 'Không tìm thấy bài viết', [
+      Alert.alert("Bài viết", "Không tìm thấy bài viết", [
         {
-          text: 'Cancel',
+          text: "Cancel",
           onPress: () => navigation.goBack(),
-          style: 'cancel',
-        }
+          style: "cancel",
+        },
       ]);
     }
   }, [id]);
@@ -98,20 +100,20 @@ const BlogDetailScreen = ({ route, navigation }: any) => {
     <SafeAreaView style={styles.safeAreaView}>
       <Header />
       <ScrollView style={styles.bodyContainer}>
-          <Author blog={blog} />
-          {renderHtml ? (
-            <View style={styles.container}>
-              <HTMLView
-                stylesheet={stylesheet}
-                addLineBreaks={false}
-                value={`${trimNewLines(renderHtml)}`}
-              />
-            </View>
-          ) : (
-            <Text>Loading...</Text>
-          )}
-          <Bottom blog={blog} />
-        </ScrollView>
+        <Author blog={blog} />
+        {renderHtml ? (
+          <View style={styles.container}>
+            <HTMLView
+              stylesheet={stylesheet}
+              addLineBreaks={false}
+              value={`${trimNewLines(renderHtml)}`}
+            />
+          </View>
+        ) : (
+          <Text>Loading...</Text>
+        )}
+        <Bottom blog={blog} />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
     paddingTop: Dimensions.get("window").height * 0.05,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   container: {
     alignItems: "center",

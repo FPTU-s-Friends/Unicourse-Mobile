@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Pressable, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import { textColor, textFont } from "../../../constants";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { environment } from "../../../../environments/environment.development";
+import { useCourseDetailService } from "../../../core/services/courseDetail.service";
 
 const FooterCard = ({
   navigate,
@@ -14,7 +21,7 @@ const FooterCard = ({
   navigate: any;
   courseId: string;
 }) => {
-  const [Token, setToken] = useState({});
+  const [Token, setToken] = useState("");
 
   useEffect(() => {
     readData();
@@ -31,26 +38,27 @@ const FooterCard = ({
     }
   };
 
-  const addToCart = async () => {
-    try {
-      const url = `${environment.baseUrl}/api/cart/add-to-cart/${courseId}`;
-      const result = await axios.post(
-        url,
-        {},
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Token}`,
-          },
-        }
-      );
-    } catch (err: any) {
-      console.log(err.message);
-    }
-  };
+  // const addToCart = async () => {
+  //   try {
+  //     const url = `${environment.baseUrl}/api/cart/add-to-cart/${courseId}`;
+  //     const result = await axios.post(
+  //       url,
+  //       {},
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${Token}`,
+  //         },
+  //       }
+  //     );
+  //   } catch (err: any) {
+  //     console.log(err.message);
+  //   }
+  // };
 
   const onPress = async () => {
-    await addToCart();
+    const { addToCart } = useCourseDetailService();
+    await addToCart(courseId, Token);
     navigate.navigate("CartStack", {
       screen: "CartScreen",
     });
@@ -60,7 +68,7 @@ const FooterCard = ({
     navigate.navigate("LearningScreen", {
       courseId: courseId,
     });
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -68,7 +76,10 @@ const FooterCard = ({
         <Feather name="shopping-cart" size={21} color="black" />
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.linearContainer} onPress={navigateToLearningScreen}>
+      <TouchableOpacity
+        style={styles.linearContainer}
+        onPress={navigateToLearningScreen}
+      >
         <LinearGradient
           colors={["#4294ff", "#8e54e9"]}
           style={styles.buttonStyle}

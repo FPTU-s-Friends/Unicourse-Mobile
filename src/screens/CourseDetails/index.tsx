@@ -10,25 +10,26 @@ import HeaderCard from "../../components/CourseDetails/Header/header.android";
 import CourseCard from "../../components/CourseDetails/CourseCard/CourseCard.android";
 import CourseDescription from "../../components/CourseDetails/CourseDescriptions/CourseDescriptions.android";
 import FooterCard from "../../components/CourseDetails/Footer/footer.android";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Course } from "../../models";
 import { environment } from "../../../environments/environment.development";
+import { useCourseDetailService } from "../../core/services/courseDetail.service";
 
 const CourseDetailsScreen = ({ route }: any) => {
   const [course, setCourse] = useState({} as Course);
   const navigation =
     useNavigation<NativeStackNavigationProp<MainStackParamList>>();
+
+  // Course id from path paramater
   const { id } = route.params;
+
+  // API variables
+  const { getCourseById } = useCourseDetailService();
 
   const getCourse = async () => {
     try {
-      const url = `${environment.baseUrl}/api/course/${id}`;
-      const result = await axios.get(url, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      setCourse(result.data.data);
+      const testData = await getCourseById(id);
+      setCourse(testData.data);
     } catch (err: any) {
       console.log(err);
     }

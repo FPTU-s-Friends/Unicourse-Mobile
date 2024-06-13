@@ -16,6 +16,7 @@ import axios from "axios";
 import { RootContext } from "../../../context/providers/AppProvider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HeaderCart from "../Header/header.android";
+import { useCartService } from "../../../core/services/cart.service";
 
 const datas = [
   {
@@ -186,36 +187,22 @@ const Items = ({ items }: { items: any }) => (
 const renderBlock = ({ item }: any) => <Block data={item} />;
 
 const ItemBlock = () => {
-  const [Token, setToken] = useState({});
   const [cart, setCart] = useState(null);
-  console.log("🚀 ~ ItemBlock ~ cart:", cart);
-  console.log("🚀 ~ ItemBlock ~ Token:", Token);
+
+  // API variables
+  const { getCart } = useCartService();
 
   useEffect(() => {
-    readData();
-    getCart();
+    initializeData();
   }, []);
 
-  const readData = async () => {
+  const initializeData = async () => {
     try {
       const userData = await AsyncStorage.getItem("@access_token");
-      if (userData !== null) {
-        setToken(userData);
+      if (userData) {
+        const result = await getCart(userData);
+        setCart(result.data);
       }
-    } catch (e) {
-      console.log("error", e);
-    }
-  };
-
-  const getCart = async () => {
-    try {
-      const url = `https://unicourse-server-test.up.railway.app/api/cart/retrieve-user-cart`;
-      const result = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${Token}`,
-        },
-      });
-      setCart(result.data.data);
     } catch (err: any) {
       console.log(err);
     }
