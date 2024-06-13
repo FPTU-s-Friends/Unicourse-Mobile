@@ -74,6 +74,7 @@ const CategoryItem = ({ item }: { item: DataNavigation }) => {
           <Text style={styles.categoryTitle}>{item.title}</Text>
         </View>
         <CustomIconButton
+          disabled={item.title === "Xem gần nhất"}
           buttonName="chevron-right"
           onPress={() => onPressReducer(item.title)}
         />
